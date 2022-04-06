@@ -205,7 +205,7 @@ class WT_Products_Per_Page_Front_End {
 	 */
 	public function woocommerce_product_query( $q, $class ) {
 
-		if ( function_exists( 'woocommerce_products_will_display' ) && woocommerce_products_will_display() && $q->is_main_query() ) :
+		if ( $q->is_main_query() ) :
 			$q->set( 'posts_per_page', $this->loop_shop_per_page() );
 		endif;
 
