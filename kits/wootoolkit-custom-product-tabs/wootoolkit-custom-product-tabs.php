@@ -121,7 +121,7 @@ class WT_Custom_Tabs {
 		global $post;
 
 		// pull the custom tab data out of the database
-		$tab_data = maybe_unserialize( get_post_meta( $post->ID, 'frs_woo_product_tabs', true ) );
+		$tab_data[] = maybe_unserialize( get_post_meta( $post->ID, 'frs_woo_product_tabs', true ) );
 
 		if ( empty( $tab_data ) ) {
 			$tab_data[] = array( 'title' => '', 'content' => '' );
