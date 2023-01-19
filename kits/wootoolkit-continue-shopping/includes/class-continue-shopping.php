@@ -102,6 +102,7 @@ class Continue_Shopping_Front_End {
 		$cat_referer = get_transient( 'recent_cat' );
 
 		$continue_destination = $this->continue_destination;
+
 		$custom_link = $this->custom_link;
 		$siteurl = get_site_url();
 

@@ -109,7 +109,7 @@ class WT_Products_Per_Page {
  *
  * Use this function like you would a global variable, except without needing to declare the global.
  *
- * Example: <?php WT_Products_Per_Page()->method_name(); ?>
+ * Example: WT_Products_Per_Page()->method_name();
  *
  * @since 1.0.0
  *

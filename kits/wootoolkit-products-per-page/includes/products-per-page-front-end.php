@@ -54,7 +54,7 @@ class WT_Products_Per_Page_Front_End {
 		add_filter( 'loop_shop_columns', array( $this, 'loop_shop_columns' ) );
 
 		// Custom number of products per page
-		add_filter( 'loop_shop_per_page', array( $this, 'loop_shop_per_page' ) );
+		add_filter( 'loop_shop_per_page', array( $this, 'loop_shop_per_page' ), 20 );
 
 		// Get the right amount of products from the DB
 		add_action( 'woocommerce_product_query', array( $this, 'woocommerce_product_query' ), 2, 50 );
@@ -179,7 +179,6 @@ class WT_Products_Per_Page_Front_End {
 	 * @return int Products per page.
 	 */
 	public function loop_shop_per_page() {
-
 		if ( isset( $_REQUEST['wt_items'] ) ) :
 			return intval( $_REQUEST['wt_items'] );
 		elseif ( isset( $_REQUEST['items'] ) ) :
@@ -189,7 +188,6 @@ class WT_Products_Per_Page_Front_End {
 		else :
 			return intval( $this->default_ppp );
 		endif;
-
 	}
 
 	/**

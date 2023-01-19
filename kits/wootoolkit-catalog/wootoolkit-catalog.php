@@ -65,7 +65,6 @@ class WT_Catalog_Mode {
 	* @since 1.0.0
 	*/
 	public function wt_catalog_apply() {
-
 		//check for user groups
 		if( $this->catalog_on ) {
 
@@ -88,18 +87,38 @@ class WT_Catalog_Mode {
 	public function remove_add_to_cart_button() {
 		
 		if ( $this->add_custom_button=="on" ) {
-
-			add_filter( 'woocommerce_loop_add_to_cart_link', array( $this, 'custom_button' ), 10 );
-			add_action( 'woocommerce_after_shop_loop_item', array( $this, 'set_up_template_add_to_cart' ), 1 );	
+			  add_filter( 'woocommerce_loop_add_to_cart_link', array( $this, 'custom_button' ), 10 );
+			  add_action( 'woocommerce_after_shop_loop_item', array( $this, 'set_up_template_add_to_cart' ), 1 );	
+			  add_filter( 'woocommerce_get_price_html', array( $this, 'custom_button' ) );
+			  add_filter( 'woocommerce_cart_item_price', array( $this, 'custom_button' ) );
 
 		} else {
-
 			remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
 			add_action( 'woocommerce_after_shop_loop_item', array( $this, 'set_up_template_add_to_cart' ), 1 );
 		}
-		
-		remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
+
+		remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 10 );
 		add_action( 'woocommerce_single_product_summary', array( $this, 'set_up_template_add_to_cart' ), 1 );
+
+		//Remove add to cart from shop page for astra theme.
+
+		add_filter('astra_woo_shop_product_structure' , 'call_back_add_to_cart_shop');
+		//Remove add to cart from single product page.
+		add_filter( 'astra_woo_single_product_structure' , 'call_back_add_to_cart' );
+		function call_back_add_to_cart_shop(){
+		    $structure = astra_get_option( 'shop-product-structure' );
+		    $add_to_cart_key = array_search('add_cart', $structure);
+		    unset($structure[$add_to_cart_key]);
+		    return $structure;
+		}
+
+		function call_back_add_to_cart(){
+		    $structure = astra_get_option( 'single-product-structure' );
+		    $add_to_cart_key = array_search('add_cart', $structure);
+		    unset($structure[$add_to_cart_key]);
+		    return $structure;
+		}
+		
 	}
 	
 	/**
@@ -133,18 +152,19 @@ class WT_Catalog_Mode {
 	public function set_up_template_add_to_cart() {
 		
 		if( $this->shouldExcludeCategory() ) {
-			
+
 			remove_filter( 'woocommerce_loop_add_to_cart_link', array( $this, 'custom_button' ), 10 );
 			add_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
 			add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
 			
 		}else{
-			
 			//in catalog
 			if ( $this->add_custom_button != "on" ) {
 				remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
 			} else {
 				add_filter('woocommerce_loop_add_to_cart_link', array( $this, 'custom_button' ), 10);
+				// add_filter( 'astra_global_btn_woo_comp' , array( $this, 'custom_button' ), 10 );
+
 			}
 		}
 	}
@@ -156,11 +176,25 @@ class WT_Catalog_Mode {
 	* @since 1.0.0
 	*/
 	public function remove_price() {
-		
 		remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
 		add_action( 'woocommerce_single_product_summary', array( $this, 'set_up_template_price' ), 5 );
-		remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 );	
+		remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 );
 		add_action( 'woocommerce_after_shop_loop_item_title', array( $this, 'set_up_template_price' ), 1 );
+		function patricks_custom_variation_price( $price, $product ) {
+
+			$target_product_types = array( 
+				'variable' 
+			);
+
+			if ( in_array ( $product->product_type, $target_product_types ) ) {
+				// if variable product return and empty string
+				return '';
+			}
+
+			// return normal price
+			return '';
+		}
+		add_filter('woocommerce_get_price_html', 'patricks_custom_variation_price', 10, 2);
 	}
 	
 	/**
@@ -216,7 +250,7 @@ class WT_Catalog_Mode {
 	* @since 1.0.0
 	*/
 	public function configCatalog() {
-		
+
 		if( $this->user_groups == "registered_users" ) {
 			if ( is_user_logged_in() ) {
 				$this->catalog_on = true;
