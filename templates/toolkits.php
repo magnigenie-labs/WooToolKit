@@ -67,7 +67,6 @@ $installed_kits = $objWootoolKit->get_kits();
 	<h1>
 		<?php echo __( 'Toolkits', 'wootoolkit' ) ?>
 	</h1>
-	
 	<?php if( isset( $_GET['message'] ) ) { ?>
 	<div id="message" class="updated notice is-dismissible">
 		
@@ -179,7 +178,7 @@ $installed_kits = $objWootoolKit->get_kits();
 
 						if( 'inactive' == $active_status ) {
 
-						$actions['activate'] = '<a href="admin.php?page=woo-toolkit&kit_status='. $kit_status .'&action=activate&amp;plugin='.$key.'" class="edit">'.__( 'Activate', 'wootoolkit' ).'</a>';
+					    $actions['activate'] = '<a href="admin.php?page=woo-toolkit&kit_status='. $kit_status .'&action=activate&amp;plugin='.$key.'" class="edit">'.__( 'Activate', 'wootoolkit' ).'</a>';
 
 						} else if ( 'active' == $active_status ) {
 						

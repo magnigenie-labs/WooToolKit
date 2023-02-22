@@ -34,6 +34,8 @@ class WT_Extra_Sorting_Options {
 
 	public function __construct() {
 
+		$this->init();
+
 		$options = get_option('wootoolkit_sorting_options');
 		// settings page link
 		add_filter( 'kit_action_links_product-sorting-options', array( $this, 'plugin_settings_link' ) );		
@@ -49,12 +51,28 @@ class WT_Extra_Sorting_Options {
 			add_filter( 'woocommerce_get_catalog_ordering_args', array( $this, 'add_new_shop_ordering_args' ) );
 		endif;
 
-
-		if ( is_admin() && ! is_ajax() ) {
-			require_once plugin_dir_path( __FILE__ ) . 'includes/class-admin-settings.php';
-			$this->admin_settings = new WT_Sorting_Options();
-		}
 	}
+
+	/**
+     * Init.
+     *
+     * Initialize plugin parts.
+     *
+     * @since 1.0.0
+     */
+    public function init() {
+
+        if ( is_admin() ) :
+
+            /**
+             * Settings
+             */
+            require_once plugin_dir_path( __FILE__ ) . 'includes/class-admin-settings.php';
+			$this->admin_settings = new WT_Sorting_Options();
+
+        endif;
+
+    }
 
 
 	/** Helper methods */
