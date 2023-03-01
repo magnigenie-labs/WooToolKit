@@ -60,11 +60,11 @@ class WT_Catalog_Settings {
 		$cat_ids[] = "all";
 		$cat_names[] = "All categories";
 		if( !is_wp_error( $product_categories ) ){
-		foreach($product_categories as  $v) {
-			$cat_names[]= $v->name;
-			$cat_ids[] = $v->term_id;
-		} 
-	}
+			foreach($product_categories as  $v) {
+				$cat_names[]= $v->name;
+				$cat_ids[] = $v->term_id;
+			} 
+		}
 		$product_categories=array_combine( $cat_ids, $cat_names );
 
 		// Setting the page form fields

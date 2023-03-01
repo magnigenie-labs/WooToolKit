@@ -15,12 +15,10 @@ class WooToolkit {
      * @since 1.0.0
      */
     public function __construct() {
-
         add_action( 'init', 
             array( $this, 'wootoolkit_load_kits' ), 1, 0 );
 
-        add_action( 'admin_notices', 
-            array( $this, 'check_required_plugins' ) );
+        add_action( 'admin_init', array( $this, 'check_required_plugins' ) );
 
         add_action( 'admin_menu', 
             array( $this, 'wootoolkit_settings_page' ), 1, 0 );
@@ -33,6 +31,18 @@ class WooToolkit {
 
         register_activation_hook( WOOTOOLKIT_FILE, 
             array( $this, 'install' ) );
+        add_action( 'deactivated_plugin', [ $this, 'deactivated_plugin']);
+    }
+
+    /**
+     * Check if woocommerce is installed and activated
+     *
+     * @since 1.1.0
+     */
+    public function deactivated_plugin($plugin_name){
+        if( 'wootoolkit/wootoolkit.php' === $plugin_name){
+            remove_menu_page('woo-toolkit');
+        }
     }
 
     /**
@@ -67,19 +77,27 @@ class WooToolkit {
     * Check if woocommerce is installed and activated and if not
     * activated then deactivate woocommerce mailchimp discount.
     *
+    * @since 1.1.0
     */
     public function check_required_plugins() {
+    //Check if woocommerce is installed and activated
+    if ( ! is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
+        
 
-        //Check if woocommerce is installed and activated
-        if ( ! is_plugin_active( 'woocommerce/woocommerce.php' ) ) { ?>
+        // Deactivate the plugin
+        deactivate_plugins( 'wootoolkit/wootoolkit.php' );
 
-            <div id="message" class="error">
-                <p>WooToolkit requires <a href="http://www.woothemes.com/woocommerce/" target="_blank">WooCommerce</a> to be activated in order to work. Please install and activate <a href="<?php echo admin_url('/plugin-install.php?tab=search&amp;type=term&amp;s=WooCommerce'); ?>" target="">WooCommerce</a> first.</p>
+
+        // Display an error message
+        add_action( 'admin_notices', function() {
+            ?>
+            <div class="notice notice-error">
+                <p><?php _e( 'WooToolkit requires WooCommerce to be activated in order to work. Please install and activate WooCommerce first.', 'wootoolkit' ); ?></p>
             </div>
-
             <?php
-            deactivate_plugins( '/wootoolkit/wootoolkit.php' );
-        }
+        });
+
+     }
 
     }
 
@@ -89,9 +107,13 @@ class WooToolkit {
      * @since 1.0.0
      */
     public function add_plugin_action_links( $links ) {
-        $wootoolkit_settings_page = array(
+        $wootoolkit_settings_page = [];
+        if(is_plugin_active('wootoolkit/wootoolkit.php')){
+            $wootoolkit_settings_page = array(
             '<a href="' . admin_url( 'admin.php?page=woo-toolkit-settings' ) . '">'.__( 'Settings', 'wootoolkit' ).'</a>',
         );
+        }
+        
         return array_merge( $links, $wootoolkit_settings_page );
     }
 
@@ -151,23 +173,24 @@ class WooToolkit {
      * @since 1.0.0
      */
     public function wootoolkit_settings_page() {
-        
-        add_menu_page( 
-            __( 'Woo Toolkit', 'wootoolkit' ),
-            __( 'Woo Toolkit', 'wootoolkit' ),
-            'manage_options',
-            'woo-toolkit', 
-            '', 
-            plugins_url( 'assets/images/woo_toolkit_icon.png', dirname( __FILE__ ) ), 
-            '56' );
 
-        add_submenu_page( 
-            'woo-toolkit', 
-            __( 'Toolkits', 'wootoolkit' ), 
-            __( 'Installed Kits', 'wootoolkit' ),
-            'manage_options', 
-            'woo-toolkit',
-            array( $this, 'wootoolkit_toolkits_html' ) );
+            add_menu_page( 
+                __( 'Woo Toolkit', 'wootoolkit' ),
+                __( 'Woo Toolkit ', 'wootoolkit' ),
+                'manage_options',
+                'woo-toolkit', 
+                '', 
+                plugins_url( 'assets/images/woo_toolkit_icon.png', dirname( __FILE__ ) ), 
+                '56' );
+
+            add_submenu_page( 
+                'woo-toolkit', 
+                __( 'Toolkits', 'wootoolkit' ), 
+                __( 'Installed Kits', 'wootoolkit' ),
+                'manage_options', 
+                'woo-toolkit',
+                array( $this, 'wootoolkit_toolkits_html' ) );
+        
     }
 
     /**

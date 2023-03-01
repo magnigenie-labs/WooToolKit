@@ -4,8 +4,8 @@ Tags: woocommerce,woocommerce toolkit,accordions,catalog mode,continue shopping,
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=sales@magnigenie.com&item_name=WooToolkit&return=http://magnigenie.com
 Requires at least: 4.0
 Requires PHP: 5.4
-Tested up to: 6.0.2
-Stable tag: 1.0
+Tested up to: 6.1.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html 
 
@@ -95,9 +95,18 @@ It contains 10 free kits to start with to help you in addressing your issues wit
 9. Kit Sorting Options : Settings Page
 
 == Changelog ==
+
+== 1.0.2 ==
+* Fixed: Minor bug issue
+* Code cleanup
+
+== 1.0.1 ==
+* Fixed: Required plugin active validation issue.
+* Code optimized.
+
 = 1.0 =
 * Initial release.
 
 == Upgrade Notice ==
-= 1.0 =
-This is first version of our plugin. We will notify you when there is a update available.
+= 1.0.2 =
+This is latest version of our plugin, Please take a backup before the update..

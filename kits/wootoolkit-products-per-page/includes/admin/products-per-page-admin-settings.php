@@ -97,7 +97,6 @@ class WT_Products_Per_Page_Admin_Settings {
 						array(
 							'name'			=> 'wtpp_shop_columns',
 							'label'			=> __( 'Shop Columns', 'wootoolkit' ),
-							'desc'			=> __( '', 'wootoolkit' ),
 							'default'		=> apply_filters( 'loop_shop_columns', 4 ),
 							'type'			=> 'number',
 						),

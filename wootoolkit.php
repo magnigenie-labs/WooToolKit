@@ -1,12 +1,15 @@
 <?php 
-/*
-Plugin Name: WooToolKit
-Plugin URI: http://wootookit.com
-Description: One stop solution for all your WooCommerce needs.
-Author: MagniGenie
-Version: 1.0.0
-Author URI: http://www.magnigenie.com
-Text Domain: wootoolkit
+/**
+* Plugin Name: WooToolKit
+* Plugin URI: http://wootookit.com
+* Description: One stop solution for all your WooCommerce needs.
+* Author: MagniGenie
+* Version: 1.0.2
+* Author URI: http://www.magnigenie.com
+* Text Domain: wootoolkit
+* Domain path: /languages/
+* License: GPLv2 or later
+* License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly

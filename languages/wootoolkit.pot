@@ -1,0 +1,705 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: WooToolKit\n"
+"POT-Creation-Date: 2023-02-27 19:01+0530\n"
+"PO-Revision-Date: 2023-02-27 19:01+0530\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"X-Generator: Poedit 3.2.2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: wootoolkit.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+
+#: includes/wootoolkit.class.php:95
+msgid ""
+"WooToolkit requires WooCommerce to be activated in order to work. Please "
+"install and activate WooCommerce first."
+msgstr ""
+
+#: includes/wootoolkit.class.php:113 includes/wootoolkit.settings.class.php:125
+#: includes/wootoolkit.settings.class.php:126
+msgid "Settings"
+msgstr ""
+
+#: includes/wootoolkit.class.php:178
+msgid "Woo Toolkit"
+msgstr ""
+
+#: includes/wootoolkit.class.php:179
+msgid "Woo Toolkit "
+msgstr ""
+
+#: includes/wootoolkit.class.php:188 templates/toolkits.php:68
+msgid "Toolkits"
+msgstr ""
+
+#: includes/wootoolkit.class.php:189
+msgid "Installed Kits"
+msgstr ""
+
+#: includes/wootoolkit.class.php:523
+msgid "Show more details"
+msgstr ""
+
+#: includes/wootoolkit.settings.class.php:378
+msgid "Choose File"
+msgstr ""
+
+#: kits/wootoolkit-accordions/includes/admin/accordion-admin-settings.php:44
+msgid "Accordion"
+msgstr ""
+
+#: kits/wootoolkit-accordions/includes/admin/accordion-admin-settings.php:59
+#: kits/wootoolkit-continue-shopping/includes/admin/class-admin-options.php:58
+#: kits/wootoolkit-empty-cart/includes/admin/empty-cart-admin.php:59
+#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:59
+#: kits/wootoolkit-product-sorting-options/includes/class-admin-settings.php:60
+#: kits/wootoolkit-products-per-page/includes/admin/products-per-page-admin-settings.php:64
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:51
+msgid "Enable"
+msgstr ""
+
+#: kits/wootoolkit-accordions/includes/admin/accordion-admin-settings.php:60
+msgid "Enable Accordions."
+msgstr ""
+
+#: kits/wootoolkit-accordions/includes/admin/accordion-admin-settings.php:66
+msgid "Accordion background color"
+msgstr ""
+
+#: kits/wootoolkit-accordions/includes/admin/accordion-admin-settings.php:72
+msgid "Accordion active background"
+msgstr ""
+
+#: kits/wootoolkit-accordions/includes/admin/accordion-admin-settings.php:78
+msgid "Accordion title color"
+msgstr ""
+
+#: kits/wootoolkit-accordions/includes/admin/accordion-admin-settings.php:84
+msgid "Accordion active title color"
+msgstr ""
+
+#: kits/wootoolkit-accordions/includes/admin/accordion-admin-settings.php:90
+msgid "Accordion arrow color"
+msgstr ""
+
+#: kits/wootoolkit-accordions/includes/admin/accordion-admin-settings.php:98
+msgid "Accordion active arrow color"
+msgstr ""
+
+#: kits/wootoolkit-catalog/include/admin/settings.php:44
+msgid "Catalog"
+msgstr ""
+
+#: kits/wootoolkit-catalog/include/admin/settings.php:74
+msgid "Catalog mode?"
+msgstr ""
+
+#: kits/wootoolkit-catalog/include/admin/settings.php:75
+msgid "Enable or disable catalog mode"
+msgstr ""
+
+#: kits/wootoolkit-catalog/include/admin/settings.php:82
+msgid "Apply these settings to the following groups:"
+msgstr ""
+
+#: kits/wootoolkit-catalog/include/admin/settings.php:83
+msgid "Choose the group you want to apply catalog mode."
+msgstr ""
+
+#: kits/wootoolkit-catalog/include/admin/settings.php:93
+msgid "Apply these settings to the following categories:"
+msgstr ""
+
+#: kits/wootoolkit-catalog/include/admin/settings.php:94
+msgid "Choose categories you want to apply catalog mode."
+msgstr ""
+
+#: kits/wootoolkit-catalog/include/admin/settings.php:101
+msgid "Remove Add to cart button?"
+msgstr ""
+
+#: kits/wootoolkit-catalog/include/admin/settings.php:102
+msgid ""
+"Check this option if you want to remove add to cart button in your catalog."
+msgstr ""
+
+#: kits/wootoolkit-catalog/include/admin/settings.php:108
+msgid "Add custom button instead of add to cart"
+msgstr ""
+
+#: kits/wootoolkit-catalog/include/admin/settings.php:114
+msgid "Custom button text"
+msgstr ""
+
+#: kits/wootoolkit-catalog/include/admin/settings.php:121
+msgid "Choose from drop-down menu custom button type"
+msgstr ""
+
+#: kits/wootoolkit-catalog/include/admin/settings.php:130
+msgid "Enter here the link for your custom button"
+msgstr ""
+
+#: kits/wootoolkit-catalog/include/admin/settings.php:137
+msgid "Remove Price?"
+msgstr ""
+
+#: kits/wootoolkit-catalog/include/admin/settings.php:138
+msgid ""
+"Check this option if you want to remove price from product loop and from "
+"product details page."
+msgstr ""
+
+#: kits/wootoolkit-catalog/wootoolkit-catalog.php:114
+msgid "More"
+msgstr ""
+
+#: kits/wootoolkit-continue-shopping/includes/admin/class-admin-options.php:43
+msgid "Continue Shopping"
+msgstr ""
+
+#: kits/wootoolkit-continue-shopping/includes/admin/class-admin-options.php:59
+msgid "Enable Continue Shopping."
+msgstr ""
+
+#: kits/wootoolkit-continue-shopping/includes/admin/class-admin-options.php:65
+msgid "Continue Shopping Destination"
+msgstr ""
+
+#: kits/wootoolkit-continue-shopping/includes/admin/class-admin-options.php:70
+msgid "Back to the Home Page"
+msgstr ""
+
+#: kits/wootoolkit-continue-shopping/includes/admin/class-admin-options.php:71
+msgid "Back to the Shop"
+msgstr ""
+
+#: kits/wootoolkit-continue-shopping/includes/admin/class-admin-options.php:72
+msgid "Jump back to the most recently viewed Product"
+msgstr ""
+
+#: kits/wootoolkit-continue-shopping/includes/admin/class-admin-options.php:73
+msgid "Jump back to the most recently viewed Category"
+msgstr ""
+
+#: kits/wootoolkit-continue-shopping/includes/admin/class-admin-options.php:74
+msgid "Choose your own link (Best used to redirect to a landing page)"
+msgstr ""
+
+#: kits/wootoolkit-continue-shopping/includes/admin/class-admin-options.php:80
+msgid "Custom Link"
+msgstr ""
+
+#: kits/wootoolkit-continue-shopping/includes/class-continue-shopping.php:65
+#: kits/wootoolkit-continue-shopping/includes/class-continue-shopping.php:86
+msgid "Continue shopping"
+msgstr ""
+
+#: kits/wootoolkit-custom-product-tabs/wootoolkit-custom-product-tabs.php:112
+msgid "Custom Tab"
+msgstr ""
+
+#: kits/wootoolkit-custom-product-tabs/wootoolkit-custom-product-tabs.php:136
+msgid "Tab Title"
+msgstr ""
+
+#: kits/wootoolkit-custom-product-tabs/wootoolkit-custom-product-tabs.php:136
+msgid "Required for tab to be visible"
+msgstr ""
+
+#: kits/wootoolkit-custom-product-tabs/wootoolkit-custom-product-tabs.php:138
+msgid "Content"
+msgstr ""
+
+#: kits/wootoolkit-custom-product-tabs/wootoolkit-custom-product-tabs.php:138
+msgid "HTML and text to display."
+msgstr ""
+
+#: kits/wootoolkit-empty-cart/includes/admin/empty-cart-admin.php:44
+#: kits/wootoolkit-empty-cart/includes/admin/empty-cart-admin.php:70
+msgid "Empty Cart"
+msgstr ""
+
+#: kits/wootoolkit-empty-cart/includes/admin/empty-cart-admin.php:60
+msgid "Enable empty cart."
+msgstr ""
+
+#: kits/wootoolkit-empty-cart/includes/admin/empty-cart-admin.php:66
+msgid "Button Text"
+msgstr ""
+
+#: kits/wootoolkit-empty-cart/includes/admin/empty-cart-admin.php:69
+msgid "Any text you want can be shown to your button with this option!"
+msgstr ""
+
+#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:44
+msgid "Mailchimp"
+msgstr ""
+
+#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:60
+msgid "Enable Mailchimp."
+msgstr ""
+
+#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:66
+msgid "Mailchimp API Key"
+msgstr ""
+
+#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:69
+msgid ""
+"Enter your mailchimp api key. To find your API Key <a href=\"http://kb."
+"mailchimp.com/accounts/management/about-api-keys\" target=\"_blank\">click "
+"here</a>"
+msgstr ""
+
+#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:72
+msgid "Mailchimp list id"
+msgstr ""
+
+#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:75
+msgid ""
+"Enter the mailchimp list id you want to use for subscription. To find your "
+"List id <a href=\"http://kb.mailchimp.com/lists/managing-subscribers/find-"
+"your-list-id\" target=\"_blank\">click here</a>"
+msgstr ""
+
+#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:78
+msgid "Double Opt-In"
+msgstr ""
+
+#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:82
+msgid ""
+"If enabled, customers will receive an email prompting them to confirm their "
+"subscription to the list above."
+msgstr ""
+
+#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:85
+msgid "Subscribe Customers"
+msgstr ""
+
+#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:89
+msgid "Automatically"
+msgstr ""
+
+#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:90
+msgid "Ask for permission"
+msgstr ""
+
+#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:95
+msgid "Opt-In Field Label"
+msgstr ""
+
+#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:104
+msgid "Opt-In Checkbox Default"
+msgstr ""
+
+#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:109
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:154
+msgid "Checked"
+msgstr ""
+
+#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:110
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:155
+msgid "Unchecked"
+msgstr ""
+
+#: kits/wootoolkit-product-sorting-options/includes/class-admin-settings.php:45
+msgid "Sorting Options"
+msgstr ""
+
+#: kits/wootoolkit-product-sorting-options/includes/class-admin-settings.php:61
+msgid "Enable Sorting."
+msgstr ""
+
+#: kits/wootoolkit-product-sorting-options/includes/class-admin-settings.php:67
+msgid "New Default Sorting Label"
+msgstr ""
+
+#: kits/wootoolkit-product-sorting-options/includes/class-admin-settings.php:71
+msgid ""
+"If desired, enter a new name for the default sorting option, e.g., &quot;Our "
+"Sorting&quot;"
+msgstr ""
+
+#: kits/wootoolkit-product-sorting-options/includes/class-admin-settings.php:74
+msgid "Add Product Sorting:"
+msgstr ""
+
+#: kits/wootoolkit-product-sorting-options/includes/class-admin-settings.php:75
+msgid ""
+"Select sorting options to add to your shop. \"Available Stock\" sorts "
+"products with the most stock first."
+msgstr ""
+
+#: kits/wootoolkit-product-sorting-options/includes/class-admin-settings.php:79
+msgid "Name: A to Z"
+msgstr ""
+
+#: kits/wootoolkit-product-sorting-options/includes/class-admin-settings.php:80
+msgid "Name: Z to A"
+msgstr ""
+
+#: kits/wootoolkit-product-sorting-options/includes/class-admin-settings.php:81
+msgid "Available Stock"
+msgstr ""
+
+#: kits/wootoolkit-product-sorting-options/includes/class-admin-settings.php:82
+msgid "Featured First"
+msgstr ""
+
+#: kits/wootoolkit-product-sorting-options/includes/class-admin-settings.php:83
+msgid "On-sale First"
+msgstr ""
+
+#: kits/wootoolkit-product-sorting-options/wootoolkit-product-sorting-options.php:118
+msgid "Sort by name: A to Z"
+msgstr ""
+
+#: kits/wootoolkit-product-sorting-options/wootoolkit-product-sorting-options.php:122
+msgid "Sort by name: Z to A"
+msgstr ""
+
+#: kits/wootoolkit-product-sorting-options/wootoolkit-product-sorting-options.php:126
+msgid "Sort by availability"
+msgstr ""
+
+#: kits/wootoolkit-product-sorting-options/wootoolkit-product-sorting-options.php:130
+msgid "Show sale items first"
+msgstr ""
+
+#: kits/wootoolkit-product-sorting-options/wootoolkit-product-sorting-options.php:134
+msgid "Show featured items first"
+msgstr ""
+
+#: kits/wootoolkit-products-per-page/includes/admin/products-per-page-admin-settings.php:43
+msgid "Products Per Page"
+msgstr ""
+
+#: kits/wootoolkit-products-per-page/includes/admin/products-per-page-admin-settings.php:65
+msgid "Enable Products Per Page."
+msgstr ""
+
+#: kits/wootoolkit-products-per-page/includes/admin/products-per-page-admin-settings.php:72
+msgid "Dropdown Location"
+msgstr ""
+
+#: kits/wootoolkit-products-per-page/includes/admin/products-per-page-admin-settings.php:73
+msgid "Choose the location to display dropdown"
+msgstr ""
+
+#: kits/wootoolkit-products-per-page/includes/admin/products-per-page-admin-settings.php:77
+msgid "Top"
+msgstr ""
+
+#: kits/wootoolkit-products-per-page/includes/admin/products-per-page-admin-settings.php:78
+msgid "Bottom"
+msgstr ""
+
+#: kits/wootoolkit-products-per-page/includes/admin/products-per-page-admin-settings.php:79
+msgid "Top/Bottom"
+msgstr ""
+
+#: kits/wootoolkit-products-per-page/includes/admin/products-per-page-admin-settings.php:80
+msgid "None"
+msgstr ""
+
+#: kits/wootoolkit-products-per-page/includes/admin/products-per-page-admin-settings.php:85
+msgid "Dropdown Options"
+msgstr ""
+
+#: kits/wootoolkit-products-per-page/includes/admin/products-per-page-admin-settings.php:86
+msgid "Seperated by spaces <em>(-1 for all products)</em>"
+msgstr ""
+
+#: kits/wootoolkit-products-per-page/includes/admin/products-per-page-admin-settings.php:92
+msgid "Default Products Per Page"
+msgstr ""
+
+#: kits/wootoolkit-products-per-page/includes/admin/products-per-page-admin-settings.php:93
+msgid "-1 to display all products"
+msgstr ""
+
+#: kits/wootoolkit-products-per-page/includes/admin/products-per-page-admin-settings.php:99
+msgid "Shop Columns"
+msgstr ""
+
+#: kits/wootoolkit-products-per-page/includes/admin/products-per-page-admin-settings.php:104
+msgid "HTTP method"
+msgstr ""
+
+#: kits/wootoolkit-products-per-page/includes/admin/products-per-page-admin-settings.php:105
+msgid ""
+"GET sends the products per page via the url, POST does this on the background"
+msgstr ""
+
+#: kits/wootoolkit-products-per-page/includes/admin/products-per-page-admin-settings.php:110
+msgid "POST"
+msgstr ""
+
+#: kits/wootoolkit-products-per-page/includes/admin/products-per-page-admin-settings.php:111
+msgid "GET"
+msgstr ""
+
+#: kits/wootoolkit-products-per-page/includes/products-per-page-front-end.php:117
+#, php-format
+msgid "%s products per page"
+msgstr ""
+
+#: kits/wootoolkit-products-per-page/includes/products-per-page-front-end.php:118
+#: templates/toolkits.php:97
+msgid "All"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:36
+msgid "Shop Customizer"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:52
+msgid "Enable Shop Customizer."
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:59
+msgid "Simple Product"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:60
+msgid ""
+"Changes the add to cart button text for simple products on all loop pages"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:65
+msgid "Variable Product"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:66
+msgid ""
+"Changes the add to cart button text for variable products on all loop pages"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:71
+msgid "Grouped Product"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:72
+msgid ""
+"Changes the add to cart button text for grouped products on all loop pages"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:77
+msgid "Out of Stock Product"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:78
+msgid ""
+"Changes the add to cart button text for out of stock products on all loop "
+"pages"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:83
+msgid "Products displayed per page"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:84
+msgid "Changes the number of products displayed per page"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:89
+msgid "Product columns displayed per page"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:90
+msgid "Changes the number of columns displayed per page"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:95
+msgid "Product thumbnail columns displayed"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:96
+msgid "Changes the number of product thumbnail columns displayed"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:101
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:113
+msgid "Product Description"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:102
+msgid "Changes the Production Description tab title"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:107
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:119
+msgid "Additional Information"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:108
+msgid "Changes the Additional Information tab title"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:114
+msgid "Changes the Product Description tab heading"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:120
+msgid "Changes the Additional Information tab heading"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:125
+msgid "All Product Types"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:126
+msgid ""
+"Changes the Add to Cart button text on the single product page for all "
+"product type"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:131
+msgid "Must be logged in text"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:132
+msgid ""
+"Changes the message displayed when a customer must be logged in to checkout"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:137
+msgid "Coupon text"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:138
+msgid "Changes the message displayed if the coupon form is enabled on checkout"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:144
+msgid "Login text"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:145
+msgid "Changes the message displayed if customers can login at checkout"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:150
+msgid "Create Account checkbox default"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:151
+msgid "Control the default state for the Create Account checkbox"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:161
+msgid "Submit Order button"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:162
+msgid "Changes the Place Order button text on checkout"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:167
+msgid "Tax Label"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:168
+msgid ""
+"Changes the Taxes label. Defaults to Tax for USA, VAT for European countries"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:173
+msgid "Including Tax Label"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:174
+msgid ""
+"Changes the Including Taxes label. Defaults to Inc. tax for USA, Inc. VAT "
+"for European countries"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:179
+msgid "Excluding Tax Label"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:180
+msgid ""
+"Changes the Excluding Taxes label. Defaults to Exc. tax for USA, Exc. VAT "
+"for European countries"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:185
+msgid "Placeholder Image source"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:186
+msgid ""
+"Change the default placeholder image by setting this to a valid image URL"
+msgstr ""
+
+#: templates/toolkits.php:92
+msgid "Filter plugins list"
+msgstr ""
+
+#: templates/toolkits.php:105
+msgid "Active"
+msgstr ""
+
+#: templates/toolkits.php:115
+msgid "Inactive"
+msgstr ""
+
+#: templates/toolkits.php:137
+msgid "Kits List"
+msgstr ""
+
+#: templates/toolkits.php:143 templates/toolkits.php:220
+msgid "Select All"
+msgstr ""
+
+#: templates/toolkits.php:146 templates/toolkits.php:223
+msgid "Kit"
+msgstr ""
+
+#: templates/toolkits.php:148 templates/toolkits.php:225
+msgid "Description"
+msgstr ""
+
+#: templates/toolkits.php:173
+msgid "Select"
+msgstr ""
+
+#: templates/toolkits.php:181
+msgid "Activate"
+msgstr ""
+
+#: templates/toolkits.php:185
+msgid "Deactivate"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "WooToolKit"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://wootookit.com"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "One stop solution for all your WooCommerce needs."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "MagniGenie"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://www.magnigenie.com"
+msgstr ""
