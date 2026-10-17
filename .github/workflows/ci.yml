@@ -164,6 +164,7 @@ jobs:
     name: WordPress.org screenshots
     # Push to the "screenshots" branch to regenerate; the PNGs are pushed to the "wporg-screenshots" branch.
     if: github.event_name == 'push' && github.ref == 'refs/heads/screenshots'
+    needs: versions
     runs-on: ubuntu-24.04
     permissions:
       contents: write
@@ -178,6 +179,13 @@ jobs:
       - run: npm ci
       - run: npx playwright install --with-deps chromium
       - run: sudo apt-get install -y imagemagick fonts-dejavu-core
+      - name: Pin latest versions
+        run: |
+          cat > .wp-env.override.json <<JSON
+          { "core": "https://wordpress.org/wordpress-${{ fromJSON(needs.versions.outputs.latest).wp }}.zip",
+            "phpVersion": "${{ fromJSON(needs.versions.outputs.latest).php }}",
+            "plugins": [ "https://downloads.wordpress.org/plugin/woocommerce.${{ fromJSON(needs.versions.outputs.latest).wc }}.zip" ] }
+          JSON
       - run: bash bin/ci-run.sh "wp-env start" npx wp-env start
       - run: bash bin/ci-run.sh "Seed" npm run env:seed
       - run: bash bin/ci-run.sh "Screenshot seed" bash bin/screenshot-seed.sh
