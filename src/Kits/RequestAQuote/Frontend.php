@@ -29,6 +29,7 @@ final class Frontend {
 		add_action( 'woocommerce_after_add_to_cart_button', array( self::class, 'single_button' ) );
 		add_shortcode( 'wootoolkit_quote', array( self::class, 'render_page' ) );
 		add_action( 'admin_init', array( self::class, 'maybe_create_page' ) );
+		add_action( 'wp_enqueue_scripts', array( self::class, 'enqueue_styles' ) );
 		self::register_block();
 
 		// Catalog mode kit: "Add to quote" as the replacement button.
@@ -50,6 +51,29 @@ final class Frontend {
 	public static function button_text(): string {
 		$text = (string) get_option( self::OPT_BUTTON_TEXT, '' );
 		return '' === $text ? __( 'Add to quote', 'wootoolkit' ) : $text;
+	}
+
+	/**
+	 * Theme button classes, so buttons look like the theme's own in classic and block themes.
+	 *
+	 * @param string $extra Extra classes.
+	 */
+	public static function button_class( string $extra = '' ): string {
+		$class = 'button wootoolkit-quote-button ' . $extra;
+		if ( function_exists( 'wp_theme_get_element_class_name' ) ) {
+			$class .= ' ' . wp_theme_get_element_class_name( 'button' );
+		}
+		return trim( preg_replace( '/\s+/', ' ', $class ) );
+	}
+
+	/**
+	 * A few layout rules for block themes, which do not style WooCommerce form markup outside WooCommerce pages.
+	 */
+	public static function enqueue_styles(): void {
+		if ( ! function_exists( 'is_product' ) || ! ( is_product() || is_shop() || is_product_taxonomy() || ( (int) get_option( self::OPT_PAGE, 0 ) && is_page( (int) get_option( self::OPT_PAGE, 0 ) ) ) ) ) {
+			return;
+		}
+		wp_enqueue_style( 'wootoolkit-quote', plugins_url( 'assets/css/quote.css', WOOTOOLKIT_FILE ), array(), WOOTOOLKIT_VERSION );
 	}
 
 	/**
@@ -248,8 +272,9 @@ final class Frontend {
 			return;
 		}
 		printf(
-			' <button type="submit" name="wootoolkit_add_to_quote" value="%d" class="button wootoolkit-add-to-quote">%s</button>',
+			' <button type="submit" name="wootoolkit_add_to_quote" value="%d" class="%s">%s</button>',
 			(int) $product->get_id(),
+			esc_attr( self::button_class( 'wootoolkit-add-to-quote' ) ),
 			esc_html( self::button_text() )
 		);
 	}
@@ -283,8 +308,9 @@ final class Frontend {
 		}
 		$url = $product->is_type( 'variable' ) ? $product->get_permalink() : add_query_arg( 'wootoolkit_add_to_quote', $product->get_id(), $product->get_permalink() );
 		return sprintf(
-			'<a href="%s" class="button wootoolkit-add-to-quote" rel="nofollow">%s</a>',
+			'<a href="%s" class="%s" rel="nofollow">%s</a>',
 			esc_url( $url ),
+			esc_attr( self::button_class( 'wootoolkit-add-to-quote' ) ),
 			esc_html( $product->is_type( 'variable' ) ? __( 'Select options', 'wootoolkit' ) : self::button_text() )
 		);
 	}
@@ -320,8 +346,9 @@ final class Frontend {
 			$product
 		);
 		printf(
-			'<button type="submit" name="wootoolkit_add_to_quote" value="%d" class="button alt wootoolkit-add-to-quote">%s</button></form>',
+			'<button type="submit" name="wootoolkit_add_to_quote" value="%d" class="%s">%s</button></form>',
 			(int) $product->get_id(),
+			esc_attr( self::button_class( 'alt wootoolkit-add-to-quote' ) ),
 			esc_html( self::button_text() )
 		);
 		return (string) ob_get_clean();

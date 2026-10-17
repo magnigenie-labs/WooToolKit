@@ -12,7 +12,11 @@ const id = ( slug ) => wp( `post list --post_type=product --name=${ slug } --fie
 
 test.describe.configure( { mode: 'serial' } );
 
+// Admin screens: a tall window, so element screenshots are not stitched together.
+const tall = async ( page ) => page.setViewportSize( { width: 1280, height: 1800 } );
+
 test( '1 kits screen', async ( { page } ) => {
+	await tall( page );
 	await page.goto( '/wp-admin/admin.php?page=wc-settings&tab=wootoolkit' );
 	await page.locator( '#wpbody-content' ).screenshot( { path: shot( 1 ) } );
 } );
@@ -31,11 +35,13 @@ test( '2 wholesale price', async ( { browser }, info ) => {
 } );
 
 test( '3 wholesale fields', async ( { page } ) => {
+	await tall( page );
 	await page.goto( `/wp-admin/post.php?post=${ id( 'industrial-work-gloves' ) }&action=edit` );
 	await page.locator( '#woocommerce-product-data' ).screenshot( { path: shot( 3 ) } );
 } );
 
 test( '4 catalog settings', async ( { page } ) => {
+	await tall( page );
 	await page.goto( '/wp-admin/admin.php?page=wc-settings&tab=wootoolkit&section=catalog-mode' );
 	await page.locator( '#wpbody-content' ).screenshot( { path: shot( 4 ) } );
 } );
@@ -63,6 +69,7 @@ test( '5 and 6 quote', async ( { browser }, info ) => {
 
 test( '7 quote order and 8 email', async ( { page } ) => {
 	const orderId = wp( 'wc shop_order list --status=wtk-quote --field=id --user=admin' ).split( /\s+/ )[ 0 ];
+	await tall( page );
 	await page.goto( `/wp-admin/admin.php?page=wc-orders&action=edit&id=${ orderId }` );
 	await page.locator( 'select[name="wc_order_action"]' ).selectOption( 'wootoolkit_send_quote' );
 	await page.locator( '#wpbody-content' ).screenshot( { path: shot( 7 ) } );

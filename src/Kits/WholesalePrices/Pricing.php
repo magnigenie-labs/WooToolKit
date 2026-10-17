@@ -41,6 +41,8 @@ final class Pricing {
 			add_filter( $prefix . 'regular_price', array( self::class, 'filter_regular_price' ), 20, 2 );
 		}
 		add_filter( 'woocommerce_product_is_on_sale', array( self::class, 'filter_is_on_sale' ), 20, 2 );
+		add_filter( 'woocommerce_sale_flash', array( self::class, 'filter_sale_flash' ), 20, 3 );
+		add_filter( 'render_block_woocommerce/product-sale-badge', array( self::class, 'filter_sale_badge_block' ), 20, 3 ); // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores -- core block hook.
 
 		// Variable products: price ranges are computed from these and cached per hash.
 		add_filter( 'woocommerce_variation_prices_price', array( self::class, 'filter_variation_range_price' ), 20, 2 );
@@ -87,16 +89,84 @@ final class Pricing {
 
 		$own = $product->get_meta( self::META, true, 'edit' );
 		if ( '' !== $own && is_numeric( $own ) && (float) $own >= 0 ) {
-			return min( (float) $own, $regular );
+			$price = (float) $own;
+		} else {
+			$discount = self::discount_for( $product );
+			if ( $discount <= 0 ) {
+				return false;
+			}
+			$price = round( $regular * ( 1 - $discount / 100 ), wc_get_price_decimals() );
 		}
 
-		$discount = self::discount_for( $product );
-		if ( $discount <= 0 ) {
+		// Wholesale customers never pay more than retail: a retail sale at or below the wholesale price wins.
+		$sale   = self::active_sale_price( $product );
+		$retail = null === $sale ? $regular : $sale;
+		return $price < $retail ? $price : false;
+	}
+
+	/**
+	 * The product's own (retail) sale price while the sale is running, read without any filters.
+	 *
+	 * @param \WC_Product $product Product or variation.
+	 */
+	public static function active_sale_price( \WC_Product $product ): ?float {
+		$sale    = $product->get_sale_price( 'edit' );
+		$regular = $product->get_regular_price( 'edit' );
+		if ( '' === $sale || ! is_numeric( $sale ) || ! is_numeric( $regular ) || (float) $sale >= (float) $regular ) {
+			return null;
+		}
+		$now  = time();
+		$from = $product->get_date_on_sale_from( 'edit' );
+		$to   = $product->get_date_on_sale_to( 'edit' );
+		if ( ( $from && $from->getTimestamp() > $now ) || ( $to && $to->getTimestamp() < $now ) ) {
+			return null;
+		}
+		return (float) $sale;
+	}
+
+	/**
+	 * Whether the "Sale!" badge should be hidden: the product looks on sale only because the retail
+	 * price is shown crossed out next to the wholesale price, not because of a real sale.
+	 *
+	 * @param \WC_Product $product Product.
+	 */
+	public static function hides_sale_badge( \WC_Product $product ): bool {
+		if ( ! self::applies() ) {
 			return false;
 		}
+		$products = $product->is_type( 'variable' ) ? array_filter( array_map( 'wc_get_product', $product->get_children() ) ) : array( $product );
+		$discount = false;
+		foreach ( $products as $item ) {
+			if ( null !== self::active_sale_price( $item ) ) {
+				return false;
+			}
+			$discount = $discount || null !== self::wholesale_price( $item );
+		}
+		return $discount;
+	}
 
-		$price = round( $regular * ( 1 - $discount / 100 ), wc_get_price_decimals() );
-		return $price < $regular ? $price : false;
+	/**
+	 * Classic sale flash.
+	 *
+	 * @param string           $html    Badge HTML.
+	 * @param mixed            $post    Post (unused).
+	 * @param \WC_Product|null $product Product.
+	 */
+	public static function filter_sale_flash( $html, $post = null, $product = null ) {
+		return $product instanceof \WC_Product && self::hides_sale_badge( $product ) ? '' : $html;
+	}
+
+	/**
+	 * Product Sale Badge block.
+	 *
+	 * @param string         $content  Block HTML.
+	 * @param array          $block    Parsed block (unused).
+	 * @param \WP_Block|null $instance Block instance.
+	 */
+	public static function filter_sale_badge_block( $content, $block, $instance = null ) {
+		$product_id = $instance instanceof \WP_Block && isset( $instance->context['postId'] ) ? (int) $instance->context['postId'] : 0;
+		$product    = $product_id ? wc_get_product( $product_id ) : ( $GLOBALS['product'] ?? null );
+		return $product instanceof \WC_Product && self::hides_sale_badge( $product ) ? '' : $content;
 	}
 
 	/**

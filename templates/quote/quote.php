@@ -14,6 +14,7 @@
  * @var string                                                $shop_url Shop URL.
  */
 
+use WooToolkit\Kits\RequestAQuote\Frontend;
 use WooToolkit\Kits\RequestAQuote\QuoteList;
 
 defined( 'ABSPATH' ) || exit;
@@ -29,7 +30,7 @@ defined( 'ABSPATH' ) || exit;
 <?php elseif ( ! $items ) : ?>
 	<p class="wootoolkit-quote-empty"><?php esc_html_e( 'Your quote list is empty.', 'wootoolkit' ); ?></p>
 	<?php if ( $shop_url ) : ?>
-		<p><a class="button wc-backward" href="<?php echo esc_url( $shop_url ); ?>"><?php esc_html_e( 'Return to shop', 'wootoolkit' ); ?></a></p>
+		<p><a class="<?php echo esc_attr( Frontend::button_class( 'wc-backward' ) ); ?>" href="<?php echo esc_url( $shop_url ); ?>"><?php esc_html_e( 'Return to shop', 'wootoolkit' ); ?></a></p>
 	<?php endif; ?>
 <?php else : ?>
 	<form class="wootoolkit-quote-list" method="post" action="<?php echo esc_url( $action ); ?>">
@@ -75,7 +76,7 @@ defined( 'ABSPATH' ) || exit;
 		</table>
 		<input type="hidden" name="wootoolkit_quote_action" value="update" />
 		<input type="hidden" name="_wpnonce" value="<?php echo esc_attr( $nonce ); ?>" />
-		<p><button type="submit" class="button"><?php esc_html_e( 'Update quote', 'wootoolkit' ); ?></button></p>
+		<p><button type="submit" class="<?php echo esc_attr( Frontend::button_class() ); ?>"><?php esc_html_e( 'Update quote', 'wootoolkit' ); ?></button></p>
 	</form>
 
 	<form class="wootoolkit-quote-request" method="post" action="<?php echo esc_url( $action ); ?>">
@@ -101,7 +102,7 @@ defined( 'ABSPATH' ) || exit;
 		</p>
 		<input type="hidden" name="wootoolkit_quote_action" value="submit" />
 		<input type="hidden" name="_wpnonce" value="<?php echo esc_attr( $nonce ); ?>" />
-		<p><button type="submit" class="button alt"><?php esc_html_e( 'Send quote request', 'wootoolkit' ); ?></button></p>
+		<p><button type="submit" class="<?php echo esc_attr( Frontend::button_class( 'alt' ) ); ?>"><?php esc_html_e( 'Send quote request', 'wootoolkit' ); ?></button></p>
 	</form>
 <?php endif; ?>
 </div>

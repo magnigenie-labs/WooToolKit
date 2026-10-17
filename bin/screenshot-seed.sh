@@ -3,6 +3,8 @@
 set -euo pipefail
 wp() { npx wp-env run cli wp "$@"; }
 
+# wp-env has no mail server; without this, orders get "email failed to send" notes.
+wp eval 'wp_mkdir_p( WPMU_PLUGIN_DIR ); file_put_contents( WPMU_PLUGIN_DIR . "/screenshots-no-mail.php", "<?php add_filter( \"pre_wp_mail\", \"__return_true\" );\n" );'
 wp option update blogname 'Acme Supply'
 wp option update blogdescription 'Workwear and safety gear for trade customers'
 wp option update wootoolkit_active_kits '{"wholesale-prices":"yes","catalog-mode":"yes","request-a-quote":"yes","accordions":"no","empty-cart":"no"}' --format=json

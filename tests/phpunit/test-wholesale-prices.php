@@ -226,4 +226,30 @@ class Test_Wholesale_Prices extends WP_UnitTestCase {
 		ProductFields::save_category( $term['term_id'] );
 		$this->assertSame( '100', get_term_meta( $term['term_id'], Pricing::TERM_META, true ) );
 	}
+
+	public function test_a_retail_sale_below_the_wholesale_price_wins() {
+		$product = new WC_Product_Simple();
+		$product->set_regular_price( '100' );
+		$product->set_sale_price( '60' );
+		$product->set_status( 'publish' );
+		$product->update_meta_data( Pricing::META, '70' );
+		$id = $product->save();
+
+		$this->as_user( $this->wholesale_user );
+		$product = wc_get_product( $id );
+		$this->assertSame( '60', $product->get_price() );
+		$this->assertTrue( $product->is_on_sale() );
+		$this->assertSame( '<span>Sale!</span>', apply_filters( 'woocommerce_sale_flash', '<span>Sale!</span>', null, $product ), 'A real sale keeps its badge.' );
+	}
+
+	public function test_the_crossed_out_retail_price_has_no_sale_badge() {
+		$id = $this->product( '100', '70' );
+		$this->as_user( $this->wholesale_user );
+		$product = wc_get_product( $id );
+		$this->assertTrue( $product->is_on_sale() );
+		$this->assertSame( '', apply_filters( 'woocommerce_sale_flash', '<span>Sale!</span>', null, $product ) );
+
+		$this->as_user( $this->retail_user );
+		$this->assertSame( '<span>Sale!</span>', apply_filters( 'woocommerce_sale_flash', '<span>Sale!</span>', null, wc_get_product( $id ) ) );
+	}
 }
