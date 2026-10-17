@@ -26,3 +26,5 @@
 .DS_Store
 /build-check
 /.gitattributes
+/wporg-assets
+/.screens

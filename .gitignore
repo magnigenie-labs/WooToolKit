@@ -10,3 +10,5 @@ svn/
 /playwright-report/
 /tests/e2e/.auth/
 /build-check/
+/wporg-assets/
+/.screens/

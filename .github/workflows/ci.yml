@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ master, 'release/**' ]
+    branches: [ master, 'release/**', screenshots ]
   pull_request:
   schedule:
     # Nightly, so a new WordPress / WooCommerce release or RC is tested without a code change.
@@ -159,6 +159,36 @@ jobs:
           JSON
       - run: bash bin/ci-run.sh "wp-env start" npx wp-env start
       - run: bash bin/plugin-check.sh
+
+  screenshots:
+    name: WordPress.org screenshots
+    # Push to the "screenshots" branch to regenerate; the PNGs are pushed to the "wporg-screenshots" branch.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/screenshots'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    env:
+      E2E_THEME: twentytwentyfive
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: sudo apt-get install -y imagemagick fonts-dejavu-core
+      - run: bash bin/ci-run.sh "wp-env start" npx wp-env start
+      - run: bash bin/ci-run.sh "Seed" npm run env:seed
+      - run: bash bin/ci-run.sh "Screenshot seed" bash bin/screenshot-seed.sh
+      - run: bash bin/ci-run.sh "Screenshots" npx playwright test -c playwright.screenshots.config.js
+      - name: Publish to the wporg-screenshots branch
+        run: |
+          cd wporg-assets
+          git init -q -b wporg-screenshots
+          git -c user.name=github-actions -c user.email=github-actions@users.noreply.github.com add .
+          git -c user.name=github-actions -c user.email=github-actions@users.noreply.github.com commit -qm "Screenshots for ${GITHUB_SHA::7}"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${GITHUB_REPOSITORY}.git" wporg-screenshots
 
   woocommerce-rc:
     name: WooCommerce RC
