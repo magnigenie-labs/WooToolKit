@@ -100,6 +100,7 @@ It contains 10 free kits to start with, to help you address your issues without 
 * Fix: Listing kits outside wp-admin (for example from WP-CLI or cron) no longer causes a fatal error on PHP 8.
 * Security: Continue Shopping now escapes its link and only returns shoppers to pages on your own site.
 * Fix: Catalog Mode escapes its custom button and no longer uses the deprecated product ID property.
+* Fix: Redirects in wp-admin (including "Settings saved" after saving kit settings) no longer fail. Two kit files printed a stray space before any output.
 * Fix: Settings scripts now load only on WooToolkit screens.
 * Fix: Removed PHP 8.2 dynamic-property deprecation notices and PHP warnings from unconfigured kits.
 * New: Declared HPOS and Cart & Checkout block compatibility to WooCommerce.
