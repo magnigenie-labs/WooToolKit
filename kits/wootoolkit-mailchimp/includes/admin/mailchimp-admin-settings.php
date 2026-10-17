@@ -56,43 +56,43 @@ class WT_Mailchimp_Admin_Settings {
         $fields[$this->kit] = 
             array(
             	array(
-								'label' 			=> __( 'Enable', 'wt-mailchimp' ),
-								'desc' 				=> __( 'Enable Mailchimp.', 'wt-mailchimp' ),
+								'label' 			=> __( 'Enable', 'wootoolkit' ),
+								'desc' 				=> __( 'Enable Mailchimp.', 'wootoolkit' ),
 								'type' 				=> 'checkbox',
 								'name' 				=> 'enabled',
 								'default' 		=> 'off'											
 							),
 							array(
-								'label' 	  	=> __( 'Mailchimp API Key', 'wt-mailchimp' ),
+								'label' 	  	=> __( 'Mailchimp API Key', 'wootoolkit' ),
 								'name' 		  	=> 'mailchimp_api_key',
 								'type' 		  	=> 'text',
-								'desc' 		  	=> __( 'Enter your mailchimp api key. To find your API Key <a href="http://kb.mailchimp.com/accounts/management/about-api-keys" target="_blank">click here</a>', 'wt-mailchimp' ),
+								'desc' 		  	=> __( 'Enter your mailchimp api key. To find your API Key <a href="http://kb.mailchimp.com/accounts/management/about-api-keys" target="_blank">click here</a>', 'wootoolkit' ),
 							),
 							array(
-								'label' 	  	=> __( 'Mailchimp list id', 'wt-mailchimp' ),
+								'label' 	  	=> __( 'Mailchimp list id', 'wootoolkit' ),
 								'name' 		  	=> 'mailchimp_list_id',
 								'type' 		  	=> 'text',
-								'desc' 		  	=> __( 'Enter the mailchimp list id you want to use for subscription. To find your List id <a href="http://kb.mailchimp.com/lists/managing-subscribers/find-your-list-id" target="_blank">click here</a>', 'wt-mailchimp' ),
+								'desc' 		  	=> __( 'Enter the mailchimp list id you want to use for subscription. To find your List id <a href="http://kb.mailchimp.com/lists/managing-subscribers/find-your-list-id" target="_blank">click here</a>', 'wootoolkit' ),
 							),
 							array(
-								'label' 	  	=> __( 'Double Opt-In', 'wt-mailchimp' ),
+								'label' 	  	=> __( 'Double Opt-In', 'wootoolkit' ),
 								'name' 		  	=> 'double_optin',
 								'type' 		  	=> 'checkbox',
 								'default' 		=> 'off',
-								'desc' 				=> __( 'If enabled, customers will receive an email prompting them to confirm their subscription to the list above.', 'wt-mailchimp' ),
+								'desc' 				=> __( 'If enabled, customers will receive an email prompting them to confirm their subscription to the list above.', 'wootoolkit' ),
 							),
 							array(
-								'label' 	  	=> __( 'Subscribe Customers', 'wt-mailchimp' ),
+								'label' 	  	=> __( 'Subscribe Customers', 'wootoolkit' ),
 								'name' 		  	=> 'subscribe_customer',
 								'type' 		  	=> 'select',
 								'options' 		=> array(
-									'automatically' 		 => __( 'Automatically', 'wt-mailchimp' ),
-									'ask-for-permission' => __( 'Ask for permission', 'wt-mailchimp' ),
+									'automatically' 		 => __( 'Automatically', 'wootoolkit' ),
+									'ask-for-permission' => __( 'Ask for permission', 'wootoolkit' ),
           			),
 								'default' 	=> 'automatically',
 							),
 							array(
-								'label' 	  	=> __( 'Opt-In Field Label', 'wt-mailchimp' ),
+								'label' 	  	=> __( 'Opt-In Field Label', 'wootoolkit' ),
 								'name' 		  	=> 'optin_label',
 								'type' 		  	=> 'text',
 								'desc'				=> 'Optional: customize the label displayed next to the opt-in checkbox.',
@@ -101,13 +101,13 @@ class WT_Mailchimp_Admin_Settings {
 								'desc_tip'	 		=>  true
 							),
 							array(
-								'label' 	  	=> __( 'Opt-In Checkbox Default', 'wt-mailchimp' ),
+								'label' 	  	=> __( 'Opt-In Checkbox Default', 'wootoolkit' ),
 								'name' 		  	=> 'optin_checkbox_default',
 								'type' 		  	=> 'select',
 								'desc'				=> 'The default state of the opt-in checkbox',
 								'options' 	=> array(
-									'checked' => __( 'Checked', 'wt-mailchimp' ),
-									'unchecked' => __( 'Unchecked', 'wt-mailchimp' ),
+									'checked' => __( 'Checked', 'wootoolkit' ),
+									'unchecked' => __( 'Unchecked', 'wootoolkit' ),
           			),
 								'default' 	=> 'checked'
 							),

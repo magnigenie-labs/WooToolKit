@@ -130,7 +130,7 @@ class SettingsPage extends \WC_Settings_Page {
 
 		if ( $kit instanceof ClassicKit && $this->registry->is_active( $kit->id() ) && '' !== $kit->legacy_slug() ) {
 			// 1.x kits add their "Settings" link through this filter.
-			$links = (array) apply_filters( 'kit_action_links_' . $kit->legacy_slug(), array(), $kit->legacy_slug() );
+			$links = (array) apply_filters( 'kit_action_links_' . $kit->legacy_slug(), array(), $kit->legacy_slug() ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- 1.x hook name, kept for the Classic kits.
 			if ( $links ) {
 				$parts[] = implode( ' | ', array_map( 'wp_kses_post', $links ) );
 			}

@@ -60,7 +60,7 @@ class WT_Custom_Tabs {
 
 		if ( $this->product_has_custom_tabs( $product ) ) {
 			foreach ( $this->tab_data as $tab ) {
-				$tab_title = __( $tab['title'], 'wootoolkit' );
+				$tab_title = $tab['title']; // Entered by the store owner, not a translatable string.
 				$tabs[ $tab['id'] ] = array(
 					'title'    => apply_filters( 'woocommerce_custom_product_tabs_title', $tab_title, $product, $this ),
 					'priority' => 25,
@@ -97,8 +97,9 @@ class WT_Custom_Tabs {
 		$content = apply_filters( 'the_content', $tab['content'] );
 		$content = str_replace( ']]>', ']]&gt;', $content );
 
-		echo apply_filters( 'woocommerce_custom_product_tabs_lite_heading', '<h2>' . esc_html( $tab['title'] ) . '</h2>', $tab );
-		echo apply_filters( 'woocommerce_custom_product_tabs_content', $content, $tab );
+		echo wp_kses_post( apply_filters( 'woocommerce_custom_product_tabs_lite_heading', '<h2>' . esc_html( $tab['title'] ) . '</h2>', $tab ) );
+		// Tab content runs through the_content like post content; it is sanitised when saved for users without unfiltered_html.
+		echo apply_filters( 'woocommerce_custom_product_tabs_content', $content, $tab ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 

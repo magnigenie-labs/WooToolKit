@@ -43,15 +43,15 @@ defined( 'ABSPATH' ) || exit;
 			</thead>
 			<tbody>
 			<?php
-			foreach ( $items as $key => $item ) :
-				$product = QuoteList::product( $item );
-				if ( ! $product ) {
+			foreach ( $items as $wootoolkit_key => $wootoolkit_item ) :
+				$wootoolkit_product = QuoteList::product( $wootoolkit_item );
+				if ( ! $wootoolkit_product ) {
 					continue;
 				}
-				$remove = add_query_arg(
+				$wootoolkit_remove = add_query_arg(
 					array(
 						'wootoolkit_quote_action' => 'remove',
-						'item'                    => $key,
+						'item'                    => $wootoolkit_key,
 						'_wpnonce'                => $nonce,
 					),
 					$action
@@ -59,15 +59,15 @@ defined( 'ABSPATH' ) || exit;
 				?>
 				<tr>
 					<td class="product-name" data-title="<?php esc_attr_e( 'Product', 'wootoolkit' ); ?>">
-						<a href="<?php echo esc_url( $product->get_permalink() ); ?>"><?php echo esc_html( $product->get_name() ); ?></a>
+						<a href="<?php echo esc_url( $wootoolkit_product->get_permalink() ); ?>"><?php echo esc_html( $wootoolkit_product->get_name() ); ?></a>
 					</td>
 					<td class="product-quantity" data-title="<?php esc_attr_e( 'Quantity', 'wootoolkit' ); ?>">
-						<label class="screen-reader-text" for="wootoolkit-qty-<?php echo esc_attr( $key ); ?>"><?php esc_html_e( 'Quantity', 'wootoolkit' ); ?></label>
-						<input type="number" class="input-text qty text" id="wootoolkit-qty-<?php echo esc_attr( $key ); ?>" name="quantity[<?php echo esc_attr( $key ); ?>]" value="<?php echo esc_attr( (string) $item['quantity'] ); ?>" min="0" step="1" inputmode="numeric" />
+						<label class="screen-reader-text" for="wootoolkit-qty-<?php echo esc_attr( $wootoolkit_key ); ?>"><?php esc_html_e( 'Quantity', 'wootoolkit' ); ?></label>
+						<input type="number" class="input-text qty text" id="wootoolkit-qty-<?php echo esc_attr( $wootoolkit_key ); ?>" name="quantity[<?php echo esc_attr( $wootoolkit_key ); ?>]" value="<?php echo esc_attr( (string) $wootoolkit_item['quantity'] ); ?>" min="0" step="1" inputmode="numeric" />
 					</td>
 					<td class="product-remove">
 						<?php /* translators: %s: product name */ ?>
-						<a href="<?php echo esc_url( $remove ); ?>" class="remove" aria-label="<?php echo esc_attr( sprintf( __( 'Remove %s from your quote', 'wootoolkit' ), $product->get_name() ) ); ?>">&times;</a>
+						<a href="<?php echo esc_url( $wootoolkit_remove ); ?>" class="remove" aria-label="<?php echo esc_attr( sprintf( __( 'Remove %s from your quote', 'wootoolkit' ), $wootoolkit_product->get_name() ) ); ?>">&times;</a>
 					</td>
 				</tr>
 			<?php endforeach; ?>
@@ -80,18 +80,18 @@ defined( 'ABSPATH' ) || exit;
 
 	<form class="wootoolkit-quote-request" method="post" action="<?php echo esc_url( $action ); ?>">
 		<h2><?php esc_html_e( 'Request a quote', 'wootoolkit' ); ?></h2>
-		<?php foreach ( $fields as $name => $field ) : ?>
+		<?php foreach ( $fields as $wootoolkit_name => $wootoolkit_field ) : ?>
 			<p class="form-row form-row-wide">
-				<label for="quote_<?php echo esc_attr( $name ); ?>">
-					<?php echo esc_html( $field[0] ); ?>
-					<?php if ( $field[1] ) : ?>
+				<label for="quote_<?php echo esc_attr( $wootoolkit_name ); ?>">
+					<?php echo esc_html( $wootoolkit_field[0] ); ?>
+					<?php if ( $wootoolkit_field[1] ) : ?>
 						<abbr class="required" title="<?php esc_attr_e( 'required', 'wootoolkit' ); ?>">*</abbr>
 					<?php endif; ?>
 				</label>
-				<?php if ( 'message' === $name ) : ?>
-					<textarea class="input-text" id="quote_<?php echo esc_attr( $name ); ?>" name="quote_<?php echo esc_attr( $name ); ?>" rows="4"></textarea>
+				<?php if ( 'message' === $wootoolkit_name ) : ?>
+					<textarea class="input-text" id="quote_<?php echo esc_attr( $wootoolkit_name ); ?>" name="quote_<?php echo esc_attr( $wootoolkit_name ); ?>" rows="4"></textarea>
 				<?php else : ?>
-					<input class="input-text" type="<?php echo 'email' === $name ? 'email' : ( 'phone' === $name ? 'tel' : 'text' ); ?>" id="quote_<?php echo esc_attr( $name ); ?>" name="quote_<?php echo esc_attr( $name ); ?>" value="<?php echo esc_attr( $values[ $name ] ?? '' ); ?>"<?php echo $field[1] ? ' required' : ''; ?> />
+					<input class="input-text" type="<?php echo 'email' === $wootoolkit_name ? 'email' : ( 'phone' === $wootoolkit_name ? 'tel' : 'text' ); ?>" id="quote_<?php echo esc_attr( $wootoolkit_name ); ?>" name="quote_<?php echo esc_attr( $wootoolkit_name ); ?>" value="<?php echo esc_attr( $values[ $wootoolkit_name ] ?? '' ); ?>"<?php echo $wootoolkit_field[1] ? ' required' : ''; ?> />
 				<?php endif; ?>
 			</p>
 		<?php endforeach; ?>

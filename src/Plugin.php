@@ -65,7 +65,6 @@ final class Plugin {
 		add_action( 'plugins_loaded', array( $this, 'register_kits' ), 5 );
 		add_action( 'before_woocommerce_init', array( $this, 'declare_compatibility' ) );
 		add_action( 'init', array( $this, 'boot_kits' ), 1 );
-		add_action( 'init', array( $this, 'load_textdomain' ) );
 
 		if ( is_admin() ) {
 			( new Admin( $this->registry ) )->hooks();
@@ -112,13 +111,6 @@ final class Plugin {
 		}
 		FeaturesUtil::declare_compatibility( 'custom_order_tables', WOOTOOLKIT_FILE, $this->registry->supports( 'hpos' ) );
 		FeaturesUtil::declare_compatibility( 'cart_checkout_blocks', WOOTOOLKIT_FILE, $this->registry->supports( 'blocks' ) );
-	}
-
-	/**
-	 * Loads translations.
-	 */
-	public function load_textdomain(): void {
-		load_plugin_textdomain( 'wootoolkit', false, dirname( WOOTOOLKIT_BASE ) . '/languages' );
 	}
 
 	/**

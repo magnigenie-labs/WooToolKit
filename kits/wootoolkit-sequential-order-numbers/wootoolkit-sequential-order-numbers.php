@@ -148,14 +148,16 @@ class WT_Seq_Order_Number {
 				for ( $i = 0; $i < 3 && ! $success; $i++ ) {
 
 					// this seems to me like the safest way to avoid order number clashes
-					$query = $wpdb->prepare( "
-						INSERT INTO {$wpdb->postmeta} (post_id, meta_key, meta_value)
-						SELECT %d, '_order_number', IF( MAX( CAST( meta_value as UNSIGNED ) ) IS NULL, 1, MAX( CAST( meta_value as UNSIGNED ) ) + 1 )
-							FROM {$wpdb->postmeta}
-							WHERE meta_key='_order_number'",
-						$post_id );
-
-					$success = $wpdb->query( $query );
+					// phpcs:ignore WordPress.DB.DirectDatabaseQuery -- atomic next-number insert; no WordPress API does this.
+					$success = $wpdb->query(
+						$wpdb->prepare(
+							"INSERT INTO {$wpdb->postmeta} (post_id, meta_key, meta_value)
+							SELECT %d, '_order_number', IF( MAX( CAST( meta_value as UNSIGNED ) ) IS NULL, 1, MAX( CAST( meta_value as UNSIGNED ) ) + 1 )
+								FROM {$wpdb->postmeta}
+								WHERE meta_key='_order_number'",
+							$post_id
+						)
+					);
 				}
 			}
 		}

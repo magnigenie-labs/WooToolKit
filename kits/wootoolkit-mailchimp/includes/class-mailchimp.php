@@ -153,14 +153,9 @@ class WTMailChimp
      * @param  array $args Assoc array of parameters to be passed
      * @param int $timeout
      * @return array|false Assoc array of decoded result
-     * @throws \Exception
      */
     private function makeRequest($http_verb, $method, $args = array(), $timeout = 10)
     {
-        if (!function_exists('curl_init') || !function_exists('curl_setopt')) {
-            throw new \Exception("cURL support is required, but can't be found.");
-        }
-
         $url = $this->api_endpoint . '/' . $method;
 
         $this->last_error         = '';
@@ -176,59 +171,36 @@ class WTMailChimp
             'timeout' => $timeout,
         );
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            'Accept: application/vnd.api+json',
-            'Content-Type: application/vnd.api+json',
-            'Authorization: apikey ' . $this->api_key
-        ));
-        curl_setopt($ch, CURLOPT_USERAGENT,"Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.1) Gecko/20061204 Firefox/2.0.0.1" );
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, $this->verify_ssl);
-        curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_0);
-        curl_setopt($ch, CURLOPT_ENCODING, '');
-        curl_setopt($ch, CURLINFO_HEADER_OUT, true);
+        // WordPress HTTP API rather than cURL (WordPress.org plugin guidelines).
+        $request = array(
+            'method'    => strtoupper($http_verb),
+            'timeout'   => $timeout,
+            'sslverify' => $this->verify_ssl,
+            'headers'   => array(
+                'Accept'        => 'application/vnd.api+json',
+                'Content-Type'  => 'application/vnd.api+json',
+                'Authorization' => 'apikey ' . $this->api_key,
+            ),
+        );
 
-        switch ($http_verb) {
-            case 'post':
-                curl_setopt($ch, CURLOPT_POST, true);
-                $this->attachRequestPayload($ch, $args);
-                break;
-
-            case 'get':
-                $query = http_build_query($args, '', '&');
-                curl_setopt($ch, CURLOPT_URL, $url . '?' . $query);
-                break;
-
-            case 'delete':
-                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
-                break;
-
-            case 'patch':
-                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PATCH');
-                $this->attachRequestPayload($ch, $args);
-                break;
-
-            case 'put':
-                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
-                $this->attachRequestPayload($ch, $args);
-                break;
+        if ('get' === $http_verb) {
+            if ($args) {
+                $url .= '?' . http_build_query($args, '', '&');
+            }
+        } elseif ('delete' !== $http_verb) {
+            $request['body'] = $this->attachRequestPayload($args);
         }
 
-        $response['body']    = curl_exec($ch);
-        $response['headers'] = curl_getinfo($ch);
+        $result = wp_remote_request($url, $request);
 
-        if (isset($response['headers']['request_header'])) {
-            $this->last_request['headers'] = $response['headers']['request_header'];
+        if (is_wp_error($result)) {
+            $this->last_error    = $result->get_error_message();
+            $response['body']    = false;
+            $response['headers'] = array();
+        } else {
+            $response['body']    = wp_remote_retrieve_body($result);
+            $response['headers'] = array('http_code' => (int) wp_remote_retrieve_response_code($result));
         }
-
-        if ($response['body'] === false) {
-            $this->last_error = curl_error($ch);
-        }
-
-        curl_close($ch);
 
         $formattedResponse = $this->formatResponse($response);
 
@@ -246,15 +218,15 @@ class WTMailChimp
     }
 
     /**
-     * Encode the data and attach it to the request
-     * @param   resource $ch cURL session handle, used by reference
+     * Encode the data for the request body
      * @param   array $data Assoc array of data to attach
+     * @return  string JSON body
      */
-    private function attachRequestPayload(&$ch, $data)
+    private function attachRequestPayload($data)
     {
-        $encoded = json_encode($data);
+        $encoded = wp_json_encode($data);
         $this->last_request['body'] = $encoded;
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $encoded);
+        return $encoded;
     }
 
     /**

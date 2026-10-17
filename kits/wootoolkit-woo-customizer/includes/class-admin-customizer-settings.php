@@ -147,7 +147,7 @@ class WT_Customizer_Admin_Settings {
 						),
 						array(
 							'name'      => 'woocommerce_create_account_default_checked',
-							'label'    	=> __( 'Create Account checkbox default' ),
+							'label'    	=> __( 'Create Account checkbox default', 'wootoolkit' ),
 							'desc' => __( 'Control the default state for the Create Account checkbox', 'wootoolkit' ),
 							'type'     	=> 'select',
 							'options'  	=> array(

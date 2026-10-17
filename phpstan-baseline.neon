@@ -133,12 +133,6 @@ parameters:
 			path: kits/wootoolkit-products-per-page/includes/products-per-page-front-end.php
 
 		-
-			message: '#^Parameter \#1 \$text of function esc_html expects string, int given\.$#'
-			identifier: argument.type
-			count: 1
-			path: kits/wootoolkit-products-per-page/includes/products-per-page-front-end.php
-
-		-
 			message: '#^Access to an undefined property WC_Order\|WC_Order_Refund\:\:\$order_number\.$#'
 			identifier: property.notFound
 			count: 1

@@ -118,23 +118,23 @@ class WT_Extra_Sorting_Options {
 				switch ( $option ) {
 
 					case 'alphabetical':
-						$sortby['alphabetical']   = __( 'Sort by name: A to Z', 'woocommerce-extra-product-sorting-options' );
+						$sortby['alphabetical']   = __( 'Sort by name: A to Z', 'wootoolkit' );
 						break;
 
 					case 'reverse_alpha':
-						$sortby['reverse_alpha']  = __( 'Sort by name: Z to A', 'woocommerce-extra-product-sorting-options' );
+						$sortby['reverse_alpha']  = __( 'Sort by name: Z to A', 'wootoolkit' );
 						break;
 
 					case 'by_stock':
-						$sortby['by_stock']       = __( 'Sort by availability', 'woocommerce-extra-product-sorting-options' );
+						$sortby['by_stock']       = __( 'Sort by availability', 'wootoolkit' );
 						break;
 
 					case 'on_sale_first':
-						$sortby['on_sale_first']  = __( 'Show sale items first', 'woocommerce-extra-product-sorting-options' );
+						$sortby['on_sale_first']  = __( 'Show sale items first', 'wootoolkit' );
 						break;
 
 					case 'featured_first':
-						$sortby['featured_first'] = __( 'Show featured items first', 'woocommerce-extra-product-sorting-options' );
+						$sortby['featured_first'] = __( 'Show featured items first', 'wootoolkit' );
 						break;
 				}
 			}

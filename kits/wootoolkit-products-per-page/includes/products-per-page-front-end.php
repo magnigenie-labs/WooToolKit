@@ -113,8 +113,9 @@ class WT_Products_Per_Page_Front_End {
 				foreach( $products_per_page_options as $key => $value ) :
 
 					?><option value="<?php echo esc_attr( $value ); ?>" <?php selected( $value, $this->loop_shop_per_page() ); ?>><?php
+						/* translators: %s: number of products, or "All" */
 						$ppp_text = apply_filters( 'wppp_ppp_text', __( '%s products per page', 'wootoolkit' ), $value );
-						esc_html( printf( $ppp_text, $value == -1 ? __( 'All', 'wootoolkit' ) : $value ) ); // Set to 'All' when value is 0
+						echo esc_html( sprintf( $ppp_text, $value == -1 ? __( 'All', 'wootoolkit' ) : $value ) ); // Set to 'All' when value is -1
 					?></option><?php
 
 				endforeach;

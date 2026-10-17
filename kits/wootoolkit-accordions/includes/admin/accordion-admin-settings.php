@@ -56,38 +56,38 @@ class Accordion_Admin_Settings {
         $fields[$this->kit] = 
             array(
             	array(
-					'label' 		=> __( 'Enable', 'wooatm' ),
-					'desc' 			=> __( 'Enable Accordions.', 'wooatm' ),
+					'label' 		=> __( 'Enable', 'wootoolkit' ),
+					'desc' 			=> __( 'Enable Accordions.', 'wootoolkit' ),
 					'type' 			=> 'checkbox',
 					'name' 			=> 'wooatm_enabled',
 					'default' 		=> 'off'											
 				),
 				array(
-					'label' 	  	=> __( 'Accordion background color', 'wooatm' ),
+					'label' 	  	=> __( 'Accordion background color', 'wootoolkit' ),
 					'name' 		  	=> 'wooatm_bg',
 					'type' 		  	=> 'color',
 					'default'	  	=> '#ffffff',
 				),
 				array(
-					'label' 	  	=> __( 'Accordion active background', 'wooatm' ),
+					'label' 	  	=> __( 'Accordion active background', 'wootoolkit' ),
 					'name' 		  	=> 'wooatm_active_bg',
 					'type' 		  	=> 'color',
 					'default'	  	=> '#adadad',
 				),
 				array(
-					'label' 	  	=> __( 'Accordion title color', 'wooatm' ),
+					'label' 	  	=> __( 'Accordion title color', 'wootoolkit' ),
 					'name' 		  	=> 'wooatm_title_color',
 					'type' 		  	=> 'color',
 					'default'	  	=> '#000000',
 				),
 				array(
-					'label' 	  	=> __( 'Accordion active title color', 'wooatm' ),
+					'label' 	  	=> __( 'Accordion active title color', 'wootoolkit' ),
 					'name' 		  	=> 'wooatm_title_active',
 					'type' 		  	=> 'color',
 					'default'	  	=> '#ffffff',
 				),
 				array(
-					'label' 	  	=> __( 'Accordion arrow color', 'wooatm' ),
+					'label' 	  	=> __( 'Accordion arrow color', 'wootoolkit' ),
 					'name' 		  	=> 'wooatm_arrow_color',
 					'type' 		  	=> 'color',
 					'default'	  	=> '#000000',
@@ -95,7 +95,7 @@ class Accordion_Admin_Settings {
 					'desc_tip'	 		=>  true
 				),
 				array(
-					'label' 	  	=> __( 'Accordion active arrow color', 'wooatm' ),
+					'label' 	  	=> __( 'Accordion active arrow color', 'wootoolkit' ),
 					'name' 		  	=> 'wooatm_arrow_active',
 					'type' 		  	=> 'color',
 					'default'	  	=> '#ffffff',

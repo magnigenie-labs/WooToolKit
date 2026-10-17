@@ -108,8 +108,8 @@ final class ProductFields {
 	 */
 	public static function save_variation( $variation, $index ): void {
 		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- verified by WooCommerce before this action.
-		$values = isset( $_POST[ Pricing::META ] ) && is_array( $_POST[ Pricing::META ] ) ? wp_unslash( $_POST[ Pricing::META ] ) : array();
-		$raw    = isset( $values[ $index ] ) ? sanitize_text_field( $values[ $index ] ) : '';
+		$values = isset( $_POST[ Pricing::META ] ) && is_array( $_POST[ Pricing::META ] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST[ Pricing::META ] ) ) : array();
+		$raw    = isset( $values[ $index ] ) ? (string) $values[ $index ] : '';
 		self::store( $variation, $raw );
 	}
 
