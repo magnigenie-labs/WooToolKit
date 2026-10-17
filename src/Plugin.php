@@ -80,6 +80,7 @@ final class Plugin {
 
 		$this->registry->register( new Kits\WholesalePrices\WholesalePricesKit() );
 		$this->registry->register( new Kits\CatalogMode\CatalogModeKit() );
+		$this->registry->register( new Kits\RequestAQuote\RequestAQuoteKit() );
 
 		foreach ( self::classic_kits() as $file => $hpos ) {
 			$this->registry->register( new ClassicKit( WOOTOOLKIT_PATH . 'kits/' . $file, $hpos ) );

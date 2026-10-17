@@ -19,7 +19,7 @@ class Test_Plugin extends WP_UnitTestCase {
 	}
 
 	public function test_the_2x_kits_are_registered_first() {
-		$this->assertSame( array( 'catalog-mode', 'wholesale-prices' ), array_slice( array_keys( Plugin::instance()->registry()->all() ), 0, 2 ) );
+		$this->assertSame( array( 'catalog-mode', 'request-a-quote', 'wholesale-prices' ), array_slice( array_keys( Plugin::instance()->registry()->all() ), 0, 3 ) );
 	}
 
 	public function test_the_nine_classic_kits_are_registered_with_stable_ids() {

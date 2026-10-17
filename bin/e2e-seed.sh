@@ -21,7 +21,7 @@ fi
 
 # Wholesale prices kit: on, a wholesale customer, and a wholesale price on the test product.
 # These are throwaway credentials for the local wp-env site only.
-wp option update wootoolkit_active_kits '{"wholesale-prices":"yes","catalog-mode":"yes"}' --format=json
+wp option update wootoolkit_active_kits '{"wholesale-prices":"yes","catalog-mode":"yes","request-a-quote":"yes"}' --format=json
 if ! wp user get wholesale --field=ID >/dev/null 2>&1; then
 	wp user create wholesale wholesale@example.test --role=wholesale_customer --user_pass=wholesale-e2e-pass
 fi
@@ -40,3 +40,11 @@ wp option update wootoolkit_catalog_price_text 'Call for price'
 wp option update wootoolkit_catalog_button custom
 wp option update wootoolkit_catalog_button_text 'Ask for a price'
 wp option update wootoolkit_catalog_button_url 'https://example.test/contact'
+
+# Request a quote kit: a Quote page, and the Check payments gateway so a sent quote can be paid.
+if [ "$(wp post list --post_type=page --name=quote --format=count)" = "0" ]; then
+	wp post create --post_type=page --post_status=publish --post_title=Quote --post_name=quote --post_content='<!-- wp:wootoolkit/quote /-->'
+fi
+QUOTE_PAGE=$(wp post list --post_type=page --name=quote --field=ID | tr -d '[:space:]')
+wp option update wootoolkit_quote_page_id "$QUOTE_PAGE"
+wp option update woocommerce_cheque_settings '{"enabled":"yes","title":"Check payments","description":"","instructions":""}' --format=json
