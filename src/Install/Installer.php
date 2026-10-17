@@ -65,7 +65,7 @@ final class Installer {
 			delete_option( 'wt_mailchimp_mails' );
 		}
 
-		if ( version_compare( $installed, '2.0.0-dev', '<' ) ) {
+		if ( version_compare( $installed, '2.0.0', '<' ) ) {
 			self::migrate_active_kits();
 			self::migrate_catalog();
 		}

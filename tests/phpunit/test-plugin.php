@@ -15,7 +15,7 @@ class Test_Plugin extends WP_UnitTestCase {
 	public function test_woocommerce_and_wootoolkit_are_loaded() {
 		$this->assertTrue( class_exists( 'WooCommerce' ), 'WooCommerce should be loaded.' );
 		$this->assertInstanceOf( Plugin::class, Plugin::instance() );
-		$this->assertSame( '2.0.0-dev', WOOTOOLKIT_VERSION );
+		$this->assertSame( '2.0.0', WOOTOOLKIT_VERSION );
 	}
 
 	public function test_the_2x_kits_are_registered_first() {

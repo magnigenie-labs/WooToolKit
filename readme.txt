@@ -1,95 +1,103 @@
-=== WooToolkit - A Scalable WooCommerce Addon! ===
+=== B2B, Wholesale Prices & Request a Quote for WooCommerce – WooToolkit ===
 Contributors: magnigenie, sagarseth9, kshirod-patel, dipakbbsr
-Tags: woocommerce, woocommerce toolkit, accordions, catalog mode, continue shopping
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=sales@magnigenie.com&item_name=WooToolkit&return=https://wootoolkit.com/
+Tags: wholesale, b2b, request a quote, catalog mode, wholesale prices
 Requires at least: 6.0
 Requires PHP: 7.4
 Tested up to: 7.1
-Stable tag: 1.0.3
+Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-WooToolKit will help you manage all your WooCommerce needs, support, and updates from one place.
+Wholesale prices, request a quote and catalog mode for WooCommerce. Built for the Cart & Checkout blocks and HPOS.
 
 == Description ==
 
-You have always been seeking a one-stop solution for all your WooCommerce needs. 
+WooToolkit turns a WooCommerce store into a B2B store. Switch on only the kits you need: each one works on its own, and together they cover the usual wholesale setup.
 
-Yes, with this plugin, you can achieve remarkable scalability of functionalities and features, all under one plugin! The core specialty is that you can get support and updates all in one place!
+**Built for today's WooCommerce.** Every kit works with the Cart & Checkout blocks, the Store API and High-Performance Order Storage (HPOS), and is tested on every WooCommerce release against the current and previous WordPress and WooCommerce versions on PHP 7.4 to 8.4.
 
-= NOTE =
+= Wholesale prices =
 
-WooToolkit is being rebuilt. Version 2.0 will bring Cart & Checkout block support, HPOS support and new B2B kits. Version 1.0.3 is a security and maintenance release for the current kits.
+* A **Wholesale customer** role. Assign it to any user.
+* A wholesale price on each product and on each variation, a wholesale discount (%) per product category, or a store-wide wholesale discount.
+* Optionally show the retail price crossed out next to the wholesale price.
+* Wholesale customers see and pay their prices everywhere: shop pages, product blocks, the Store API, the cart and the checkout. Guests and retail customers keep seeing retail prices.
+* Orders from wholesale customers are marked "Wholesale order" in the order screen.
 
-= Compatibility =
+= Catalog mode =
 
-* The kits hook the classic WooCommerce cart and checkout templates. They do not appear inside the Cart & Checkout blocks yet.
-* The Sequential Order Numbers kit does not support High-Performance Order Storage (HPOS) yet and pauses itself when HPOS is enabled. All other kits work with HPOS.
-* Catalog Mode hides the Add to Cart buttons and prices in your theme's templates. It does not block purchases through direct add-to-cart links or the Store API.
+* Hide prices, stop purchases, or both.
+* For everyone, for guests only, for logged-in customers only, or for everyone except wholesale customers ("log in to see prices").
+* On all products, on chosen categories (subcategories included) or on products you tick one by one.
+* Replace the price with your own text and the Add to cart button with a product link, a custom link or **Add to quote**.
+* Purchases are refused by WooCommerce itself, so direct add-to-cart links and the Store API cannot get around it. Hidden prices are also kept out of the Store API and Google's product data.
 
-Have an idea for a kit? Open a topic in the [support forum](https://wordpress.org/support/plugin/wootoolkit/).
+= Request a quote =
 
-= FEATURES =
+* An **Add to quote** button on product pages, next to Add to cart or instead of it in Catalog mode. Variable products work too.
+* A quote page (Quote block or `[wootoolkit_quote]` shortcode) where shoppers review their list and send the request with their name, email, company and message.
+* **Each quote is a WooCommerce order** with the status "Quote requested". Edit products, prices and shipping in the normal order screen, then choose **Send quote to customer**. The customer gets an email and pays through WooCommerce's own pay-for-order page with any payment method you offer.
+* Emails for the store ("New quote request") and the customer ("Your quote"), editable under WooCommerce > Settings > Emails.
+* Quotes stay out of WooCommerce Analytics until they are paid.
 
-1. Accordions:
-* Convert your WooCommerce Tabs into Accordions with the help of a powerful admin dashboard. It enables you to change each part of the accordion to match your theme design and feel.
+= Classic kits =
 
-2. Catalog Mode:
-* Converts your store into catalog mode by hiding the add to cart button, price tag, ratings, and reviews.
+Sites that used WooToolkit 1.x keep their kits as **Classic kits**: Accordions, Continue Shopping, Custom Product Tabs, Empty Cart, Mailchimp, Product Sorting Options, Products Per Page, Sequential Order Numbers and WooCommerce Customizer. They get bug fixes but no new features, and they only work with the classic cart and checkout.
 
-3. Continue Shopping:
-* Enables you to display a continue shopping link to the WooCommerce cart, encouraging your customers to continue shopping without going to other pages.
+= Need a kit we don't have? =
 
-4. Custom Product Tabs:
-* Adds different custom tabs to each WooCommerce product.
-
-5. Empty Cart:
-* Adds an empty cart button to the WooCommerce cart that works with a single click.
-
-6. MailChimp:
-* Enables you to capture email addresses of the orders on MailChimp. The plugin displays a checkbox on the checkout page to achieve this.
-
-7. Product Sorting Options:
-* Allows you to add new sorting options to the WooCommerce shop page and rename existing options.
-
-8. Products Per Page:
-* Adds a dropdown to your WooCommerce shop page, which can be used by users to change the number of products displayed on the page.
-
-9. Sequential Order Numbers:
-* Enables you to have sequential numbers for the orders you get through your WooCommerce store.
-
-10. WooCommerce Customizer:
-* Allows you to customize default WooCommerce texts and features.
+Open a topic in the [support forum](https://wordpress.org/support/plugin/wootoolkit/) and tell us what your store needs.
 
 == Installation ==
 
-1. Upload "Woo Toolkit" to the "/wp-content/plugins/" directory.
-2. Activate the plugin through the "Plugins" menu in WordPress.
-3. Installation complete.
+1. Install and activate WooCommerce.
+2. Install WooToolkit from Plugins > Add New, or upload the plugin folder to `/wp-content/plugins/`, and activate it.
+3. Go to WooCommerce > Settings > WooToolkit and switch on the kits you need. Each kit adds its own settings section on that screen.
 
 == Frequently Asked Questions ==
 
-= What actually is WooToolKit? =
-WooToolKit is a scalable WooCommerce addon that enables you to beautifully manage all your WooCommerce functionalities and features from one place. It helps you have hassle-free control over your WooCommerce addons.
+= Does it work with the Cart & Checkout blocks and HPOS? =
 
-= What does your WooToolKit contain? =
-It contains 10 free kits to start with, to help you address your issues without encumbrances. With time, we are going to add more kits to help you manage more complex features.
+Yes. Wholesale prices, Catalog mode and Request a quote support both. WooToolkit tells WooCommerce which features it supports based on the kits you have switched on. The Classic kits support only the classic cart and checkout, and Sequential Order Numbers does not support HPOS.
+
+= How do I make someone a wholesale customer? =
+
+Switch on the Wholesale prices kit, then edit the user and change their role to "Wholesale customer".
+
+= How does a customer pay for a quote? =
+
+When you choose "Send quote to customer" on the order, WooCommerce's pay-for-order link is emailed to them. They pay with any payment method your store offers, and the order then moves to Processing (or On hold) like any other order. Guests confirm their email address before paying.
+
+= Can shoppers request a quote for products they cannot buy? =
+
+Yes. That is what Catalog mode with the "Add to quote" button is for.
+
+= Does Catalog mode stop people from buying through add-to-cart links? =
+
+Yes. Catalog products are unpurchasable in WooCommerce itself, so `?add-to-cart=` links, the Store API and carts saved earlier are all refused.
+
+= I used WooToolkit 1.x. What happens when I update? =
+
+Every kit you had switched on stays on as a Classic kit, with its settings. The 1.x Catalog kit is replaced by the new Catalog mode kit and your settings are carried over. It is switched on only if catalog mode was on in 1.x. Kits are now managed under WooCommerce > Settings > WooToolkit, and Classic kit settings are under WooCommerce > WooToolkit Classic.
+
+= Does WooToolkit store personal data? =
+
+Quote requests are stored as WooCommerce orders, with the name, email, phone, company and message the shopper enters. They are covered by WooCommerce's personal data export and erasure tools. WooToolkit does not send data to external services, except the Classic Mailchimp kit, which sends the emails of customers who opt in at checkout to your Mailchimp list.
 
 == Screenshots ==
 
-1. Kit listing page
-2. Kit Accordion: Settings Page
-3. Kit Catalog: Settings Page
-4. Kit Continue Shopping: Settings Page
-5. Kit Empty Cart: Settings Page
-6. Kit Mailchimp: Settings Page
-7. Kit Products Per Page: Settings Page
-8. Kit Customizer: Settings Page
-9. Kit Sorting Options: Settings Page
+1. Switch on the kits you need under WooCommerce > Settings > WooToolkit.
+2. Wholesale prices: a wholesale customer sees the wholesale price with the retail price crossed out.
+3. Wholesale prices: wholesale price on the product, per category and store-wide.
+4. Catalog mode settings: who, which products, prices, purchases and the replacement button.
+5. Catalog mode on a product page, with "Add to quote" instead of Add to cart.
+6. The quote page: the shopper's quote list and request form.
+7. A quote in the order screen, with "Send quote to customer".
+8. The customer's quote email with the link to pay.
 
 == Changelog ==
 
-= 2.0.0 (in development) =
+= 2.0.0 =
 * New: Kits are managed under WooCommerce > Settings > WooToolkit, which replaces the old Installed Kits screen.
 * New: Kit framework and registry. WooToolkit declares HPOS and Cart & Checkout block compatibility based on the kits you actually have switched on.
 * New: Wholesale prices kit. A Wholesale customer role with per-product, per-variation, per-category or store-wide wholesale prices, in classic templates, the blocks, the Store API, the cart and checkout.
@@ -128,6 +136,9 @@ It contains 10 free kits to start with, to help you address your issues without 
 * Initial release
 
 == Upgrade Notice ==
+
+= 2.0.0 =
+Major update. Kits move to WooCommerce > Settings > WooToolkit and every 1.x kit you use keeps working as a Classic kit. The 1.x Catalog kit is replaced by the new Catalog mode kit, with your settings carried over. WooCommerce is now required. Please update a staging site first.
 
 = 1.0.3 =
 Security release. Please update.

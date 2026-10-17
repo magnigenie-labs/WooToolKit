@@ -1,172 +1,70 @@
-#, fuzzy
+# Copyright (C) 2026 MagniGenie
+# This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: WooToolKit\n"
-"POT-Creation-Date: 2023-02-27 19:01+0530\n"
-"PO-Revision-Date: 2023-02-27 19:01+0530\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"Project-Id-Version: B2B, Wholesale Prices & Request a Quote for WooCommerce – WooToolkit 2.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wootoolkit/\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"X-Generator: Poedit 3.2.2\n"
-"X-Poedit-Basepath: ..\n"
-"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
-"X-Poedit-WPHeader: wootoolkit.php\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
-"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
-"X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+"POT-Creation-Date: 2026-10-17T17:03:51+02:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: wootoolkit\n"
 
-#: includes/wootoolkit.class.php:95
-msgid ""
-"WooToolkit requires WooCommerce to be activated in order to work. Please "
-"install and activate WooCommerce first."
+#. Plugin Name of the plugin
+#: wootoolkit.php
+msgid "B2B, Wholesale Prices & Request a Quote for WooCommerce – WooToolkit"
 msgstr ""
 
-#: includes/wootoolkit.class.php:113 includes/wootoolkit.settings.class.php:125
+#. Plugin URI of the plugin
+#: wootoolkit.php
+msgid "https://wootoolkit.com/"
+msgstr ""
+
+#. Description of the plugin
+#: wootoolkit.php
+msgid "B2B tools for WooCommerce — wholesale prices, request a quote and catalog mode — plus the Classic kits."
+msgstr ""
+
+#. Author of the plugin
+#: wootoolkit.php
+msgid "MagniGenie"
+msgstr ""
+
+#. Author URI of the plugin
+#: wootoolkit.php
+msgid "https://www.magnigenie.com/"
+msgstr ""
+
 #: includes/wootoolkit.settings.class.php:126
-msgid "Settings"
+msgid "WooToolkit Classic kit settings"
 msgstr ""
 
-#: includes/wootoolkit.class.php:178
-msgid "Woo Toolkit"
+#: includes/wootoolkit.settings.class.php:127
+msgid "WooToolkit Classic"
 msgstr ""
 
-#: includes/wootoolkit.class.php:179
-msgid "Woo Toolkit "
-msgstr ""
-
-#: includes/wootoolkit.class.php:188 templates/toolkits.php:68
-msgid "Toolkits"
-msgstr ""
-
-#: includes/wootoolkit.class.php:189
-msgid "Installed Kits"
-msgstr ""
-
-#: includes/wootoolkit.class.php:523
-msgid "Show more details"
-msgstr ""
-
-#: includes/wootoolkit.settings.class.php:378
-msgid "Choose File"
+#: includes/wootoolkit.settings.class.php:544
+msgid "No kit settings available. Activate a kit first."
 msgstr ""
 
 #: kits/wootoolkit-accordions/includes/admin/accordion-admin-settings.php:44
 msgid "Accordion"
 msgstr ""
 
-#: kits/wootoolkit-accordions/includes/admin/accordion-admin-settings.php:59
+#: kits/wootoolkit-continue-shopping/includes/admin/class-admin-options.php:43
+msgid "Continue Shopping"
+msgstr ""
+
 #: kits/wootoolkit-continue-shopping/includes/admin/class-admin-options.php:58
 #: kits/wootoolkit-empty-cart/includes/admin/empty-cart-admin.php:59
-#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:59
 #: kits/wootoolkit-product-sorting-options/includes/class-admin-settings.php:60
 #: kits/wootoolkit-products-per-page/includes/admin/products-per-page-admin-settings.php:64
 #: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:51
 msgid "Enable"
-msgstr ""
-
-#: kits/wootoolkit-accordions/includes/admin/accordion-admin-settings.php:60
-msgid "Enable Accordions."
-msgstr ""
-
-#: kits/wootoolkit-accordions/includes/admin/accordion-admin-settings.php:66
-msgid "Accordion background color"
-msgstr ""
-
-#: kits/wootoolkit-accordions/includes/admin/accordion-admin-settings.php:72
-msgid "Accordion active background"
-msgstr ""
-
-#: kits/wootoolkit-accordions/includes/admin/accordion-admin-settings.php:78
-msgid "Accordion title color"
-msgstr ""
-
-#: kits/wootoolkit-accordions/includes/admin/accordion-admin-settings.php:84
-msgid "Accordion active title color"
-msgstr ""
-
-#: kits/wootoolkit-accordions/includes/admin/accordion-admin-settings.php:90
-msgid "Accordion arrow color"
-msgstr ""
-
-#: kits/wootoolkit-accordions/includes/admin/accordion-admin-settings.php:98
-msgid "Accordion active arrow color"
-msgstr ""
-
-#: kits/wootoolkit-catalog/include/admin/settings.php:44
-msgid "Catalog"
-msgstr ""
-
-#: kits/wootoolkit-catalog/include/admin/settings.php:74
-msgid "Catalog mode?"
-msgstr ""
-
-#: kits/wootoolkit-catalog/include/admin/settings.php:75
-msgid "Enable or disable catalog mode"
-msgstr ""
-
-#: kits/wootoolkit-catalog/include/admin/settings.php:82
-msgid "Apply these settings to the following groups:"
-msgstr ""
-
-#: kits/wootoolkit-catalog/include/admin/settings.php:83
-msgid "Choose the group you want to apply catalog mode."
-msgstr ""
-
-#: kits/wootoolkit-catalog/include/admin/settings.php:93
-msgid "Apply these settings to the following categories:"
-msgstr ""
-
-#: kits/wootoolkit-catalog/include/admin/settings.php:94
-msgid "Choose categories you want to apply catalog mode."
-msgstr ""
-
-#: kits/wootoolkit-catalog/include/admin/settings.php:101
-msgid "Remove Add to cart button?"
-msgstr ""
-
-#: kits/wootoolkit-catalog/include/admin/settings.php:102
-msgid ""
-"Check this option if you want to remove add to cart button in your catalog."
-msgstr ""
-
-#: kits/wootoolkit-catalog/include/admin/settings.php:108
-msgid "Add custom button instead of add to cart"
-msgstr ""
-
-#: kits/wootoolkit-catalog/include/admin/settings.php:114
-msgid "Custom button text"
-msgstr ""
-
-#: kits/wootoolkit-catalog/include/admin/settings.php:121
-msgid "Choose from drop-down menu custom button type"
-msgstr ""
-
-#: kits/wootoolkit-catalog/include/admin/settings.php:130
-msgid "Enter here the link for your custom button"
-msgstr ""
-
-#: kits/wootoolkit-catalog/include/admin/settings.php:137
-msgid "Remove Price?"
-msgstr ""
-
-#: kits/wootoolkit-catalog/include/admin/settings.php:138
-msgid ""
-"Check this option if you want to remove price from product loop and from "
-"product details page."
-msgstr ""
-
-#: kits/wootoolkit-catalog/wootoolkit-catalog.php:114
-msgid "More"
-msgstr ""
-
-#: kits/wootoolkit-continue-shopping/includes/admin/class-admin-options.php:43
-msgid "Continue Shopping"
 msgstr ""
 
 #: kits/wootoolkit-continue-shopping/includes/admin/class-admin-options.php:59
@@ -201,8 +99,8 @@ msgstr ""
 msgid "Custom Link"
 msgstr ""
 
-#: kits/wootoolkit-continue-shopping/includes/class-continue-shopping.php:65
-#: kits/wootoolkit-continue-shopping/includes/class-continue-shopping.php:86
+#: kits/wootoolkit-continue-shopping/includes/class-continue-shopping.php:64
+#: kits/wootoolkit-continue-shopping/includes/class-continue-shopping.php:84
 msgid "Continue shopping"
 msgstr ""
 
@@ -228,6 +126,7 @@ msgstr ""
 
 #: kits/wootoolkit-empty-cart/includes/admin/empty-cart-admin.php:44
 #: kits/wootoolkit-empty-cart/includes/admin/empty-cart-admin.php:70
+#: kits/wootoolkit-empty-cart/includes/empty-cart-front-end.php:70
 msgid "Empty Cart"
 msgstr ""
 
@@ -247,70 +146,8 @@ msgstr ""
 msgid "Mailchimp"
 msgstr ""
 
-#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:60
-msgid "Enable Mailchimp."
-msgstr ""
-
-#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:66
-msgid "Mailchimp API Key"
-msgstr ""
-
-#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:69
-msgid ""
-"Enter your mailchimp api key. To find your API Key <a href=\"http://kb."
-"mailchimp.com/accounts/management/about-api-keys\" target=\"_blank\">click "
-"here</a>"
-msgstr ""
-
-#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:72
-msgid "Mailchimp list id"
-msgstr ""
-
-#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:75
-msgid ""
-"Enter the mailchimp list id you want to use for subscription. To find your "
-"List id <a href=\"http://kb.mailchimp.com/lists/managing-subscribers/find-"
-"your-list-id\" target=\"_blank\">click here</a>"
-msgstr ""
-
-#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:78
-msgid "Double Opt-In"
-msgstr ""
-
-#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:82
-msgid ""
-"If enabled, customers will receive an email prompting them to confirm their "
-"subscription to the list above."
-msgstr ""
-
-#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:85
-msgid "Subscribe Customers"
-msgstr ""
-
-#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:89
-msgid "Automatically"
-msgstr ""
-
-#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:90
-msgid "Ask for permission"
-msgstr ""
-
-#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:95
-msgid "Opt-In Field Label"
-msgstr ""
-
-#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:104
-msgid "Opt-In Checkbox Default"
-msgstr ""
-
-#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:109
-#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:154
-msgid "Checked"
-msgstr ""
-
-#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:110
-#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:155
-msgid "Unchecked"
+#: kits/wootoolkit-mailchimp/includes/mailchimp-front-end.php:42
+msgid "Subscribe to our newsletter"
 msgstr ""
 
 #: kits/wootoolkit-product-sorting-options/includes/class-admin-settings.php:45
@@ -326,9 +163,7 @@ msgid "New Default Sorting Label"
 msgstr ""
 
 #: kits/wootoolkit-product-sorting-options/includes/class-admin-settings.php:71
-msgid ""
-"If desired, enter a new name for the default sorting option, e.g., &quot;Our "
-"Sorting&quot;"
+msgid "If desired, enter a new name for the default sorting option, e.g., &quot;Our Sorting&quot;"
 msgstr ""
 
 #: kits/wootoolkit-product-sorting-options/includes/class-admin-settings.php:74
@@ -336,9 +171,7 @@ msgid "Add Product Sorting:"
 msgstr ""
 
 #: kits/wootoolkit-product-sorting-options/includes/class-admin-settings.php:75
-msgid ""
-"Select sorting options to add to your shop. \"Available Stock\" sorts "
-"products with the most stock first."
+msgid "Select sorting options to add to your shop. \"Available Stock\" sorts products with the most stock first."
 msgstr ""
 
 #: kits/wootoolkit-product-sorting-options/includes/class-admin-settings.php:79
@@ -359,26 +192,6 @@ msgstr ""
 
 #: kits/wootoolkit-product-sorting-options/includes/class-admin-settings.php:83
 msgid "On-sale First"
-msgstr ""
-
-#: kits/wootoolkit-product-sorting-options/wootoolkit-product-sorting-options.php:118
-msgid "Sort by name: A to Z"
-msgstr ""
-
-#: kits/wootoolkit-product-sorting-options/wootoolkit-product-sorting-options.php:122
-msgid "Sort by name: Z to A"
-msgstr ""
-
-#: kits/wootoolkit-product-sorting-options/wootoolkit-product-sorting-options.php:126
-msgid "Sort by availability"
-msgstr ""
-
-#: kits/wootoolkit-product-sorting-options/wootoolkit-product-sorting-options.php:130
-msgid "Show sale items first"
-msgstr ""
-
-#: kits/wootoolkit-product-sorting-options/wootoolkit-product-sorting-options.php:134
-msgid "Show featured items first"
 msgstr ""
 
 #: kits/wootoolkit-products-per-page/includes/admin/products-per-page-admin-settings.php:43
@@ -438,8 +251,7 @@ msgid "HTTP method"
 msgstr ""
 
 #: kits/wootoolkit-products-per-page/includes/admin/products-per-page-admin-settings.php:105
-msgid ""
-"GET sends the products per page via the url, POST does this on the background"
+msgid "GET sends the products per page via the url, POST does this on the background"
 msgstr ""
 
 #: kits/wootoolkit-products-per-page/includes/admin/products-per-page-admin-settings.php:110
@@ -450,14 +262,17 @@ msgstr ""
 msgid "GET"
 msgstr ""
 
-#: kits/wootoolkit-products-per-page/includes/products-per-page-front-end.php:117
+#: kits/wootoolkit-products-per-page/includes/products-per-page-front-end.php:116
 #, php-format
 msgid "%s products per page"
 msgstr ""
 
-#: kits/wootoolkit-products-per-page/includes/products-per-page-front-end.php:118
-#: templates/toolkits.php:97
+#: kits/wootoolkit-products-per-page/includes/products-per-page-front-end.php:117
 msgid "All"
+msgstr ""
+
+#: kits/wootoolkit-sequential-order-numbers/wootoolkit-sequential-order-numbers.php:46
+msgid "WooToolkit Sequential Order Numbers does not support High-Performance Order Storage (HPOS) yet, so it is paused. Deactivate the kit, or switch order storage to \"WordPress posts storage\" under WooCommerce > Settings > Advanced > Features."
 msgstr ""
 
 #: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:36
@@ -473,8 +288,7 @@ msgid "Simple Product"
 msgstr ""
 
 #: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:60
-msgid ""
-"Changes the add to cart button text for simple products on all loop pages"
+msgid "Changes the add to cart button text for simple products on all loop pages"
 msgstr ""
 
 #: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:65
@@ -482,8 +296,7 @@ msgid "Variable Product"
 msgstr ""
 
 #: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:66
-msgid ""
-"Changes the add to cart button text for variable products on all loop pages"
+msgid "Changes the add to cart button text for variable products on all loop pages"
 msgstr ""
 
 #: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:71
@@ -491,8 +304,7 @@ msgid "Grouped Product"
 msgstr ""
 
 #: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:72
-msgid ""
-"Changes the add to cart button text for grouped products on all loop pages"
+msgid "Changes the add to cart button text for grouped products on all loop pages"
 msgstr ""
 
 #: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:77
@@ -500,9 +312,7 @@ msgid "Out of Stock Product"
 msgstr ""
 
 #: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:78
-msgid ""
-"Changes the add to cart button text for out of stock products on all loop "
-"pages"
+msgid "Changes the add to cart button text for out of stock products on all loop pages"
 msgstr ""
 
 #: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:83
@@ -560,9 +370,7 @@ msgid "All Product Types"
 msgstr ""
 
 #: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:126
-msgid ""
-"Changes the Add to Cart button text on the single product page for all "
-"product type"
+msgid "Changes the Add to Cart button text on the single product page for all product type"
 msgstr ""
 
 #: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:131
@@ -570,8 +378,7 @@ msgid "Must be logged in text"
 msgstr ""
 
 #: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:132
-msgid ""
-"Changes the message displayed when a customer must be logged in to checkout"
+msgid "Changes the message displayed when a customer must be logged in to checkout"
 msgstr ""
 
 #: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:137
@@ -590,12 +397,16 @@ msgstr ""
 msgid "Changes the message displayed if customers can login at checkout"
 msgstr ""
 
-#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:150
-msgid "Create Account checkbox default"
-msgstr ""
-
 #: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:151
 msgid "Control the default state for the Create Account checkbox"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:154
+msgid "Checked"
+msgstr ""
+
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:155
+msgid "Unchecked"
 msgstr ""
 
 #: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:161
@@ -611,8 +422,7 @@ msgid "Tax Label"
 msgstr ""
 
 #: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:168
-msgid ""
-"Changes the Taxes label. Defaults to Tax for USA, VAT for European countries"
+msgid "Changes the Taxes label. Defaults to Tax for USA, VAT for European countries"
 msgstr ""
 
 #: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:173
@@ -620,9 +430,7 @@ msgid "Including Tax Label"
 msgstr ""
 
 #: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:174
-msgid ""
-"Changes the Including Taxes label. Defaults to Inc. tax for USA, Inc. VAT "
-"for European countries"
+msgid "Changes the Including Taxes label. Defaults to Inc. tax for USA, Inc. VAT for European countries"
 msgstr ""
 
 #: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:179
@@ -630,9 +438,7 @@ msgid "Excluding Tax Label"
 msgstr ""
 
 #: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:180
-msgid ""
-"Changes the Excluding Taxes label. Defaults to Exc. tax for USA, Exc. VAT "
-"for European countries"
+msgid "Changes the Excluding Taxes label. Defaults to Exc. tax for USA, Exc. VAT for European countries"
 msgstr ""
 
 #: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:185
@@ -640,66 +446,530 @@ msgid "Placeholder Image source"
 msgstr ""
 
 #: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:186
-msgid ""
-"Change the default placeholder image by setting this to a valid image URL"
+msgid "Change the default placeholder image by setting this to a valid image URL"
 msgstr ""
 
-#: templates/toolkits.php:92
-msgid "Filter plugins list"
+#: src/Admin/Admin.php:80
+msgid "Settings"
 msgstr ""
 
-#: templates/toolkits.php:105
-msgid "Active"
+#: src/Admin/Admin.php:91
+msgid "WooToolkit needs WooCommerce. Install and activate WooCommerce to use its kits."
 msgstr ""
 
-#: templates/toolkits.php:115
-msgid "Inactive"
+#: src/Admin/Admin.php:107
+msgid "WooToolkit 2.0: your kits and their settings have moved to WooCommerce > Settings > WooToolkit. Everything you had switched on is still on."
 msgstr ""
 
-#: templates/toolkits.php:137
-msgid "Kits List"
+#: src/Admin/Admin.php:109
+msgid "Open WooToolkit settings"
 msgstr ""
 
-#: templates/toolkits.php:143 templates/toolkits.php:220
-msgid "Select All"
+#: src/Admin/SettingsPage.php:37
+msgid "WooToolkit"
 msgstr ""
 
-#: templates/toolkits.php:146 templates/toolkits.php:223
-msgid "Kit"
+#: src/Admin/SettingsPage.php:48
+#: src/Admin/SettingsPage.php:67
+msgid "Kits"
 msgstr ""
 
-#: templates/toolkits.php:148 templates/toolkits.php:225
-msgid "Description"
+#: src/Admin/SettingsPage.php:68
+msgid "Switch on the kits your store needs. Each kit is a separate feature; kits you leave off load no code."
 msgstr ""
 
-#: templates/toolkits.php:173
-msgid "Select"
+#: src/Admin/SettingsPage.php:122
+msgid "Classic kit"
 msgstr ""
 
-#: templates/toolkits.php:181
-msgid "Activate"
+#: src/Admin/SettingsPage.php:125
+msgid "Classic cart and checkout only (not the blocks)"
 msgstr ""
 
-#: templates/toolkits.php:185
-msgid "Deactivate"
+#: src/Admin/SettingsPage.php:128
+msgid "Not compatible with HPOS order storage"
 msgstr ""
 
-#. Plugin Name of the plugin/theme
-msgid "WooToolKit"
+#: src/Kits/CatalogMode/CatalogModeKit.php:31
+#: src/Kits/CatalogMode/CatalogModeKit.php:84
+#: src/Kits/CatalogMode/ProductField.php:32
+msgid "Catalog mode"
 msgstr ""
 
-#. Plugin URI of the plugin/theme
-msgid "http://wootookit.com"
+#: src/Kits/CatalogMode/CatalogModeKit.php:38
+msgid "Hide prices and stop purchases for everyone, guests or retail customers, on all products or chosen ones. Add-to-cart links and the Store API are blocked too."
 msgstr ""
 
-#. Description of the plugin/theme
-msgid "One stop solution for all your WooCommerce needs."
+#: src/Kits/CatalogMode/CatalogModeKit.php:85
+msgid "Products in catalog mode can be browsed but not bought. WooCommerce refuses them everywhere, including direct add-to-cart links and the Store API. Store managers in wp-admin are not affected."
 msgstr ""
 
-#. Author of the plugin/theme
-msgid "MagniGenie"
+#: src/Kits/CatalogMode/CatalogModeKit.php:90
+msgid "Applies to"
 msgstr ""
 
-#. Author URI of the plugin/theme
-msgid "http://www.magnigenie.com"
+#. translators: %s: name of the Wholesale prices kit
+#: src/Kits/CatalogMode/CatalogModeKit.php:93
+#, php-format
+msgid "\"Everyone except wholesale customers\" uses the Wholesale customer role from the %s kit."
+msgstr ""
+
+#: src/Kits/CatalogMode/CatalogModeKit.php:94
+#: src/Kits/WholesalePrices/WholesalePricesKit.php:30
+#: src/Kits/WholesalePrices/WholesalePricesKit.php:69
+msgid "Wholesale prices"
+msgstr ""
+
+#: src/Kits/CatalogMode/CatalogModeKit.php:103
+msgid "Products"
+msgstr ""
+
+#: src/Kits/CatalogMode/CatalogModeKit.php:111
+msgid "Categories"
+msgstr ""
+
+#: src/Kits/CatalogMode/CatalogModeKit.php:112
+msgid "Used when Products is set to categories. Subcategories are included."
+msgstr ""
+
+#: src/Kits/CatalogMode/CatalogModeKit.php:120
+msgid "Purchases"
+msgstr ""
+
+#: src/Kits/CatalogMode/CatalogModeKit.php:121
+msgid "Stop these products from being bought, and remove the Add to cart button"
+msgstr ""
+
+#: src/Kits/CatalogMode/CatalogModeKit.php:127
+msgid "Prices"
+msgstr ""
+
+#: src/Kits/CatalogMode/CatalogModeKit.php:128
+msgid "Hide prices (also from search engines and the Store API)"
+msgstr ""
+
+#: src/Kits/CatalogMode/CatalogModeKit.php:134
+msgid "Text instead of the price"
+msgstr ""
+
+#: src/Kits/CatalogMode/CatalogModeKit.php:135
+msgid "Optional, for example \"Log in to see prices\"."
+msgstr ""
+
+#: src/Kits/CatalogMode/CatalogModeKit.php:142
+msgid "Button instead of Add to cart"
+msgstr ""
+
+#: src/Kits/CatalogMode/CatalogModeKit.php:150
+#: src/Kits/RequestAQuote/RequestAQuoteKit.php:85
+msgid "Button text"
+msgstr ""
+
+#: src/Kits/CatalogMode/CatalogModeKit.php:151
+#: src/Kits/CatalogMode/Storefront.php:210
+msgid "View product"
+msgstr ""
+
+#: src/Kits/CatalogMode/CatalogModeKit.php:157
+#: src/Kits/CatalogMode/Rules.php:85
+msgid "Custom link"
+msgstr ""
+
+#: src/Kits/CatalogMode/ProductField.php:33
+msgid "Show this product in catalog mode when catalog mode is set to \"Chosen products\""
+msgstr ""
+
+#: src/Kits/CatalogMode/Rules.php:49
+msgid "Everyone"
+msgstr ""
+
+#: src/Kits/CatalogMode/Rules.php:50
+msgid "Guests (visitors who are not logged in)"
+msgstr ""
+
+#: src/Kits/CatalogMode/Rules.php:51
+msgid "Everyone except wholesale customers"
+msgstr ""
+
+#: src/Kits/CatalogMode/Rules.php:52
+msgid "Logged-in customers only"
+msgstr ""
+
+#: src/Kits/CatalogMode/Rules.php:63
+msgid "All products"
+msgstr ""
+
+#: src/Kits/CatalogMode/Rules.php:64
+msgid "Products in the categories below"
+msgstr ""
+
+#: src/Kits/CatalogMode/Rules.php:65
+msgid "Chosen products (tick \"Catalog mode\" on the product's Advanced tab)"
+msgstr ""
+
+#: src/Kits/CatalogMode/Rules.php:83
+msgid "No button"
+msgstr ""
+
+#: src/Kits/CatalogMode/Rules.php:84
+msgid "Link to the product page (in shop and category lists)"
+msgstr ""
+
+#: src/Kits/CatalogMode/Storefront.php:213
+msgid "Contact us"
+msgstr ""
+
+#: src/Kits/RequestAQuote/Emails/CustomerQuoteEmail.php:22
+msgid "Quote sent"
+msgstr ""
+
+#: src/Kits/RequestAQuote/Emails/CustomerQuoteEmail.php:23
+msgid "Sent to the customer with the quote and a link to pay for it, when you choose \"Send quote to customer\" on the order."
+msgstr ""
+
+#: src/Kits/RequestAQuote/Emails/CustomerQuoteEmail.php:41
+msgid "Your quote #{order_number} from {site_title}"
+msgstr ""
+
+#: src/Kits/RequestAQuote/Emails/CustomerQuoteEmail.php:48
+msgid "Your quote is ready"
+msgstr ""
+
+#: src/Kits/RequestAQuote/Emails/NewQuoteRequestEmail.php:22
+msgid "New quote request"
+msgstr ""
+
+#: src/Kits/RequestAQuote/Emails/NewQuoteRequestEmail.php:23
+msgid "Sent to the store when a customer requests a quote."
+msgstr ""
+
+#: src/Kits/RequestAQuote/Emails/NewQuoteRequestEmail.php:41
+msgid "[{site_title}]: New quote request #{order_number}"
+msgstr ""
+
+#: src/Kits/RequestAQuote/Emails/NewQuoteRequestEmail.php:48
+msgid "New quote request: #{order_number}"
+msgstr ""
+
+#: src/Kits/RequestAQuote/Emails/NewQuoteRequestEmail.php:119
+msgid "Recipient(s)"
+msgstr ""
+
+#. translators: %s: admin email
+#: src/Kits/RequestAQuote/Emails/NewQuoteRequestEmail.php:122
+#, php-format
+msgid "Enter recipients (comma separated) for this email. Defaults to %s."
+msgstr ""
+
+#: src/Kits/RequestAQuote/Frontend.php:52
+#: src/Kits/RequestAQuote/RequestAQuoteKit.php:86
+msgid "Add to quote"
+msgstr ""
+
+#: src/Kits/RequestAQuote/Frontend.php:67
+msgid "Quote"
+msgstr ""
+
+#: src/Kits/RequestAQuote/Frontend.php:115
+msgid "Your session has expired. Please try again."
+msgstr ""
+
+#: src/Kits/RequestAQuote/Frontend.php:124
+msgid "Quote list updated."
+msgstr ""
+
+#: src/Kits/RequestAQuote/Frontend.php:127
+msgid "Item removed from your quote."
+msgstr ""
+
+#. translators: %s: product name
+#: src/Kits/RequestAQuote/Frontend.php:158
+#, php-format
+msgid "&ldquo;%s&rdquo; has been added to your quote."
+msgstr ""
+
+#: src/Kits/RequestAQuote/Frontend.php:160
+msgid "View quote"
+msgstr ""
+
+#: src/Kits/RequestAQuote/Frontend.php:174
+msgid "Your quote request could not be sent."
+msgstr ""
+
+#: src/Kits/RequestAQuote/Frontend.php:200
+msgid "The quote list and request form appear here."
+msgstr ""
+
+#: src/Kits/RequestAQuote/Frontend.php:265
+msgid "Add to quote (Request a quote kit)"
+msgstr ""
+
+#: src/Kits/RequestAQuote/Frontend.php:288
+msgid "Select options"
+msgstr ""
+
+#: src/Kits/RequestAQuote/QuoteList.php:52
+msgid "This product cannot be added to a quote."
+msgstr ""
+
+#: src/Kits/RequestAQuote/QuoteList.php:61
+msgid "Please choose product options before adding this product to your quote."
+msgstr ""
+
+#: src/Kits/RequestAQuote/QuoteList.php:70
+msgid "Your quote could not be saved. Please try again."
+msgstr ""
+
+#: src/Kits/RequestAQuote/RequestAQuoteKit.php:31
+#: src/Kits/RequestAQuote/RequestAQuoteKit.php:70
+#: templates/quote/quote.php:82
+msgid "Request a quote"
+msgstr ""
+
+#: src/Kits/RequestAQuote/RequestAQuoteKit.php:38
+msgid "Shoppers add products to a quote and send the request. Each quote is a WooCommerce order: set your prices, send it, and the customer pays through the normal pay-for-order page."
+msgstr ""
+
+#: src/Kits/RequestAQuote/RequestAQuoteKit.php:71
+msgid "Quote requests appear under WooCommerce > Orders with the status \"Quote requested\". Edit the products and prices, then choose \"Send quote to customer\" under Order actions. The customer gets an email with a link to pay. In Catalog mode, choose \"Add to quote\" as the button."
+msgstr ""
+
+#: src/Kits/RequestAQuote/RequestAQuoteKit.php:76
+msgid "Quote page"
+msgstr ""
+
+#: src/Kits/RequestAQuote/RequestAQuoteKit.php:77
+msgid "The page with the Quote block or the [wootoolkit_quote] shortcode."
+msgstr ""
+
+#: src/Kits/RequestAQuote/RequestAQuoteKit.php:92
+msgid "Products for sale"
+msgstr ""
+
+#: src/Kits/RequestAQuote/RequestAQuoteKit.php:93
+msgid "Also show the button next to Add to cart on product pages"
+msgstr ""
+
+#: src/Kits/RequestAQuote/Statuses.php:49
+msgctxt "Order status"
+msgid "Quote requested"
+msgstr ""
+
+#: src/Kits/RequestAQuote/Statuses.php:50
+msgctxt "Order status"
+msgid "Quote sent"
+msgstr ""
+
+#: src/Kits/RequestAQuote/Statuses.php:138
+msgid "Send quote to customer again"
+msgstr ""
+
+#: src/Kits/RequestAQuote/Statuses.php:138
+msgid "Send quote to customer"
+msgstr ""
+
+#: src/Kits/RequestAQuote/Statuses.php:153
+msgid "Quote sent to the customer."
+msgstr ""
+
+#: src/Kits/RequestAQuote/Submission.php:24
+msgid "First name"
+msgstr ""
+
+#: src/Kits/RequestAQuote/Submission.php:25
+msgid "Last name"
+msgstr ""
+
+#: src/Kits/RequestAQuote/Submission.php:26
+msgid "Email address"
+msgstr ""
+
+#: src/Kits/RequestAQuote/Submission.php:27
+msgid "Phone"
+msgstr ""
+
+#: src/Kits/RequestAQuote/Submission.php:28
+msgid "Company"
+msgstr ""
+
+#: src/Kits/RequestAQuote/Submission.php:29
+msgid "Message"
+msgstr ""
+
+#: src/Kits/RequestAQuote/Submission.php:42
+#: templates/quote/quote.php:30
+msgid "Your quote list is empty."
+msgstr ""
+
+#. translators: %s: field label
+#: src/Kits/RequestAQuote/Submission.php:51
+#, php-format
+msgid "%s is a required field."
+msgstr ""
+
+#: src/Kits/RequestAQuote/Submission.php:56
+msgid "Please enter a valid email address."
+msgstr ""
+
+#: src/Kits/RequestAQuote/Submission.php:84
+msgid "The products in your quote list are no longer available."
+msgstr ""
+
+#: src/Kits/RequestAQuote/Submission.php:88
+msgid "Quote requested by the customer."
+msgstr ""
+
+#: src/Kits/WholesalePrices/Customer.php:31
+msgid "Wholesale customer"
+msgstr ""
+
+#. translators: %s: currency symbol
+#: src/Kits/WholesalePrices/ProductFields.php:44
+#, php-format
+msgid "Wholesale price (%s)"
+msgstr ""
+
+#: src/Kits/WholesalePrices/ProductFields.php:51
+msgid "Price for wholesale customers. Leave empty to use the category or store-wide wholesale discount."
+msgstr ""
+
+#: src/Kits/WholesalePrices/ProductFields.php:138
+#: src/Kits/WholesalePrices/ProductFields.php:154
+msgid "Wholesale discount (%)"
+msgstr ""
+
+#: src/Kits/WholesalePrices/ProductFields.php:140
+#: src/Kits/WholesalePrices/ProductFields.php:157
+msgid "Discount off the regular price for wholesale customers, for products in this category without their own wholesale price. Leave empty to use the store-wide discount."
+msgstr ""
+
+#: src/Kits/WholesalePrices/ProductFields.php:203
+msgid "Wholesale order"
+msgstr ""
+
+#: src/Kits/WholesalePrices/WholesalePricesKit.php:37
+msgid "Give customers with the Wholesale customer role their own prices: per product, per category or store-wide."
+msgstr ""
+
+#. translators: %s: link to the Users screen
+#: src/Kits/WholesalePrices/WholesalePricesKit.php:72
+#, php-format
+msgid "Customers with the Wholesale customer role see wholesale prices. Assign the role under %s. Each product can have its own wholesale price (General tab, or per variation), and each product category its own discount."
+msgstr ""
+
+#: src/Kits/WholesalePrices/WholesalePricesKit.php:73
+msgid "Users"
+msgstr ""
+
+#: src/Kits/WholesalePrices/WholesalePricesKit.php:79
+msgid "Store-wide wholesale discount (%)"
+msgstr ""
+
+#: src/Kits/WholesalePrices/WholesalePricesKit.php:80
+msgid "Used for products that have no wholesale price of their own and no category discount. Leave empty or 0 to charge wholesale customers the regular price for those products."
+msgstr ""
+
+#: src/Kits/WholesalePrices/WholesalePricesKit.php:92
+msgid "Retail price"
+msgstr ""
+
+#: src/Kits/WholesalePrices/WholesalePricesKit.php:93
+msgid "Show the retail price crossed out next to the wholesale price"
+msgstr ""
+
+#. translators: %s: customer first name
+#: templates/emails/plain/wootoolkit-customer-quote.php:23
+#: templates/emails/wootoolkit-customer-quote.php:21
+#, php-format
+msgid "Hi %s,"
+msgstr ""
+
+#. translators: %s: site title
+#: templates/emails/plain/wootoolkit-customer-quote.php:26
+#: templates/emails/wootoolkit-customer-quote.php:26
+#, php-format
+msgid "Thank you for your quote request. Here is our quote from %s."
+msgstr ""
+
+#: templates/emails/plain/wootoolkit-customer-quote.php:28
+msgid "Accept and pay for this quote:"
+msgstr ""
+
+#. translators: %s: customer name
+#: templates/emails/plain/wootoolkit-new-quote.php:22
+#: templates/emails/wootoolkit-new-quote.php:22
+#, php-format
+msgid "You have a new quote request from %s."
+msgstr ""
+
+#: templates/emails/plain/wootoolkit-new-quote.php:23
+#: templates/emails/wootoolkit-new-quote.php:26
+msgid "Check the products and set your prices in the order, then choose \"Send quote to customer\" under Order actions. The customer gets the quote by email with a link to pay for it."
+msgstr ""
+
+#: templates/emails/wootoolkit-customer-quote.php:30
+msgid "Accept and pay for this quote"
+msgstr ""
+
+#: templates/emails/wootoolkit-new-quote.php:28
+msgid "Open the quote"
+msgstr ""
+
+#. translators: %s: quote number
+#: templates/quote/quote.php:26
+#, php-format
+msgid "Thank you. We have received your quote request #%s and will email you our quote."
+msgstr ""
+
+#: templates/quote/quote.php:32
+msgid "Return to shop"
+msgstr ""
+
+#: templates/quote/quote.php:39
+#: templates/quote/quote.php:61
+msgid "Product"
+msgstr ""
+
+#: templates/quote/quote.php:40
+#: templates/quote/quote.php:64
+#: templates/quote/quote.php:65
+msgid "Quantity"
+msgstr ""
+
+#: templates/quote/quote.php:41
+msgid "Remove item"
+msgstr ""
+
+#. translators: %s: product name
+#: templates/quote/quote.php:70
+#, php-format
+msgid "Remove %s from your quote"
+msgstr ""
+
+#: templates/quote/quote.php:78
+msgid "Update quote"
+msgstr ""
+
+#: templates/quote/quote.php:88
+msgid "required"
+msgstr ""
+
+#: templates/quote/quote.php:99
+msgid "Leave this field empty"
+msgstr ""
+
+#: templates/quote/quote.php:104
+msgid "Send quote request"
+msgstr ""
+
+#: assets/js/quote-block.js:10
+msgid "Quote list and request form"
+msgstr ""
+
+#: assets/js/quote-block.js:11
+msgid "The products a shopper added to their quote, and the form to request it."
+msgstr ""
+
+#: assets/js/quote-block.js:19
+msgid "Quote list and request form. Shoppers see the products they added to their quote here, with the form to send the request."
 msgstr ""

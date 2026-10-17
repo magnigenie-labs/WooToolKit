@@ -136,6 +136,30 @@ jobs:
           path: playwright-report
           retention-days: 7
 
+  plugin-check:
+    name: Plugin Check (WordPress.org)
+    needs: versions
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Unpack the release build and point wp-env at it
+        run: |
+          bash bin/build-zip.sh
+          rm -rf build-check && mkdir build-check && unzip -q dist/wootoolkit-*.zip -d build-check
+          cat > .wp-env.override.json <<JSON
+          { "core": "https://wordpress.org/wordpress-${{ fromJSON(needs.versions.outputs.latest).wp }}.zip",
+            "plugins": [ "https://downloads.wordpress.org/plugin/woocommerce.${{ fromJSON(needs.versions.outputs.latest).wc }}.zip",
+                         "https://downloads.wordpress.org/plugin/plugin-check.latest-stable.zip" ],
+            "mappings": { "wp-content/plugins/wootoolkit": "./build-check/wootoolkit" } }
+          JSON
+      - run: bash bin/ci-run.sh "wp-env start" npx wp-env start
+      - run: bash bin/plugin-check.sh
+
   woocommerce-rc:
     name: WooCommerce RC
     needs: versions
@@ -184,7 +208,7 @@ jobs:
 
   build:
     name: Build plugin zip
-    needs: [ lint, php-syntax, phpunit, e2e ]
+    needs: [ lint, php-syntax, phpunit, e2e, plugin-check ]
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v5

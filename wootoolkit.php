@@ -1,11 +1,11 @@
 <?php
 /**
- * Plugin Name: WooToolkit
+ * Plugin Name: B2B, Wholesale Prices & Request a Quote for WooCommerce – WooToolkit
  * Plugin URI: https://wootoolkit.com/
  * Description: B2B tools for WooCommerce — wholesale prices, request a quote and catalog mode — plus the Classic kits.
  * Author: MagniGenie
  * Author URI: https://www.magnigenie.com/
- * Version: 2.0.0-dev
+ * Version: 2.0.0
  * Requires at least: 6.0
  * Requires PHP: 7.4
  * Requires Plugins: woocommerce
@@ -21,7 +21,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'WOOTOOLKIT_VERSION', '2.0.0-dev' );
+define( 'WOOTOOLKIT_VERSION', '2.0.0' );
 define( 'WOOTOOLKIT_FILE', __FILE__ );
 define( 'WOOTOOLKIT_BASE', plugin_basename( __FILE__ ) );
 define( 'WOOTOOLKIT_PATH', plugin_dir_path( __FILE__ ) );

@@ -24,3 +24,4 @@
 /playwright.config.js
 /README.md
 .DS_Store
+/build-check

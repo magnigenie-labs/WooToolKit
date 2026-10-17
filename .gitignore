@@ -9,3 +9,4 @@ svn/
 /test-results/
 /playwright-report/
 /tests/e2e/.auth/
+/build-check/
