@@ -35,6 +35,19 @@ class WT_Seq_Order_Number {
 	 */
 	public function initialize() {
 
+		// Orders are not posts under HPOS, so this kit cannot assign numbers there.
+		// Say so instead of silently doing nothing (HPOS support is planned for 2.0).
+		if ( class_exists( '\Automattic\WooCommerce\Utilities\OrderUtil' )
+			&& \Automattic\WooCommerce\Utilities\OrderUtil::custom_orders_table_usage_is_enabled() ) {
+			add_action( 'admin_notices', function() {
+				if ( ! current_user_can( 'manage_woocommerce' ) ) {
+					return;
+				}
+				echo '<div class="notice notice-warning"><p>' . esc_html__( 'WooToolkit Sequential Order Numbers does not support High-Performance Order Storage (HPOS) yet, so it is paused. Deactivate the kit, or switch order storage to "WordPress posts storage" under WooCommerce > Settings > Advanced > Features.', 'wootoolkit' ) . '</p></div>';
+			} );
+			return;
+		}
+
 		// Set the custom order number on the new order.  we hook into wp_insert_post for orders which are created
 		// from the frontend, and we hook into woocommerce_process_shop_order_meta for admin-created orders
 		add_action( 'wp_insert_post', array( $this, 'set_sequential_order_number' ), 10, 2 );
@@ -111,7 +124,7 @@ class WT_Seq_Order_Number {
 			return 0;
 		}
 
-		return $order->id;
+		return $order->get_id();
 	}
 
 
@@ -257,7 +270,7 @@ class WT_Seq_Order_Number {
 	 */
 	public function subscriptions_set_sequential_order_number( $renewal_order, $original_order ) {
 
-		$order_post = get_post( $renewal_order->id );
+		$order_post = get_post( $renewal_order->get_id() );
 		$this->set_sequential_order_number( $order_post->ID, $order_post );
 
 		// this callback needs to return the renewal order

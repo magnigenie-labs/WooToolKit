@@ -38,7 +38,7 @@ class WooToolkit_Settings_API {
 
     public function __construct() {
 
-        $this->tab = isset( $_GET['tab'] ) ? $_GET['tab'] : 'wootoolkit_accordion';
+        $this->tab = isset( $_GET['tab'] ) ? sanitize_key( wp_unslash( $_GET['tab'] ) ) : '';
 
         add_action( 'admin_init',                   array( $this, 'admin_init' ) );
         add_action( 'admin_menu',                   array( $this, 'admin_menu' ) );
@@ -63,7 +63,10 @@ class WooToolkit_Settings_API {
 
             if ( isset($section['desc']) && !empty($section['desc']) ) {
                 $section['desc'] = '<div class="inside">' . $section['desc'] . '</div>';
-                $callback = create_function('', 'echo "' . str_replace( '"', '\"', $section['desc'] ) . '";');
+                $desc     = $section['desc'];
+                $callback = function() use ( $desc ) {
+                    echo wp_kses_post( $desc );
+                };
             } else if ( isset( $section['callback'] ) ) {
                 $callback = $section['callback'];
             } else {
@@ -134,7 +137,12 @@ class WooToolkit_Settings_API {
     /**
      * Enqueue scripts and styles
      */
-    function admin_enqueue_scripts() {
+    function admin_enqueue_scripts( $hook = '' ) {
+
+        // Only load on WooToolkit screens
+        if ( false === strpos( (string) $hook, 'woo-toolkit' ) ) {
+            return;
+        }
 
         // Loading the stylesheets for settings page
         wp_enqueue_style( 'wp-color-picker' );
@@ -145,7 +153,7 @@ class WooToolkit_Settings_API {
         // Loading all js files required for settings page
         wp_enqueue_script( 'wp-color-picker' );
         wp_enqueue_script( 'jquery' );
-        wp_enqueue_script( 'custom', plugins_url( 'assets/js/wootoolkit.custom.js', dirname(__FILE__) ), array('jquery'), '20170215', true );
+        wp_enqueue_script( 'wootoolkit-settings', plugins_url( 'assets/js/wootoolkit.custom.js', dirname(__FILE__) ), array('jquery', 'wp-color-picker'), '1.0.3', true );
     }
 
     /**
@@ -491,16 +499,31 @@ class WooToolkit_Settings_API {
      *
      * Shows all the settings section labels as tab
      */
+    /**
+     * The requested tab if it is a registered section, otherwise the first one.
+     *
+     * @since 1.0.3
+     */
+    function get_current_tab() {
+        $ids = wp_list_pluck( (array) $this->settings_sections, 'id' );
+        if ( in_array( $this->tab, $ids, true ) ) {
+            return $this->tab;
+        }
+        return $ids ? reset( $ids ) : '';
+    }
+
     function show_navigation() {
         
         $html = '<h2 class="nav-tab-wrapper">';
         $count = count( $this->settings_sections );
 
+        $current = $this->get_current_tab();
+
         foreach ( $this->settings_sections as $tab ) {
 
-            $class = ($tab['id'] == $this->tab)?'nav-tab nav-tab-active':'nav-tab';
-            $url = add_query_arg('tab', $tab['id']);
-            $html .= sprintf( '<a href="%1$s" class="'.$class.'">%2$s</a>', $url, $tab['title'] );
+            $class = ( $tab['id'] === $current ) ? 'nav-tab nav-tab-active' : 'nav-tab';
+            $url   = add_query_arg( 'tab', $tab['id'], admin_url( 'admin.php?page=woo-toolkit-settings' ) );
+            $html .= sprintf( '<a href="%1$s" class="%2$s">%3$s</a>', esc_url( $url ), esc_attr( $class ), esc_html( $tab['title'] ) );
         }
         $html .= '</h2>';
 
@@ -518,13 +541,18 @@ class WooToolkit_Settings_API {
             
             <?php 
             
+            $this->tab = $this->get_current_tab();
+            if ( '' === $this->tab ) {
+                echo '<p>' . esc_html__( 'No kit settings available. Activate a kit first.', 'wootoolkit' ) . '</p></div>';
+                return;
+            }
             $settings = $this->settings_sections;
-            $key = array_search( $this->tab, array_column( $settings, 'id' ) );
-            $form = $settings[$key];
+            $key  = array_search( $this->tab, array_column( $settings, 'id' ), true );
+            $form = false !== $key ? $settings[ $key ] : array();
 
             ?>
 
-            <div id="<?php echo $this->tab; ?>" class="group">
+            <div id="<?php echo esc_attr( $this->tab ); ?>" class="group">
                 <form method="post" action="options.php">
                     <?php
                     do_action( 'wootoolkit_form_top_' . $this->tab, $form );

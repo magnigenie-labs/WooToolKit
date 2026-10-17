@@ -6,57 +6,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$objWootoolKit = new WooToolkit();
+$objWootoolKit = $GLOBALS['wootoolkit'];
 
-// Setting kit status to display
-if( isset( $_GET['kit_status'] ) && $_GET['kit_status'] != '' ) {
-	$kit_status = $_GET['kit_status'];
-} else {
-	$kit_status = 'all';
-}
-
-if( isset( $_REQUEST['action'] ) && $_REQUEST['action'] != '' ) {
-
-	// Checking for activating the kit
-	if( 'activate' == $_REQUEST['action'] ) {
-
-		// Activating the plugin
-		$objWootoolKit->activate_kit( $_REQUEST['plugin'] );
-
-		// Setting the success message
-		wp_redirect( admin_url() . 'admin.php?page=woo-toolkit&kit_status='.$kit_status.'&message=1' );
-	}
-
-	// Checking for deacivationg the kit
-	if( 'deactivate' == $_REQUEST['action'] ) {
-
-		// Deactivating the plugin
-		$objWootoolKit->deactivate_kit( $_REQUEST['plugin'] );
-
-		// Setting the success message
-		wp_redirect( admin_url() . 'admin.php?page=woo-toolkit&kit_status='.$kit_status.'&message=2' );
-	}
-
-	// Activation of multiple kits
-	if( 'activate-selected' == $_REQUEST['action'] ) {
-
-		// Activating the plugin
-		$objWootoolKit->activate_selected_kits( $_REQUEST['checked'] );
-
-		// Setting the success message
-		wp_redirect( admin_url() . 'admin.php?page=woo-toolkit&kit_status='.$kit_status.'&message=3' );
-	}
-
-	// Deactivation of multiple kits
-	if( 'deactivate-selected' == $_REQUEST['action'] ) {
-
-		// Deactivating the plugin
-		$objWootoolKit->deactivate_selected_kits( $_REQUEST['checked'] );
-
-		// Setting the success message
-		wp_redirect( admin_url() . 'admin.php?page=woo-toolkit&kit_status='.$kit_status.'&message=4' );
-	}
-}
+// Setting kit status to display (actions are handled in WooToolkit::handle_kit_actions on admin_init)
+$kit_status = $objWootoolKit->sanitize_kit_status( isset( $_GET['kit_status'] ) ? wp_unslash( $_GET['kit_status'] ) : 'all' );
+$message    = isset( $_GET['message'] ) ? absint( $_GET['message'] ) : 0;
 
 $installed_kits = $objWootoolKit->get_kits();
 
@@ -65,36 +19,27 @@ $installed_kits = $objWootoolKit->get_kits();
 <div class="wrap">
 	
 	<h1>
-		<?php echo __( 'Toolkits', 'wootoolkit' ) ?>
+		<?php esc_html_e( 'Toolkits', 'wootoolkit' ); ?>
 	</h1>
-	<?php if( isset( $_GET['message'] ) ) { ?>
+	<?php
+	$messages = array(
+		1 => __( 'Kit <strong>activated</strong> successfully.', 'wootoolkit' ),
+		2 => __( 'Kit <strong>deactivated</strong> successfully.', 'wootoolkit' ),
+		3 => __( 'Selected kits <strong>activated</strong> successfully.', 'wootoolkit' ),
+		4 => __( 'Selected kits <strong>deactivated</strong> successfully.', 'wootoolkit' ),
+	);
+	if ( isset( $messages[ $message ] ) ) { ?>
 	<div id="message" class="updated notice is-dismissible">
-		
-		<?php if( $_GET['message'] == 1 ) { ?>
-			<p>Kit <strong>activated</strong> successfully.</p> 
-		<?php } ?>
-
-		<?php if( $_GET['message'] == 2 ) { ?>
-			<p>Kit <strong>deactivated</strong> successfully.</p> 
-		<?php } ?>
-
-		<?php if( $_GET['message'] == 3 ) { ?>
-			<p>Selected kits <strong>activated</strong> successfully.</p> 
-		<?php } ?>
-
-		<?php if( $_GET['message'] == 4 ) { ?>
-			<p>Selected kits <strong>deactivated</strong> successfully.</p> 
-		<?php } ?>
-
+		<p><?php echo wp_kses( $messages[ $message ], array( 'strong' => array() ) ); ?></p>
 	</div>
 	<?php } ?>
 
-	<h2 class="screen-reader-text"><?php echo __( 'Filter plugins list', 'wootoolkit' ) ?></h2>
+	<h2 class="screen-reader-text"><?php esc_html_e( 'Filter plugins list', 'wootoolkit' ); ?></h2>
 	<ul class="subsubsub">
 		
 		<li class="all">
 			<a href="admin.php?page=woo-toolkit&kit_status=all" class="current">
-				<?php echo __( 'All', 'wootoolkit' ) ?> <span class="count">(<?php echo $objWootoolKit->get_kit_count('all'); ?>)</span>
+				<?php esc_html_e( 'All', 'wootoolkit' ); ?> <span class="count">(<?php echo absint( $objWootoolKit->get_kit_count( 'all' ) ); ?>)</span>
 			</a>
 			<?php if($objWootoolKit->get_kit_count('active') > 0 || $objWootoolKit->get_kit_count('inactive') > 0) { echo "|"; } ?>
 		</li>
@@ -102,8 +47,8 @@ $installed_kits = $objWootoolKit->get_kits();
 		<?php if( $objWootoolKit->get_kit_count( 'active' ) > 0 ) { ?>
 		<li class="active">
 			<a href="admin.php?page=woo-toolkit&kit_status=active">
-				<?php echo __( 'Active', 'wootoolkit' ) ?>
-				<span class="count">(<?php echo $objWootoolKit->get_kit_count( 'active' ); ?>)</span>
+				<?php esc_html_e( 'Active', 'wootoolkit' ); ?>
+				<span class="count">(<?php echo absint( $objWootoolKit->get_kit_count( 'active' ) ); ?>)</span>
 			</a>
 			<?php if( $objWootoolKit->get_kit_count( 'inactive' ) > 0 ) { echo "|"; } ?>
 		</li>
@@ -112,40 +57,41 @@ $installed_kits = $objWootoolKit->get_kits();
 		<?php if( $objWootoolKit->get_kit_count( 'inactive' ) > 0 ) { ?>
 		<li class="active">
 			<a href="admin.php?page=woo-toolkit&kit_status=inactive">
-				<?php echo __( 'Inactive', 'wootoolkit' ) ?>
-				<span class="count">(<?php echo $objWootoolKit->get_kit_count( 'inactive' ); ?>)</span>
+				<?php esc_html_e( 'Inactive', 'wootoolkit' ); ?>
+				<span class="count">(<?php echo absint( $objWootoolKit->get_kit_count( 'inactive' ) ); ?>)</span>
 			</a>
 		</li>
 		<?php } ?>
 
 	</ul>
 
-	<form method="post" id="bulk-action-form">
+	<form method="post" id="bulk-action-form" action="<?php echo esc_url( add_query_arg( array( 'page' => 'woo-toolkit', 'kit_status' => $kit_status ), admin_url( 'admin.php' ) ) ); ?>">
+		<?php wp_nonce_field( 'wootoolkit_bulk_kits' ); ?>
 
 		<div class="tablenav top">
 			<div class="alignleft actions bulkactions">
-				<label for="bulk-action-selector-top" class="screen-reader-text">Select bulk action</label>
+				<label for="bulk-action-selector-top" class="screen-reader-text"><?php esc_html_e( 'Select bulk action', 'wootoolkit' ); ?></label>
 				<select name="action" id="bulk-action-selector-top">
-					<option value="">Bulk Actions</option>
-					<option value="activate-selected">Activate</option>
-					<option value="deactivate-selected">Deactivate</option>
+					<option value="-1"><?php esc_html_e( 'Bulk Actions', 'wootoolkit' ); ?></option>
+					<option value="activate-selected"><?php esc_html_e( 'Activate', 'wootoolkit' ); ?></option>
+					<option value="deactivate-selected"><?php esc_html_e( 'Deactivate', 'wootoolkit' ); ?></option>
 				</select>
-				<input type="submit" id="doaction" class="button action" value="Apply">
+				<input type="submit" id="doaction" class="button action" value="<?php esc_attr_e( 'Apply', 'wootoolkit' ); ?>">
 			</div>
 		</div>
 
-		<h2 class="screen-reader-text"><?php echo __( 'Kits List', 'wootoolkit' ) ?></h2>
+		<h2 class="screen-reader-text"><?php esc_html_e( 'Kits List', 'wootoolkit' ); ?></h2>
 		<table class="wp-list-table widefat plugins">
 			<thead>
 				<tr>
 					<td id="cb" class="manage-column column-cb check-column">
 						<label class="screen-reader-text" for="cb-select-all-1">
-						<?php echo __( 'Select All', 'wootoolkit' ) ?></label>
+						<?php esc_html_e( 'Select All', 'wootoolkit' ); ?></label>
 						<input id="cb-select-all-1" type="checkbox"></td>
 					<th scope="col" id="name" class="manage-column column-name column-primary">
-						<?php echo __( 'Kit', 'wootoolkit' ) ?></th>
+						<?php esc_html_e( 'Kit', 'wootoolkit' ); ?></th>
 					<th scope="col" id="description" class="manage-column column-description">
-						<?php echo __( 'Description', 'wootoolkit' ) ?></th>
+						<?php esc_html_e( 'Description', 'wootoolkit' ); ?></th>
 				</tr>
 			</thead>
 
@@ -168,21 +114,23 @@ $installed_kits = $objWootoolKit->get_kits();
 
 				?>
 				
-				<tr class="<?php echo $active_status; ?>" data-slug="<?php echo $slug ?>" data-plugin="<?php echo $key; ?>">
+				<tr class="<?php echo esc_attr( $active_status ); ?>" data-slug="<?php echo esc_attr( $slug ); ?>" data-plugin="<?php echo esc_attr( $key ); ?>">
 					<th scope="row" class="check-column">
-						<label class="screen-reader-text" for="checkbox_<?php echo $kit['PluginSlug'] ?>"><?php echo __( 'Select', 'wootoolkit' ) . ' ' . $kit['Name'] ?></label>
-						<input type="checkbox" name="checked[]" value="<?php echo $key; ?>" id="checkbox_<?php echo $kit['PluginSlug'] ?>"></th>
-					<td class="plugin-title column-primary"> <strong><?php echo $kit['Name'] ?></strong>
+						<label class="screen-reader-text" for="checkbox_<?php echo esc_attr( $slug ); ?>"><?php echo esc_html( __( 'Select', 'wootoolkit' ) . ' ' . $kit['Name'] ); ?></label>
+						<input type="checkbox" name="checked[]" value="<?php echo esc_attr( $key ); ?>" id="checkbox_<?php echo esc_attr( $slug ); ?>"></th>
+					<td class="plugin-title column-primary"> <strong><?php echo esc_html( $kit['Name'] ); ?></strong>
 						
 					<?php 
 
 						if( 'inactive' == $active_status ) {
 
-					    $actions['activate'] = '<a href="admin.php?page=woo-toolkit&kit_status='. $kit_status .'&action=activate&amp;plugin='.$key.'" class="edit">'.__( 'Activate', 'wootoolkit' ).'</a>';
+					    $url = wp_nonce_url( add_query_arg( array( 'page' => 'woo-toolkit', 'kit_status' => $kit_status, 'action' => 'activate', 'plugin' => $key ), admin_url( 'admin.php' ) ), 'wootoolkit_activate_' . $key );
+					    $actions['activate'] = '<a href="' . esc_url( $url ) . '" class="edit">' . esc_html__( 'Activate', 'wootoolkit' ) . '</a>';
 
 						} else if ( 'active' == $active_status ) {
 						
-						$actions['deactivate'] = '<a href="admin.php?page=woo-toolkit&kit_status='.$kit_status.'&action=deactivate&amp;plugin='.$key.'" class="edit">'.__( 'Deactivate', 'wootoolkit' ).'</a>';
+						$url = wp_nonce_url( add_query_arg( array( 'page' => 'woo-toolkit', 'kit_status' => $kit_status, 'action' => 'deactivate', 'plugin' => $key ), admin_url( 'admin.php' ) ), 'wootoolkit_deactivate_' . $key );
+						$actions['deactivate'] = '<a href="' . esc_url( $url ) . '" class="edit">' . esc_html__( 'Deactivate', 'wootoolkit' ) . '</a>';
 						} 
 
 						$actions = array_filter( $actions );
@@ -195,19 +143,19 @@ $installed_kits = $objWootoolKit->get_kits();
 					<td class="column-description desc">
 						<div class="plugin-description">
 							<p>
-								<?php echo $kit['Description'] ?>
+								<?php echo wp_kses_post( $kit['Description'] ); ?>
 							</p>
 						</div>
 						<div class="inactive second plugin-version-author-uri">
-							Version <?php echo $kit['Version'] ?> | By
-							<a href="<?php echo $kit['AuthorURI'] ?>"><?php echo $kit['Author'] ?></a>
+							<?php echo esc_html( sprintf( __( 'Version %s', 'wootoolkit' ), $kit['Version'] ) ); ?> | <?php esc_html_e( 'By', 'wootoolkit' ); ?>
+							<a href="<?php echo esc_url( $kit['AuthorURI'] ); ?>"><?php echo esc_html( $kit['Author'] ); ?></a>
 						</div>
 					</td>
 				</tr>
 
 				<?php endforeach; else: ?>
 
-				<tr class="no-items"><td class="colspanchange" colspan="3">No kits found.</td></tr>
+				<tr class="no-items"><td class="colspanchange" colspan="3"><?php esc_html_e( 'No kits found.', 'wootoolkit' ); ?></td></tr>
 				
 				<?php endif; ?>
 
@@ -217,12 +165,12 @@ $installed_kits = $objWootoolKit->get_kits();
 				<tr>
 					<td class="manage-column column-cb check-column">
 						<label class="screen-reader-text" for="cb-select-all-2">
-						<?php echo __( 'Select All', 'wootoolkit' ) ?></label>
+						<?php esc_html_e( 'Select All', 'wootoolkit' ); ?></label>
 						<input id="cb-select-all-2" type="checkbox"></td>
 					<th scope="col" class="manage-column column-name column-primary">
-						<?php echo __( 'Kit', 'wootoolkit' ) ?></th>
+						<?php esc_html_e( 'Kit', 'wootoolkit' ); ?></th>
 					<th scope="col" class="manage-column column-description">
-						<?php echo __( 'Description', 'wootoolkit' ); ?>
+						<?php esc_html_e( 'Description', 'wootoolkit' ); ?>
 					</th>
 				</tr>
 			</tfoot>

@@ -29,16 +29,17 @@ class WT_Mailchimp_Front_End {
   */
   public function wt_mailchimp_add_subscribe_checkbox() {
     $options = get_option('wootoolkit_mailchimp');
-    $checkbox_status = $options['optin_checkbox_default'] == 'checked' ? 1 : '';
+    if ( ! is_array( $options ) ) return;
+    $checkbox_status = ( isset( $options['optin_checkbox_default'] ) && $options['optin_checkbox_default'] == 'checked' ) ? 1 : '';
     if( !empty($options['enabled']) && $options['enabled'] == 'on' ) :
-      if( $options['subscribe_customer'] == 'automatically' )
+      if( isset( $options['subscribe_customer'] ) && $options['subscribe_customer'] == 'automatically' )
         return; 
 
       echo '<div id="wt-mailchimp-subscribe-checkout">';
       woocommerce_form_field( 'wt_mailchimp_subscribe', array(
         'type'          => 'checkbox',
         'class'         => array('wt-mailchimp-subscribe-checkbox'),
-        'label'         => $options['optin_label'],
+        'label'         => isset( $options['optin_label'] ) ? esc_html( $options['optin_label'] ) : esc_html__( 'Subscribe to our newsletter', 'wootoolkit' ),
         'required'  => false,
       ),$checkbox_status);
       echo '</div>';
@@ -52,62 +53,65 @@ class WT_Mailchimp_Front_End {
   */ 
 
   public function wt_mailchimp_get_customers() {
-    $options = get_option('wootoolkit_mailchimp');
-    $api_key = $options['mailchimp_api_key'];
-    $list_id = $options['mailchimp_list_id'];
-
-
-    if( !empty($options['enabled']) && $options['enabled'] == 'on' && !empty($api_key) && !empty($list_id) ) {
-      if( $options['subscribe_customer'] !== 'automatically' && 
-        !isset($_POST['wt_mailchimp_subscribe'])  )
-        return;
-
-      $user_data = array();
-      $user_data['user_email'] = isset( $_POST['billing_email'] ) ? $_POST['billing_email'] : '';
-
-      $user_data['first_name'] = isset($_POST['billing_first_name'] ) ? $_POST['billing_first_name'] : '';
-      $user_data['last_name'] = isset($_POST['billing_last_name'] ) ? $_POST['billing_last_name'] : '';
-      $this->wt_mailchimp_subscribe_user($user_data, $api_key, $list_id);
+    $options = get_option( 'wootoolkit_mailchimp' );
+    if ( ! is_array( $options ) ) {
+      return;
     }
+    $api_key = isset( $options['mailchimp_api_key'] ) ? trim( $options['mailchimp_api_key'] ) : '';
+    $list_id = isset( $options['mailchimp_list_id'] ) ? trim( $options['mailchimp_list_id'] ) : '';
+
+    if ( empty( $options['enabled'] ) || 'on' !== $options['enabled'] || '' === $api_key || '' === $list_id ) {
+      return;
+    }
+
+    $automatic = isset( $options['subscribe_customer'] ) && 'automatically' === $options['subscribe_customer'];
+    if ( ! $automatic && empty( $_POST['wt_mailchimp_subscribe'] ) ) {
+      return;
+    }
+
+    $user_data = array(
+      'user_email' => isset( $_POST['billing_email'] ) ? sanitize_email( wp_unslash( $_POST['billing_email'] ) ) : '',
+      'first_name' => isset( $_POST['billing_first_name'] ) ? sanitize_text_field( wp_unslash( $_POST['billing_first_name'] ) ) : '',
+      'last_name'  => isset( $_POST['billing_last_name'] ) ? sanitize_text_field( wp_unslash( $_POST['billing_last_name'] ) ) : '',
+    );
+
+    if ( ! is_email( $user_data['user_email'] ) ) {
+      return;
+    }
+
+    $this->wt_mailchimp_subscribe_user( $user_data, $api_key, $list_id );
   }
 
 
   /**
-  * Returns mailchimp response
+  * Adds or updates the customer in the Mailchimp audience.
   *
-  * @return array mailchimp response
+  * Uses PUT (upsert) with status_if_new, so existing members keep their
+  * status (an unsubscribed contact is never re-subscribed) and no customer
+  * emails need to be stored in WordPress. Errors never break checkout.
   */
-
   public function wt_mailchimp_subscribe_user( $user_data, $api_key, $list_id ) {
-    $options = get_option('wootoolkit_mailchimp');
-    $optin = $options['double_optin'] == 'on' ? 'pending' : 'subscribed';
+    $options = get_option( 'wootoolkit_mailchimp' );
+    $optin   = ( isset( $options['double_optin'] ) && 'on' === $options['double_optin'] ) ? 'pending' : 'subscribed';
 
-    if( is_array($user_data) ) {
-      $email = $user_data['user_email'];
-      $fname = $user_data['first_name'];
-      $lname = $user_data['last_name'];
-      $subscribed_emails = get_option( 'wt_mailchimp_mails', array() );
-      $subscriber_hash = md5(strtolower($email));
+    if ( ! is_array( $user_data ) || empty( $user_data['user_email'] ) ) {
+      return;
+    }
 
-      if( !empty( $api_key ) && !empty( $list_id ) ) {
-        $mailchimp = new WTMailChimp( $api_key );
-        if( in_array($email, $subscribed_emails) ) {
-          $subscriber_hash = md5(strtolower($email));
-          $result = $mailchimp->put("lists/{$list_id}/members/{$subscriber_hash}", [
-            'email_address' => $email,
-            'status'        => $optin,
-            'merge_fields'  => Array( 'FNAME' => $fname, 'LNAME' => $lname ),
-            ]);
-          }
-          else {
-            $result = $mailchimp->post("lists/{$list_id}/members", [
-              'email_address' => $email,
-              'status'        => $optin,
-              'merge_fields'  => Array( 'FNAME' => $fname, 'LNAME' => $lname),
-              ]);
-            $emails[] = $email;
-            update_option( 'wt_mailchimp_mails', $emails );
-          }
+    try {
+      $mailchimp       = new WTMailChimp( $api_key );
+      $subscriber_hash = md5( strtolower( $user_data['user_email'] ) );
+      $mailchimp->put( "lists/{$list_id}/members/{$subscriber_hash}", array(
+        'email_address' => $user_data['user_email'],
+        'status_if_new' => $optin,
+        'merge_fields'  => array( 'FNAME' => $user_data['first_name'], 'LNAME' => $user_data['last_name'] ),
+      ) );
+      if ( ! $mailchimp->success() && function_exists( 'wc_get_logger' ) ) {
+        wc_get_logger()->warning( 'Mailchimp subscribe failed: ' . $mailchimp->getLastError(), array( 'source' => 'wootoolkit-mailchimp' ) );
+      }
+    } catch ( \Exception $e ) {
+      if ( function_exists( 'wc_get_logger' ) ) {
+        wc_get_logger()->error( 'Mailchimp error: ' . $e->getMessage(), array( 'source' => 'wootoolkit-mailchimp' ) );
       }
     }
   }

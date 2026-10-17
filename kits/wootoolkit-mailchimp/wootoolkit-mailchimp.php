@@ -19,6 +19,12 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/class-mailchimp.php';
 
 class WT_Mailchimp {
 
+	/** @var object|null Admin settings handler */
+	public $admin_settings;
+
+	/** @var object|null Front end handler */
+	public $front_end;
+
 	/**
 	 * Plugin version.
 	 *

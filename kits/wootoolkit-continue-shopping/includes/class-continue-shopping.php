@@ -29,8 +29,8 @@ class Continue_Shopping_Front_End {
 		if( is_array( $wtk_cs_settings ) ) {
 
 			// Assign Options
-			$this->continue_destination = $wtk_cs_settings['cs_destination'];
-			$this->custom_link 			= $wtk_cs_settings['cs_custom_link'];
+			$this->continue_destination = isset( $wtk_cs_settings['cs_destination'] ) ? $wtk_cs_settings['cs_destination'] : '';
+			$this->custom_link 			= isset( $wtk_cs_settings['cs_custom_link'] ) ? $wtk_cs_settings['cs_custom_link'] : '';
 		}
 
 		// Add filter for Continue Shipping button
@@ -58,12 +58,10 @@ class Continue_Shopping_Front_End {
         
         $continue_url = $this->wc_custom_redirect_continue_shopping();
         $options = get_option('wootoolkit_continue_shopping');
-        $enable_shopping = $options['cs_enabled'];
+        $enable_shopping = is_array( $options ) && isset( $options['cs_enabled'] ) ? $options['cs_enabled'] : '';
         if( !empty($enable_shopping) && $enable_shopping == 'on' ) :
         ?>
-        	<a href="<?php echo $continue_url; ?>">
-            	<input type="button" class="button" name="" value="<?php echo __( 'Continue shopping', 'wootoolkit' ) ?>" />
-        	</a>
+        	<a href="<?php echo esc_url( $continue_url ); ?>" class="button wt-continue-shopping"><?php esc_html_e( 'Continue shopping', 'wootoolkit' ); ?></a>
         <?php
         endif;
     }
@@ -82,8 +80,8 @@ class Continue_Shopping_Front_End {
 
         ?>
 
-        <a href="<?php echo $continue_url; ?>">
-        	<?php echo __( 'Continue shopping', 'wootoolkit' ) ?>
+        <a href="<?php echo esc_url( $continue_url ); ?>">
+        	<?php esc_html_e( 'Continue shopping', 'wootoolkit' ); ?>
         </a>
         <br>
         <br>
@@ -119,11 +117,10 @@ class Continue_Shopping_Front_End {
 
 			case "recent_prod" :
 
-				if ( isset( $_SERVER['HTTP_REFERER'] ) ) {
-					$referer = $_SERVER[ 'HTTP_REFERER' ];
-				}
+				// Only send shoppers back to a page on this site (wp_get_referer validates the host)
+				$referer = wp_get_referer();
 
-				if ( isset( $referer ) ) {
+				if ( $referer ) {
 					$returnlink = $referer;
 				} else {
 					$shop_id = get_option( 'woocommerce_shop_page_id' );
@@ -141,8 +138,8 @@ class Continue_Shopping_Front_End {
 				break;
 
 			case "custom" :
-				if ( isset( $custom_link ) ) {
-					$returnlink = $custom_link;
+				if ( ! empty( $custom_link ) ) {
+					$returnlink = esc_url_raw( $custom_link );
 				} else {
 					$shop_id = get_option( 'woocommerce_shop_page_id' );
 					$returnlink = get_permalink( $shop_id );

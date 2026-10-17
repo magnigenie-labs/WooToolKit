@@ -29,6 +29,9 @@ add_action( 'init', 'init_wt_extra_sorting_options' );
 
 class WT_Extra_Sorting_Options {
 
+	/** @var object|null Admin settings handler */
+	public $admin_settings;
+
 	/** @var WT_Extra_Sorting_Options single instance of this plugin */
 	protected static $instance;
 

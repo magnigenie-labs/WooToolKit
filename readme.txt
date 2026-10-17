@@ -1,13 +1,13 @@
 === WooToolkit - A Scalable WooCommerce Addon! ===
 Contributors: magnigenie, sagarseth9, kshirod-patel, dipakbbsr
 Tags: woocommerce, woocommerce toolkit, accordions, catalog mode, continue shopping
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=sales@magnigenie.com&item_name=WooToolkit&return=http://magnigenie.com
-Requires at least: 4.0
-Requires PHP: 5.4
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=sales@magnigenie.com&item_name=WooToolkit&return=https://wootoolkit.com/
+Requires at least: 6.0
+Requires PHP: 7.4
 Tested up to: 7.1
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 WooToolKit will help you manage all your WooCommerce needs, support, and updates from one place.
 
@@ -19,13 +19,15 @@ Yes, with this plugin, you can achieve remarkable scalability of functionalities
 
 = NOTE =
 
-The current release is a Beta Version of WooToolkit. We are working on adding new features that will allow you to add custom developed kits to WooToolkit.
+WooToolkit is being rebuilt. Version 2.0 will bring Cart & Checkout block support, HPOS support and new B2B kits. Version 1.0.3 is a security and maintenance release for the current kits.
 
-[Subscribe to our Newsletter](http://wootoolkit.com/) to get the latest updates about WooToolkit.
+= Compatibility =
 
-Have an idea about a Kit?
+* The kits hook the classic WooCommerce cart and checkout templates. They do not appear inside the Cart & Checkout blocks yet.
+* The Sequential Order Numbers kit does not support High-Performance Order Storage (HPOS) yet and pauses itself when HPOS is enabled. All other kits work with HPOS.
+* Catalog Mode hides the Add to Cart buttons and prices in your theme's templates. It does not block purchases through direct add-to-cart links or the Store API.
 
-[Suggest Us](http://wootoolkit.com/contact/)
+Have an idea for a kit? Open a topic in the [support forum](https://wordpress.org/support/plugin/wootoolkit/).
 
 = FEATURES =
 
@@ -87,18 +89,34 @@ It contains 10 free kits to start with, to help you address your issues without 
 
 == Changelog ==
 
-== 1.0.2 ==
+= 1.0.3 =
+* Security: Kit activation and bulk actions now require a nonce and the manage_options capability.
+* Security: Fixed a reflected XSS on the Settings screen through the tab parameter.
+* Security: Custom Product Tabs now sanitises the tab title, filters tab content for users without the unfiltered_html capability, and escapes output.
+* Security: The Empty Cart link now requires a nonce, so other sites cannot empty a shopper's cart.
+* Security: Products Per Page only accepts the values configured in its settings.
+* Fix: Mailchimp no longer stores customer emails in the database. It never re-subscribes contacts who unsubscribed, and an invalid API key can no longer break checkout.
+* Fix: Removed create_function() and utf8_encode(), which fail on modern PHP.
+* Fix: Listing kits outside wp-admin (for example from WP-CLI or cron) no longer causes a fatal error on PHP 8.
+* Security: Continue Shopping now escapes its link and only returns shoppers to pages on your own site.
+* Fix: Catalog Mode escapes its custom button and no longer uses the deprecated product ID property.
+* Fix: Settings scripts now load only on WooToolkit screens.
+* Fix: Removed PHP 8.2 dynamic-property deprecation notices and PHP warnings from unconfigured kits.
+* New: Declared HPOS and Cart & Checkout block compatibility to WooCommerce.
+* Requires WordPress 6.0+ and PHP 7.4+.
+
+= 1.0.2 =
 * Fixed: Minor bug issue
 * Code cleanup
 
-== 1.0.1 ==
+= 1.0.1 =
 * Fixed: Required plugin active validation issue
 * Code optimized
 
-== 1.0 ==
+= 1.0 =
 * Initial release
 
 == Upgrade Notice ==
 
-= 1.0.2 =
-This is the latest version of our plugin. Please take a backup before the update.
+= 1.0.3 =
+Security release. Please update.

@@ -19,6 +19,12 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  */
 class Continue_Shopping {
 
+	/** @var object|null Admin settings handler */
+	public $admin_settings;
+
+	/** @var object|null Front end handler */
+	public $front_end;
+
 	/**
 	 * Plugin version.
 	 *

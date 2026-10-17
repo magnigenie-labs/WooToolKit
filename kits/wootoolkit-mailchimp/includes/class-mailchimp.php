@@ -20,7 +20,7 @@ class WTMailChimp
         $this->api_key = $api_key;
 
         if (strpos($this->api_key, '-') === false) {
-            throw new \Exception("Invalid MailChimp API key `{$api_key}` supplied.");
+            throw new \Exception( "Invalid MailChimp API key supplied (expected the key-datacenter format, e.g. ...-us6)." );
         }
 
         list(, $data_center) = explode('-', $this->api_key);

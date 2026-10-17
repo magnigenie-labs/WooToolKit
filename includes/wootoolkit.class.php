@@ -20,6 +20,8 @@ class WooToolkit {
 
         add_action( 'admin_init', array( $this, 'check_required_plugins' ) );
 
+        add_action( 'admin_init', array( $this, 'handle_kit_actions' ) );
+
         add_action( 'admin_menu', 
             array( $this, 'wootoolkit_settings_page' ), 1, 0 );
 
@@ -125,7 +127,7 @@ class WooToolkit {
     public function wp_get_active_and_valid_kits() {
     
         $kits = array();
-        $active_kits = get_option( '_woo_active_kits', array() );
+        $active_kits = (array) get_option( '_woo_active_kits', array() );
 
         if ( empty( $active_kits ) || wp_installing() )
             return $kits;
@@ -265,7 +267,11 @@ class WooToolkit {
             $wp_plugins[plugin_basename( $plugin_file )] = $plugin_data;
         }
 
-        uasort( $wp_plugins, '_sort_uname_callback' );
+        // _sort_uname_callback() only exists in wp-admin; on PHP 8 an undefined
+        // callback is a fatal TypeError, so sort by name locally.
+        uasort( $wp_plugins, function( $a, $b ) {
+            return strnatcasecmp( $a['Name'], $b['Name'] );
+        } );
         return $wp_plugins;
     }
 
@@ -321,7 +327,7 @@ class WooToolkit {
     public function get_kit_status( $kit ) {
 
         // Getting currently active kits
-        $active_kits = get_option( '_woo_active_kits', array() );
+        $active_kits = (array) get_option( '_woo_active_kits', array() );
 
         // Checking status of current kit and return
         if( in_array( $kit, $active_kits) ) {
@@ -352,7 +358,7 @@ class WooToolkit {
         $count_all = count( $default_kits );
 
         // Getting existing activated kits
-        $active_kits = get_option( '_woo_active_kits', array() );
+        $active_kits = (array) get_option( '_woo_active_kits', array() );
 
         foreach ( $default_kits as $key => $kit ) {
             
@@ -404,7 +410,7 @@ class WooToolkit {
     public function activate_kit( $kit ) {
 
         // Getting existing activated kits
-        $active_kits = get_option( '_woo_active_kits', array() );
+        $active_kits = (array) get_option( '_woo_active_kits', array() );
 
         // Checking current kit if already activated
         if( !in_array( $kit, $active_kits ) ) {
@@ -414,7 +420,7 @@ class WooToolkit {
         }
 
         // Updating the options with new value
-        update_option( '_woo_active_kits', $active_kits );
+        update_option( '_woo_active_kits', array_values( $active_kits ) );
     }
 
     /**
@@ -426,7 +432,7 @@ class WooToolkit {
     public function deactivate_kit( $kit ) {
 
         // Getting existing activated kits
-        $active_kits = get_option( '_woo_active_kits', array() );
+        $active_kits = (array) get_option( '_woo_active_kits', array() );
 
         // Checking current kit if activated
         if( in_array( $kit, $active_kits) ) {
@@ -440,7 +446,7 @@ class WooToolkit {
         }
 
         // Updating the options with new array of active plugins
-        update_option( '_woo_active_kits', $active_kits );
+        update_option( '_woo_active_kits', array_values( $active_kits ) );
     }
 
     /**
@@ -452,7 +458,7 @@ class WooToolkit {
     public function activate_selected_kits( $kits ) {
 
         // Getting existing activated kits
-        $active_kits = get_option( '_woo_active_kits', array() );
+        $active_kits = (array) get_option( '_woo_active_kits', array() );
 
         // Adding selected kits to active list
         foreach ( $kits as $key => $value ) {
@@ -464,7 +470,7 @@ class WooToolkit {
         }
 
         // Updating the options with new array of active plugins
-        update_option( '_woo_active_kits', $active_kits );
+        update_option( '_woo_active_kits', array_values( $active_kits ) );
     }
 
     /**
@@ -476,7 +482,7 @@ class WooToolkit {
     public function deactivate_selected_kits( $kits ) {
 
         // Getting existing activated kits
-        $active_kits = get_option( '_woo_active_kits', array() );
+        $active_kits = (array) get_option( '_woo_active_kits', array() );
 
         // Adding selected kits to active list
         foreach ( $kits as $key => $value ) {
@@ -494,7 +500,96 @@ class WooToolkit {
         }
 
         // Updating the options with new array of active plugins
-        update_option( '_woo_active_kits', $active_kits );
+        update_option( '_woo_active_kits', array_values( $active_kits ) );
+    }
+
+    /**
+     * Kit status filters allowed in the list screen URL.
+     *
+     * @since 1.0.3
+     */
+    public function sanitize_kit_status( $status ) {
+        $status = sanitize_key( (string) $status );
+        return in_array( $status, array( 'all', 'active', 'inactive' ), true ) ? $status : 'all';
+    }
+
+    /**
+     * Keeps only kit keys that really exist in the kits folder.
+     *
+     * @since 1.0.3
+     */
+    private function filter_valid_kits( $kits ) {
+        $valid = array_keys( $this->get_kits() );
+        $kits  = array_map( 'sanitize_text_field', array_map( 'wp_unslash', (array) $kits ) );
+        return array_values( array_intersect( $kits, $valid ) );
+    }
+
+    /**
+     * Activates/deactivates kits from the Installed Kits screen.
+     * Runs on admin_init so the redirect happens before any output.
+     *
+     * @since 1.0.3
+     */
+    public function handle_kit_actions() {
+
+        if ( ! isset( $_GET['page'] ) || 'woo-toolkit' !== $_GET['page'] ) {
+            return;
+        }
+
+        $action = isset( $_REQUEST['action'] ) ? sanitize_key( wp_unslash( $_REQUEST['action'] ) ) : '';
+        if ( '' === $action || '-1' === $action ) {
+            return;
+        }
+
+        if ( ! current_user_can( 'manage_options' ) ) {
+            wp_die( esc_html__( 'You are not allowed to manage kits.', 'wootoolkit' ), 403 );
+        }
+
+        $kit_status = $this->sanitize_kit_status( isset( $_REQUEST['kit_status'] ) ? wp_unslash( $_REQUEST['kit_status'] ) : 'all' );
+        $message    = 0;
+
+        if ( 'activate' === $action || 'deactivate' === $action ) {
+
+            $kit = isset( $_GET['plugin'] ) ? $this->filter_valid_kits( array( $_GET['plugin'] ) ) : array();
+            if ( empty( $kit ) ) {
+                return;
+            }
+            check_admin_referer( 'wootoolkit_' . $action . '_' . $kit[0] );
+
+            if ( 'activate' === $action ) {
+                $this->activate_kit( $kit[0] );
+                $message = 1;
+            } else {
+                $this->deactivate_kit( $kit[0] );
+                $message = 2;
+            }
+
+        } elseif ( 'activate-selected' === $action || 'deactivate-selected' === $action ) {
+
+            check_admin_referer( 'wootoolkit_bulk_kits' );
+            $kits = isset( $_POST['checked'] ) ? $this->filter_valid_kits( $_POST['checked'] ) : array();
+            if ( empty( $kits ) ) {
+                return;
+            }
+
+            if ( 'activate-selected' === $action ) {
+                $this->activate_selected_kits( $kits );
+                $message = 3;
+            } else {
+                $this->deactivate_selected_kits( $kits );
+                $message = 4;
+            }
+
+        } else {
+            return;
+        }
+
+        wp_safe_redirect( add_query_arg( array(
+            'page'       => 'woo-toolkit',
+            'kit_status' => $kit_status,
+            'message'    => $message,
+        ), admin_url( 'admin.php' ) ) );
+        exit;
     }
 
     /**
@@ -516,13 +611,13 @@ class WooToolkit {
         foreach ( $actions as $action => $link ) {
             ++$i;
             ( $i == $action_count ) ? $sep = '' : $sep = ' | ';
-            $out .= "<span class='$action'>$link$sep</span>";
+            $out .= '<span class="' . esc_attr( $action ) . '">' . wp_kses_post( $link ) . $sep . '</span>';
         }
         $out .= '</div>';
 
-        $out .= '<button type="button" class="toggle-row"><span class="screen-reader-text">' . __( 'Show more details' ) . '</span></button>';
+        $out .= '<button type="button" class="toggle-row"><span class="screen-reader-text">' . esc_html__( 'Show more details', 'wootoolkit' ) . '</span></button>';
 
         return $out;
     }
 }
-new WooToolkit();
+$GLOBALS['wootoolkit'] = new WooToolkit();

@@ -60,7 +60,7 @@ class WT_Custom_Tabs {
 
 		if ( $this->product_has_custom_tabs( $product ) ) {
 			foreach ( $this->tab_data as $tab ) {
-				$tab_title = __( $tab['title'], 'woocommerce-custom-product-tabs' );
+				$tab_title = __( $tab['title'], 'wootoolkit' );
 				$tabs[ $tab['id'] ] = array(
 					'title'    => apply_filters( 'woocommerce_custom_product_tabs_title', $tab_title, $product, $this ),
 					'priority' => 25,
@@ -97,7 +97,7 @@ class WT_Custom_Tabs {
 		$content = apply_filters( 'the_content', $tab['content'] );
 		$content = str_replace( ']]>', ']]&gt;', $content );
 
-		echo apply_filters( 'woocommerce_custom_product_tabs_lite_heading', '<h2>' . $tab['title'] . '</h2>', $tab );
+		echo apply_filters( 'woocommerce_custom_product_tabs_lite_heading', '<h2>' . esc_html( $tab['title'] ) . '</h2>', $tab );
 		echo apply_filters( 'woocommerce_custom_product_tabs_content', $content, $tab );
 	}
 
@@ -109,7 +109,7 @@ class WT_Custom_Tabs {
 	 */
 	public function product_write_panel_tab() {
 		
-		echo "<li class=\"product_tabs_lite_tab\"><a href=\"#wootoolkit_custom_product_tabs\"><span>" . __( 'Custom Tab', 'woocommerce-custom-product-tabs' ) . "</span></a></li>";
+		echo '<li class="product_tabs_lite_tab"><a href="#wootoolkit_custom_product_tabs"><span>' . esc_html__( 'Custom Tab', 'wootoolkit' ) . '</span></a></li>';
 	}
 
 
@@ -133,9 +133,9 @@ class WT_Custom_Tabs {
 			// display the custom tab panel
 			echo '<div id="wootoolkit_custom_product_tabs" class="panel wc-metaboxes-wrapper woocommerce_options_panel">';
 
-			woocommerce_wp_text_input( array( 'id' => '_wt_custom_product_tabs_tab_title', 'label' => __( 'Tab Title', 'woocommerce-custom-product-tabs' ), 'description' => __( 'Required for tab to be visible', 'woocommerce-custom-product-tabs' ), 'value' => $tab['title'] ) );
+			woocommerce_wp_text_input( array( 'id' => '_wt_custom_product_tabs_tab_title', 'label' => __( 'Tab Title', 'wootoolkit' ), 'description' => __( 'Required for tab to be visible', 'wootoolkit' ), 'value' => $tab['title'] ) );
 
-			$this->woocommerce_wp_textarea_input( array( 'id' => '_wt_custom_product_tabs_tab_content', 'label' => __( 'Content', 'woocommerce-custom-product-tabs' ), 'placeholder' => __( 'HTML and text to display.', 'woocommerce-custom-product-tabs' ), 'value' => $tab['content'], 'style' => 'width:70%;height:21.5em;' ) );
+			$this->woocommerce_wp_textarea_input( array( 'id' => '_wt_custom_product_tabs_tab_content', 'label' => __( 'Content', 'wootoolkit' ), 'placeholder' => __( 'HTML and text to display.', 'wootoolkit' ), 'value' => $tab['content'], 'style' => 'width:70%;height:21.5em;' ) );
 
 			echo '</div>';
 		}
@@ -151,8 +151,18 @@ class WT_Custom_Tabs {
 	 */
 	public function product_save_data( $post_id, $post ) {
 
-		$tab_title = stripslashes( $_POST['_wt_custom_product_tabs_tab_title'] );
-		$tab_content = stripslashes( $_POST['_wt_custom_product_tabs_tab_content'] );
+		// woocommerce_process_product_meta runs after WooCommerce has verified its own nonce
+		if ( ! current_user_can( 'edit_post', $post_id ) ) {
+			return;
+		}
+
+		$tab_title   = isset( $_POST['_wt_custom_product_tabs_tab_title'] ) ? sanitize_text_field( wp_unslash( $_POST['_wt_custom_product_tabs_tab_title'] ) ) : '';
+		$tab_content = isset( $_POST['_wt_custom_product_tabs_tab_content'] ) ? wp_unslash( $_POST['_wt_custom_product_tabs_tab_content'] ) : '';
+
+		// Users without unfiltered_html (e.g. Shop Managers) may not store scripts
+		if ( ! current_user_can( 'unfiltered_html' ) ) {
+			$tab_content = wp_kses_post( $tab_content );
+		}
 
 		if ( empty( $tab_title ) && empty( $tab_content ) && get_post_meta( $post_id, 'frs_woo_product_tabs', true ) ) {
 			
@@ -167,7 +177,7 @@ class WT_Custom_Tabs {
 
 			if ( $tab_title ) {
 				
-				if ( strlen( $tab_title ) != strlen( utf8_encode( $tab_title ) ) ) {
+				if ( preg_match( '/[^\x20-\x7E]/', $tab_title ) ) {
 					
 					// can't have titles with utf8 characters as it breaks the tab-switching javascript
 					$tab_id = "tab-custom";
@@ -205,10 +215,10 @@ class WT_Custom_Tabs {
 		if ( ! isset( $field['class'] ) ) $field['class'] = 'short';
 		if ( ! isset( $field['value'] ) ) $field['value'] = get_post_meta( $thepostid, $field['id'], true );
 
-		echo '<p class="form-field ' . $field['id'] . '_field"><label style="display:block;" for="' . $field['id'] . '">' . $field['label'] . '</label><textarea class="' . $field['class'] . '" name="' . $field['id'] . '" id="' . $field['id'] . '" placeholder="' . $field['placeholder'] . '" rows="2" cols="20"' . (isset( $field['style'] ) ? ' style="' . $field['style'] . '"' : '') . '>' . esc_textarea( $field['value'] ) . '</textarea> ';
+		echo '<p class="form-field ' . esc_attr( $field['id'] ) . '_field"><label style="display:block;" for="' . esc_attr( $field['id'] ) . '">' . esc_html( $field['label'] ) . '</label><textarea class="' . esc_attr( $field['class'] ) . '" name="' . esc_attr( $field['id'] ) . '" id="' . esc_attr( $field['id'] ) . '" placeholder="' . esc_attr( $field['placeholder'] ) . '" rows="2" cols="20"' . ( isset( $field['style'] ) ? ' style="' . esc_attr( $field['style'] ) . '"' : '' ) . '>' . esc_textarea( $field['value'] ) . '</textarea> ';
 
 		if ( isset( $field['description'] ) && $field['description'] ) {
-			echo '<span class="description">' . $field['description'] . '</span>';
+			echo '<span class="description">' . esc_html( $field['description'] ) . '</span>';
 		}
 
 		echo '</p>';

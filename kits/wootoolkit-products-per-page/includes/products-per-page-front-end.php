@@ -59,11 +59,10 @@ class WT_Products_Per_Page_Front_End {
 		// Get the right amount of products from the DB
 		add_action( 'woocommerce_product_query', array( $this, 'woocommerce_product_query' ), 2, 50 );
 
-		// Set cookie so PPP will be saved
-		add_action( 'init', array( $this, 'set_customer_session' ), 10 );
-
-		// Check if ppp form is fired
-		add_action( 'init', array( $this, 'products_per_page_action' ) );
+		// Check if ppp form is fired (wp_loaded: WC session is ready).
+		// The session cookie is only started once a shopper actually picks a value,
+		// so page caching keeps working for everyone else.
+		add_action( 'wp_loaded', array( $this, 'products_per_page_action' ) );
 
 	}
 
@@ -114,8 +113,8 @@ class WT_Products_Per_Page_Front_End {
 				foreach( $products_per_page_options as $key => $value ) :
 
 					?><option value="<?php echo esc_attr( $value ); ?>" <?php selected( $value, $this->loop_shop_per_page() ); ?>><?php
-						$ppp_text = apply_filters( 'wppp_ppp_text', __( '%s products per page', 'woocommerce-products-per-page' ), $value );
-						esc_html( printf( $ppp_text, $value == -1 ? __( 'All', 'woocommerce-products-per-page' ) : $value ) ); // Set to 'All' when value is 0
+						$ppp_text = apply_filters( 'wppp_ppp_text', __( '%s products per page', 'wootoolkit' ), $value );
+						esc_html( printf( $ppp_text, $value == -1 ? __( 'All', 'wootoolkit' ) : $value ) ); // Set to 'All' when value is 0
 					?></option><?php
 
 				endforeach;
@@ -178,18 +177,60 @@ class WT_Products_Per_Page_Front_End {
 	 *
 	 * @return int Products per page.
 	 */
-	public function loop_shop_per_page() {
+	public function loop_shop_per_page( $per_page = 0 ) {
 
-		if ( isset( $_REQUEST['wt_items'] ) ) :
-			return intval( $_REQUEST['wt_items'] );
-		elseif ( isset( $_REQUEST['items'] ) ) :
-			return intval( $_REQUEST['items'] );
-		elseif ( WC()->session->__isset( 'products_per_page' ) ) :
-			return intval( WC()->session->__get( 'products_per_page' ) );
-		else :
-			return intval( $this->default_ppp );
-		endif;
+		$requested = $this->requested_ppp();
+		if ( null !== $requested ) {
+			return $requested;
+		}
 
+		if ( WC()->session && WC()->session->__isset( 'products_per_page' ) ) {
+			$saved = intval( WC()->session->__get( 'products_per_page' ) );
+			if ( $this->is_allowed_ppp( $saved ) ) {
+				return $saved;
+			}
+		}
+
+		$default = intval( $this->default_ppp );
+		return 0 !== $default ? $default : ( $per_page ? $per_page : get_option( 'posts_per_page' ) );
+	}
+
+	/**
+	 * Values a shopper may choose: the configured dropdown options plus the default.
+	 * Anything else (e.g. ?items=99999) is ignored, so the URL cannot force huge queries.
+	 *
+	 * @since 1.0.3
+	 */
+	private function allowed_ppp() {
+		$options   = explode( ' ', (string) apply_filters( 'wppp_products_per_page', $this->dp_options ) );
+		$options[] = $this->default_ppp;
+		$allowed   = array();
+		foreach ( $options as $option ) {
+			$option = intval( $option );
+			if ( -1 === $option || ( $option > 0 && $option <= 500 ) ) {
+				$allowed[] = $option;
+			}
+		}
+		return array_unique( $allowed );
+	}
+
+	private function is_allowed_ppp( $value ) {
+		return in_array( intval( $value ), $this->allowed_ppp(), true );
+	}
+
+	/**
+	 * The per-page value requested in this request, if it is an allowed one.
+	 *
+	 * @since 1.0.3
+	 */
+	private function requested_ppp() {
+		foreach ( array( 'wt_items', 'items' ) as $param ) {
+			if ( isset( $_REQUEST[ $param ] ) ) {
+				$value = intval( wp_unslash( $_REQUEST[ $param ] ) );
+				return $this->is_allowed_ppp( $value ) ? $value : null;
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -219,9 +260,9 @@ class WT_Products_Per_Page_Front_End {
 	 */
 	public function set_customer_session() {
 
-		if ( WC()->version > '2.1' && ( ! is_admin() || defined( 'DOING_AJAX' ) ) && ! defined( 'DOING_CRON' ) ) :
+		if ( WC()->session && ( ! is_admin() || wp_doing_ajax() ) && ! wp_doing_cron() ) {
 			WC()->session->set_customer_session_cookie( true );
-		endif;
+		}
 
 	}
 
@@ -236,10 +277,12 @@ class WT_Products_Per_Page_Front_End {
 	 */
 	public function products_per_page_action() {
 
-		if ( isset( $_REQUEST['wt_items'] ) ) :
-			WC()->session->set( 'products_per_page', intval( $_REQUEST['wt_items'] ) );
-		elseif ( isset( $_REQUEST['items'] ) ) :
-			WC()->session->set( 'products_per_page', intval( $_REQUEST['items'] ) );
-		endif;
+		$requested = $this->requested_ppp();
+		if ( null === $requested || ! function_exists( 'WC' ) || ! WC()->session ) {
+			return;
+		}
+
+		$this->set_customer_session();
+		WC()->session->set( 'products_per_page', $requested );
 	}
 }

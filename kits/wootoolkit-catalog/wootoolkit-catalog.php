@@ -115,11 +115,9 @@ class WT_Catalog_Mode {
 		
 		if ($this->custom_button_type == "custom_button_type_read_more" ) {
 			global $product;
-			echo ' <a id="wootoolkit_custom_button" href="' . esc_url( $product->get_permalink( $product->id ) ) . '" class="single_add_to_cart_button button alt">'.$this->load_more_button_text.'</a>
-				  </a>';
+			echo ' <a id="wootoolkit_custom_button" href="' . esc_url( $product->get_permalink() ) . '" class="single_add_to_cart_button button alt">' . esc_html( $this->load_more_button_text ) . '</a>';
 		} else {
-			echo ' <a id="wootoolkit_custom_button" href="' . $this->custom_button_link . '" class="single_add_to_cart_button button alt">'.$this->load_more_button_text.'</a>
-				  </a>';
+			echo ' <a id="wootoolkit_custom_button" href="' . esc_url( $this->custom_button_link ) . '" class="single_add_to_cart_button button alt">' . esc_html( $this->load_more_button_text ) . '</a>';
 		}
 	
 	}
@@ -196,7 +194,7 @@ class WT_Catalog_Mode {
 		}
 
 		//get terms for each product
-		$terms = get_the_terms( $product->id, 'product_cat' );
+		$terms = get_the_terms( $product->get_id(), 'product_cat' );
 		if($terms){
 			foreach($terms as $term){
 				$cat_id = $term->term_id;

@@ -16,6 +16,12 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class WT_Accordions {
 
+	/** @var object|null Admin settings handler */
+	public $admin_settings;
+
+	/** @var object|null Front end handler */
+	public $front_end;
+
 	/**
 	 * Plugin version.
 	 *
