@@ -20,12 +20,27 @@ test.describe( 'admin', () => {
 	} );
 
 	test( 'deactivating and reactivating a kit works through the nonce links', async ( { page } ) => {
+		const accordionRow = () => page.locator( '#the-list > tr', { hasText: 'Accordions' } ).first();
+		const clickAction = async ( name, message ) => {
+			await Promise.all( [
+				page.waitForURL( new RegExp( `message=${ message }` ), { timeout: 30000 } ),
+				accordionRow().getByRole( 'link', { name, exact: true } ).click(),
+			] );
+		};
+
 		await page.goto( '/wp-admin/admin.php?page=woo-toolkit' );
-		const row = page.locator( '#the-list > tr', { hasText: 'Accordion' } ).first();
-		await row.getByRole( 'link', { name: 'Deactivate', exact: true } ).click();
-		await expect( page.locator( '#message' ) ).toContainText( 'Kit deactivated successfully.' );
-		await page.locator( '#the-list > tr', { hasText: 'Accordion' } ).first().getByRole( 'link', { name: 'Activate', exact: true } ).click();
-		await expect( page.locator( '#message' ) ).toContainText( 'Kit activated successfully.' );
+		// Start from a known state, so a retry does not depend on what the previous attempt did.
+		if ( await accordionRow().getByRole( 'link', { name: 'Activate', exact: true } ).count() ) {
+			await clickAction( 'Activate', 1 );
+		}
+
+		await clickAction( 'Deactivate', 2 );
+		await expect( page.locator( '#message' ) ).toContainText( 'Kit deactivated successfully.', { timeout: 15000 } );
+		await expect( accordionRow() ).toHaveClass( /inactive/ );
+
+		await clickAction( 'Activate', 1 );
+		await expect( page.locator( '#message' ) ).toContainText( 'Kit activated successfully.', { timeout: 15000 } );
+		await expect( accordionRow() ).toHaveClass( /(^|\s)active(\s|$)/ );
 	} );
 
 	test( 'a forged kit action link without a nonce is rejected', async ( { page } ) => {
