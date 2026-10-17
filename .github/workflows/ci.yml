@@ -19,14 +19,14 @@ permissions:
 jobs:
   versions:
     name: Resolve versions
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     outputs:
       matrix: ${{ steps.resolve.outputs.matrix }}
       wc_rc: ${{ steps.resolve.outputs.wc_rc }}
       latest: ${{ steps.resolve.outputs.latest }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
       - id: resolve
@@ -34,27 +34,27 @@ jobs:
 
   lint:
     name: Coding standards + static analysis
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
           tools: composer:v2
           coverage: none
       - run: composer install --no-progress --prefer-dist
-      - run: composer lint
-      - run: composer analyse
+      - run: bash bin/ci-run.sh PHPCS composer lint
+      - run: bash bin/ci-run.sh PHPStan composer analyse
 
   php-syntax:
     name: PHP ${{ matrix.php }} syntax
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
       matrix:
         php: [ '7.4', '8.1', '8.4' ]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
@@ -68,40 +68,43 @@ jobs:
   phpunit:
     name: PHPUnit (PHP ${{ matrix.php }}, WP ${{ matrix.wp }}, WC ${{ matrix.wc }})
     needs: versions
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
       matrix: ${{ fromJSON(needs.versions.outputs.matrix) }}
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: wordpress_tests
+        ports: [ '3306:3306' ]
+        options: --health-cmd="mysqladmin ping -proot" --health-interval=5s --health-timeout=5s --health-retries=20
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.4'
+          php-version: ${{ matrix.php }}
+          extensions: mysqli, intl, zip, gd
           tools: composer:v2
           coverage: none
       - run: composer install --no-progress --prefer-dist
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-      - run: npm ci
-      - name: Pin WordPress / WooCommerce / PHP for this job
-        run: |
-          cat > .wp-env.override.json <<JSON
-          { "core": "https://wordpress.org/wordpress-${{ matrix.wp }}.zip",
-            "phpVersion": "${{ matrix.php }}",
-            "plugins": [ "https://downloads.wordpress.org/plugin/woocommerce.${{ matrix.wc }}.zip" ] }
-          JSON
-      - run: npx wp-env start
-      - run: npm run test:php
+      - run: bash bin/ci-run.sh "Install WP ${{ matrix.wp }} + WC ${{ matrix.wc }}" bash bin/install-wp-tests.sh ${{ matrix.wp }} ${{ matrix.wc }}
+        env:
+          PLUGIN_SRC: ${{ github.workspace }}
+      - name: PHPUnit
+        working-directory: /tmp/wp-tests/wordpress/wp-content/plugins/wootoolkit
+        env:
+          WP_TESTS_DIR: /tmp/wp-tests/tests
+        run: bash bin/ci-run.sh PHPUnit vendor/bin/phpunit
 
   e2e:
     name: E2E (latest WP + WC)
     needs: versions
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: npm
@@ -114,9 +117,9 @@ jobs:
             "phpVersion": "${{ fromJSON(needs.versions.outputs.latest).php }}",
             "plugins": [ "https://downloads.wordpress.org/plugin/woocommerce.${{ fromJSON(needs.versions.outputs.latest).wc }}.zip" ] }
           JSON
-      - run: npx wp-env start
-      - run: npm run env:seed
-      - run: npm run test:e2e
+      - run: bash bin/ci-run.sh "wp-env start" npx wp-env start
+      - run: bash bin/ci-run.sh "Seed" npm run env:seed
+      - run: bash bin/ci-run.sh "Playwright" npm run test:e2e
       - name: Fail on PHP notices from WooToolkit
         run: |
           npx wp-env run cli bash -c 'test ! -f wp-content/debug.log || ! grep "plugins/wootoolkit/" wp-content/debug.log'
@@ -128,19 +131,36 @@ jobs:
           retention-days: 7
 
   woocommerce-rc:
-    name: WooCommerce RC ${{ needs.versions.outputs.wc_rc }}
+    name: WooCommerce RC
     needs: versions
     if: needs.versions.outputs.wc_rc != ''
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: wordpress_tests
+        ports: [ '3306:3306' ]
+        options: --health-cmd="mysqladmin ping -proot" --health-interval=5s --health-timeout=5s --health-retries=20
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.4'
+          php-version: '8.4'
+          extensions: mysqli, intl, zip, gd
           tools: composer:v2
           coverage: none
       - run: composer install --no-progress --prefer-dist
-      - uses: actions/setup-node@v4
+      - run: bash bin/ci-run.sh "Install WC RC" bash bin/install-wp-tests.sh ${{ fromJSON(needs.versions.outputs.latest).wp }} ${{ needs.versions.outputs.wc_rc }}
+        env:
+          PLUGIN_SRC: ${{ github.workspace }}
+      - name: PHPUnit against the RC
+        working-directory: /tmp/wp-tests/wordpress/wp-content/plugins/wootoolkit
+        env:
+          WP_TESTS_DIR: /tmp/wp-tests/tests
+        run: bash bin/ci-run.sh "PHPUnit (WC RC)" vendor/bin/phpunit
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: npm
@@ -152,17 +172,16 @@ jobs:
           { "phpVersion": "8.4",
             "plugins": [ "https://downloads.wordpress.org/plugin/woocommerce.${{ needs.versions.outputs.wc_rc }}.zip" ] }
           JSON
-      - run: npx wp-env start
-      - run: npm run test:php
-      - run: npm run env:seed
-      - run: npm run test:e2e
+      - run: bash bin/ci-run.sh "wp-env start" npx wp-env start
+      - run: bash bin/ci-run.sh "Seed" npm run env:seed
+      - run: bash bin/ci-run.sh "Playwright (WC RC)" npm run test:e2e
 
   build:
     name: Build plugin zip
     needs: [ lint, php-syntax, phpunit, e2e ]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - run: bash bin/build-zip.sh
       - uses: actions/upload-artifact@v4
         with:

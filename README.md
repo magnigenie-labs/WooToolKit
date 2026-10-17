@@ -8,6 +8,8 @@ This file is for developers. The WordPress.org listing lives in `readme.txt`.
 - `master`: 2.0 development.
 - `release/1.0.x`: maintenance for the 1.0 line.
 
+**PHPUnit without Docker:** `bin/install-wp-tests.sh 7.1.3 11.2.1` (MySQL needed; args 3-6 = db name/user/pass/host), with `PLUGIN_SRC=$PWD` set, then run `vendor/bin/phpunit` from `/tmp/wp-tests/wordpress/wp-content/plugins/wootoolkit` with `WP_TESTS_DIR=/tmp/wp-tests/tests`. CI runs PHPUnit this way; wp-env is only used for E2E.
+
 ## Requirements
 
 PHP 7.4+, Composer 2, Node 20+ and Docker. wp-env needs Docker.

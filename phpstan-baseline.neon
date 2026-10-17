@@ -103,13 +103,13 @@ parameters:
 			path: kits/wootoolkit-accordions/includes/accordion-front-end.php
 
 		-
-			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\r\\n   \*", expected variable at offset 56 on line 4$#'
+			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\n   \*", expected variable at offset 53 on line 4$#'
 			identifier: phpDoc.parseError
 			count: 1
 			path: kits/wootoolkit-accordions/includes/accordion-front-end.php
 
 		-
-			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\r\\n   \*", expected variable at offset 87 on line 4$#'
+			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\n   \*", expected variable at offset 84 on line 4$#'
 			identifier: phpDoc.parseError
 			count: 1
 			path: kits/wootoolkit-accordions/includes/accordion-front-end.php
@@ -127,49 +127,49 @@ parameters:
 			path: kits/wootoolkit-catalog/include/admin/settings.php
 
 		-
-			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\r\\n\\t\* ", expected variable at offset 50 on line 4$#'
+			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\n\\t\* ", expected variable at offset 47 on line 4$#'
 			identifier: phpDoc.parseError
 			count: 1
 			path: kits/wootoolkit-catalog/wootoolkit-catalog.php
 
 		-
-			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\r\\n\\t\* ", expected variable at offset 53 on line 4$#'
+			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\n\\t\* ", expected variable at offset 50 on line 4$#'
 			identifier: phpDoc.parseError
 			count: 2
 			path: kits/wootoolkit-catalog/wootoolkit-catalog.php
 
 		-
-			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\r\\n\\t\* ", expected variable at offset 59 on line 4$#'
+			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\n\\t\* ", expected variable at offset 56 on line 4$#'
 			identifier: phpDoc.parseError
 			count: 1
 			path: kits/wootoolkit-catalog/wootoolkit-catalog.php
 
 		-
-			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\r\\n\\t\* ", expected variable at offset 62 on line 4$#'
+			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\n\\t\* ", expected variable at offset 59 on line 4$#'
 			identifier: phpDoc.parseError
 			count: 1
 			path: kits/wootoolkit-catalog/wootoolkit-catalog.php
 
 		-
-			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\r\\n\\t\* ", expected variable at offset 64 on line 4$#'
+			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\n\\t\* ", expected variable at offset 61 on line 4$#'
 			identifier: phpDoc.parseError
 			count: 1
 			path: kits/wootoolkit-catalog/wootoolkit-catalog.php
 
 		-
-			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\r\\n\\t\* ", expected variable at offset 65 on line 4$#'
+			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\n\\t\* ", expected variable at offset 62 on line 4$#'
 			identifier: phpDoc.parseError
 			count: 1
 			path: kits/wootoolkit-catalog/wootoolkit-catalog.php
 
 		-
-			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\r\\n\\t\* ", expected variable at offset 69 on line 4$#'
+			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\n\\t\* ", expected variable at offset 66 on line 4$#'
 			identifier: phpDoc.parseError
 			count: 1
 			path: kits/wootoolkit-catalog/wootoolkit-catalog.php
 
 		-
-			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\r\\n\\t\* ", expected variable at offset 71 on line 4$#'
+			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\n\\t\* ", expected variable at offset 68 on line 4$#'
 			identifier: phpDoc.parseError
 			count: 1
 			path: kits/wootoolkit-catalog/wootoolkit-catalog.php
@@ -187,19 +187,19 @@ parameters:
 			path: kits/wootoolkit-catalog/wootoolkit-catalog.php
 
 		-
-			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\r\\n\\t\* ", expected variable at offset 59 on line 4$#'
+			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\n\\t\* ", expected variable at offset 56 on line 4$#'
 			identifier: phpDoc.parseError
 			count: 1
 			path: kits/wootoolkit-continue-shopping/includes/class-continue-shopping.php
 
 		-
-			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\r\\n\\t\* ", expected variable at offset 62 on line 4$#'
+			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\n\\t\* ", expected variable at offset 59 on line 4$#'
 			identifier: phpDoc.parseError
 			count: 1
 			path: kits/wootoolkit-continue-shopping/includes/class-continue-shopping.php
 
 		-
-			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\r\\n\\t\* ", expected variable at offset 74 on line 4$#'
+			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\n\\t\* ", expected variable at offset 71 on line 4$#'
 			identifier: phpDoc.parseError
 			count: 1
 			path: kits/wootoolkit-continue-shopping/includes/class-continue-shopping.php
