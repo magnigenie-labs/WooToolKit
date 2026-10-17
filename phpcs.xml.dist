@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<ruleset name="WooToolkit">
+	<description>WordPress coding standards for new 2.0 code; PHP 7.4+ compatibility checks for everything.</description>
+
+	<file>.</file>
+	<exclude-pattern>/vendor/*</exclude-pattern>
+	<exclude-pattern>/node_modules/*</exclude-pattern>
+	<exclude-pattern>/svn/*</exclude-pattern>
+	<exclude-pattern>/dist/*</exclude-pattern>
+	<exclude-pattern>/tests/e2e/*</exclude-pattern>
+	<exclude-pattern>/test-results/*</exclude-pattern>
+	<exclude-pattern>/playwright-report/*</exclude-pattern>
+
+	<arg name="extensions" value="php"/>
+	<arg name="parallel" value="8"/>
+	<arg value="sp"/>
+
+	<config name="testVersion" value="7.4-"/>
+	<config name="minimum_wp_version" value="6.0"/>
+
+	<!-- PHP version compatibility: whole plugin, legacy 1.x code included. -->
+	<rule ref="PHPCompatibilityWP"/>
+
+	<!-- Full WordPress standards: new code only. Legacy 1.x code is brought up to standard as it is ported in M1+. -->
+	<rule ref="WordPress-Extra">
+		<exclude-pattern>/includes/*</exclude-pattern>
+		<exclude-pattern>/kits/*</exclude-pattern>
+		<exclude-pattern>/templates/*</exclude-pattern>
+		<exclude-pattern>/wootoolkit\.php$</exclude-pattern>
+		<exclude-pattern>/index\.php$</exclude-pattern>
+	</rule>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="wootoolkit"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!-- src/ uses PSR-4 class files (Composer autoload), tests use PHPUnit naming. -->
+	<rule ref="WordPress.Files.FileName">
+		<exclude-pattern>/src/*</exclude-pattern>
+		<exclude-pattern>/tests/*</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.NamingConventions.ValidVariableName">
+		<exclude-pattern>/tests/*</exclude-pattern>
+	</rule>
+</ruleset>

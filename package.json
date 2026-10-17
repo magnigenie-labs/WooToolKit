@@ -1,0 +1,22 @@
+{
+	"name": "wootoolkit",
+	"private": true,
+	"description": "Dev tooling for the WooToolkit WordPress plugin.",
+	"license": "GPL-2.0-or-later",
+	"engines": {
+		"node": ">=20"
+	},
+	"scripts": {
+		"env:start": "wp-env start",
+		"env:stop": "wp-env stop",
+		"env:seed": "bash bin/e2e-seed.sh",
+		"test:php": "wp-env run tests-cli --env-cwd=wp-content/plugins/wootoolkit vendor/bin/phpunit",
+		"test:e2e": "playwright test",
+		"versions": "node bin/resolve-versions.mjs",
+		"build": "bash bin/build-zip.sh"
+	},
+	"devDependencies": {
+		"@playwright/test": "^1.56.0",
+		"@wordpress/env": "^10.30.0"
+	}
+}

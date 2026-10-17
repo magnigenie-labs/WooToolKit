@@ -1,0 +1,171 @@
+name: CI
+
+on:
+  push:
+    branches: [ master, 'release/**' ]
+  pull_request:
+  schedule:
+    # Nightly, so a new WordPress / WooCommerce release or RC is tested without a code change.
+    - cron: '17 3 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  versions:
+    name: Resolve versions
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.resolve.outputs.matrix }}
+      wc_rc: ${{ steps.resolve.outputs.wc_rc }}
+      latest: ${{ steps.resolve.outputs.latest }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - id: resolve
+        run: node bin/resolve-versions.mjs
+
+  lint:
+    name: Coding standards + static analysis
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: composer:v2
+          coverage: none
+      - run: composer install --no-progress --prefer-dist
+      - run: composer lint
+      - run: composer analyse
+
+  php-syntax:
+    name: PHP ${{ matrix.php }} syntax
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: [ '7.4', '8.1', '8.4' ]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+      - name: php -l
+        run: |
+          find . -name '*.php' -not -path './vendor/*' -not -path './node_modules/*' -print0 \
+            | xargs -0 -n1 -P4 php -l > /tmp/lint.txt 2>&1 || true
+          if grep -v '^No syntax errors' /tmp/lint.txt | grep -q .; then grep -v '^No syntax errors' /tmp/lint.txt; exit 1; fi
+
+  phpunit:
+    name: PHPUnit (PHP ${{ matrix.php }}, WP ${{ matrix.wp }}, WC ${{ matrix.wc }})
+    needs: versions
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.versions.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          tools: composer:v2
+          coverage: none
+      - run: composer install --no-progress --prefer-dist
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Pin WordPress / WooCommerce / PHP for this job
+        run: |
+          cat > .wp-env.override.json <<JSON
+          { "core": "https://wordpress.org/wordpress-${{ matrix.wp }}.zip",
+            "phpVersion": "${{ matrix.php }}",
+            "plugins": [ "https://downloads.wordpress.org/plugin/woocommerce.${{ matrix.wc }}.zip" ] }
+          JSON
+      - run: npx wp-env start
+      - run: npm run test:php
+
+  e2e:
+    name: E2E (latest WP + WC)
+    needs: versions
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Pin latest versions
+        run: |
+          cat > .wp-env.override.json <<JSON
+          { "core": "https://wordpress.org/wordpress-${{ fromJSON(needs.versions.outputs.latest).wp }}.zip",
+            "phpVersion": "${{ fromJSON(needs.versions.outputs.latest).php }}",
+            "plugins": [ "https://downloads.wordpress.org/plugin/woocommerce.${{ fromJSON(needs.versions.outputs.latest).wc }}.zip" ] }
+          JSON
+      - run: npx wp-env start
+      - run: npm run env:seed
+      - run: npm run test:e2e
+      - name: Fail on PHP notices from WooToolkit
+        run: |
+          npx wp-env run cli bash -c 'test ! -f wp-content/debug.log || ! grep "plugins/wootoolkit/" wp-content/debug.log'
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: playwright-report
+          retention-days: 7
+
+  woocommerce-rc:
+    name: WooCommerce RC ${{ needs.versions.outputs.wc_rc }}
+    needs: versions
+    if: needs.versions.outputs.wc_rc != ''
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          tools: composer:v2
+          coverage: none
+      - run: composer install --no-progress --prefer-dist
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Pin the WooCommerce RC
+        run: |
+          cat > .wp-env.override.json <<JSON
+          { "phpVersion": "8.4",
+            "plugins": [ "https://downloads.wordpress.org/plugin/woocommerce.${{ needs.versions.outputs.wc_rc }}.zip" ] }
+          JSON
+      - run: npx wp-env start
+      - run: npm run test:php
+      - run: npm run env:seed
+      - run: npm run test:e2e
+
+  build:
+    name: Build plugin zip
+    needs: [ lint, php-syntax, phpunit, e2e ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash bin/build-zip.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wootoolkit-zip
+          path: dist/*.zip
+          retention-days: 30

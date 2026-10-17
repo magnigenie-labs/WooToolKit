@@ -1,0 +1,349 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Method WooToolkit\:\:get_kit_count\(\) should return array but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: includes/wootoolkit.class.php
+
+		-
+			message: '#^Method WooToolkit\:\:get_kit_count\(\) should return array but returns int\<0, max\>\.$#'
+			identifier: return.type
+			count: 3
+			path: includes/wootoolkit.class.php
+
+		-
+			message: '#^Method WooToolkit\:\:get_kit_status\(\) has invalid return type Returns\.$#'
+			identifier: class.notFound
+			count: 1
+			path: includes/wootoolkit.class.php
+
+		-
+			message: '#^PHPDoc tag @param has invalid value \(array \| array kit index text file text\)\: Unexpected token "kit", expected variable at offset 85 on line 4$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: includes/wootoolkit.class.php
+
+		-
+			message: '#^PHPDoc tag @param has invalid value \(array \| array kit index text file text\)\: Unexpected token "kit", expected variable at offset 87 on line 4$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: includes/wootoolkit.class.php
+
+		-
+			message: '#^PHPDoc tag @param has invalid value \(array\)\: Unexpected token "\\n     \* ", expected variable at offset 66 on line 4$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: includes/wootoolkit.class.php
+
+		-
+			message: '#^PHPDoc tag @param has invalid value \(string \| ''all'', ''active'', ''inactive''\)\: Unexpected token ",", expected variable at offset 140 on line 5$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: includes/wootoolkit.class.php
+
+		-
+			message: '#^PHPDoc tag @param has invalid value \(string \| Plugin index file as string\)\: Unexpected token "index", expected variable at offset 95 on line 4$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: includes/wootoolkit.class.php
+
+		-
+			message: '#^PHPDoc tag @param has invalid value \(string \| folder path that holds the kits\)\: Unexpected token "path", expected variable at offset 148 on line 5$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: includes/wootoolkit.class.php
+
+		-
+			message: '#^PHPDoc tag @param has invalid value \(string \| kit index text file text\)\: Unexpected token "index", expected variable at offset 82 on line 4$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: includes/wootoolkit.class.php
+
+		-
+			message: '#^PHPDoc tag @param has invalid value \(string \| kit index text file text\)\: Unexpected token "index", expected variable at offset 84 on line 4$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: includes/wootoolkit.class.php
+
+		-
+			message: '#^PHPDoc tag @param has invalid value \(string \| path of the kit file\)\: Unexpected token "of", expected variable at offset 149 on line 5$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: includes/wootoolkit.class.php
+
+		-
+			message: '#^Parameter \#7 \$position of function add_menu_page expects float\|int\|null, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: includes/wootoolkit.class.php
+
+		-
+			message: '#^Unreachable statement \- code above always terminates\.$#'
+			identifier: deadCode.unreachable
+			count: 3
+			path: includes/wootoolkit.class.php
+
+		-
+			message: '#^Method WooToolkit_Settings_API\:\:callback_html\(\) should return string but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: includes/wootoolkit.settings.class.php
+
+		-
+			message: '#^Property WooToolkit_Settings_API\:\:\$id is never read, only written\.$#'
+			identifier: property.onlyWritten
+			count: 1
+			path: includes/wootoolkit.settings.class.php
+
+		-
+			message: '#^Function remove_action invoked with 4 parameters, 2\-3 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: kits/wootoolkit-accordions/includes/accordion-front-end.php
+
+		-
+			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\r\\n   \*", expected variable at offset 56 on line 4$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: kits/wootoolkit-accordions/includes/accordion-front-end.php
+
+		-
+			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\r\\n   \*", expected variable at offset 87 on line 4$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: kits/wootoolkit-accordions/includes/accordion-front-end.php
+
+		-
+			message: '#^Parameter \#1 \$args of function get_terms expects array\{taxonomy\?\: array\<string\>\|string, object_ids\?\: array\<int\>\|int, orderby\?\: string, order\?\: string, hide_empty\?\: bool\|int, include\?\: array\<int\>\|string, exclude\?\: array\<int\>\|string, exclude_tree\?\: array\<int\>\|string, \.\.\.\}, ''product_cat'' given\.$#'
+			identifier: argument.type
+			count: 1
+			path: kits/wootoolkit-catalog/include/admin/settings.php
+
+		-
+			message: '#^Parameter \#2 \$deprecated of function get_terms expects '''', array\{\} given\.$#'
+			identifier: argument.type
+			count: 1
+			path: kits/wootoolkit-catalog/include/admin/settings.php
+
+		-
+			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\r\\n\\t\* ", expected variable at offset 50 on line 4$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: kits/wootoolkit-catalog/wootoolkit-catalog.php
+
+		-
+			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\r\\n\\t\* ", expected variable at offset 53 on line 4$#'
+			identifier: phpDoc.parseError
+			count: 2
+			path: kits/wootoolkit-catalog/wootoolkit-catalog.php
+
+		-
+			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\r\\n\\t\* ", expected variable at offset 59 on line 4$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: kits/wootoolkit-catalog/wootoolkit-catalog.php
+
+		-
+			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\r\\n\\t\* ", expected variable at offset 62 on line 4$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: kits/wootoolkit-catalog/wootoolkit-catalog.php
+
+		-
+			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\r\\n\\t\* ", expected variable at offset 64 on line 4$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: kits/wootoolkit-catalog/wootoolkit-catalog.php
+
+		-
+			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\r\\n\\t\* ", expected variable at offset 65 on line 4$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: kits/wootoolkit-catalog/wootoolkit-catalog.php
+
+		-
+			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\r\\n\\t\* ", expected variable at offset 69 on line 4$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: kits/wootoolkit-catalog/wootoolkit-catalog.php
+
+		-
+			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\r\\n\\t\* ", expected variable at offset 71 on line 4$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: kits/wootoolkit-catalog/wootoolkit-catalog.php
+
+		-
+			message: '#^Property WT_Catalog_Mode\:\:\$file is never read, only written\.$#'
+			identifier: property.onlyWritten
+			count: 1
+			path: kits/wootoolkit-catalog/wootoolkit-catalog.php
+
+		-
+			message: '#^Property WT_Catalog_Mode\:\:\$settings is never read, only written\.$#'
+			identifier: property.onlyWritten
+			count: 1
+			path: kits/wootoolkit-catalog/wootoolkit-catalog.php
+
+		-
+			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\r\\n\\t\* ", expected variable at offset 59 on line 4$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: kits/wootoolkit-continue-shopping/includes/class-continue-shopping.php
+
+		-
+			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\r\\n\\t\* ", expected variable at offset 62 on line 4$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: kits/wootoolkit-continue-shopping/includes/class-continue-shopping.php
+
+		-
+			message: '#^PHPDoc tag @param has invalid value \(void\)\: Unexpected token "\\r\\n\\t\* ", expected variable at offset 74 on line 4$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: kits/wootoolkit-continue-shopping/includes/class-continue-shopping.php
+
+		-
+			message: '#^Method WT_Custom_Tabs\:\:product_has_custom_tabs\(\) should return true but returns bool\.$#'
+			identifier: return.type
+			count: 1
+			path: kits/wootoolkit-custom-product-tabs/wootoolkit-custom-product-tabs.php
+
+		-
+			message: '#^Property WT_Empty_Cart_Front_End\:\:\$empty_cart is never read, only written\.$#'
+			identifier: property.onlyWritten
+			count: 1
+			path: kits/wootoolkit-empty-cart/includes/empty-cart-front-end.php
+
+		-
+			message: '#^Instantiated class Batch not found\.$#'
+			identifier: class.notFound
+			count: 1
+			path: kits/wootoolkit-mailchimp/includes/class-mailchimp.php
+
+		-
+			message: '#^Method WTMailChimp\:\:new_batch\(\) has invalid return type Batch\.$#'
+			identifier: class.notFound
+			count: 1
+			path: kits/wootoolkit-mailchimp/includes/class-mailchimp.php
+
+		-
+			message: '#^Action callback returns array but should not return anything\.$#'
+			identifier: return.void
+			count: 1
+			path: kits/wootoolkit-mailchimp/includes/mailchimp-front-end.php
+
+		-
+			message: '#^Action callback returns checkbox but should not return anything\.$#'
+			identifier: return.void
+			count: 1
+			path: kits/wootoolkit-mailchimp/includes/mailchimp-front-end.php
+
+		-
+			message: '#^Method WT_Mailchimp_Front_End\:\:wt_mailchimp_add_subscribe_checkbox\(\) has invalid return type checkbox\.$#'
+			identifier: class.notFound
+			count: 1
+			path: kits/wootoolkit-mailchimp/includes/mailchimp-front-end.php
+
+		-
+			message: '#^Method WT_Mailchimp_Front_End\:\:wt_mailchimp_add_subscribe_checkbox\(\) should return checkbox but empty return statement found\.$#'
+			identifier: return.empty
+			count: 2
+			path: kits/wootoolkit-mailchimp/includes/mailchimp-front-end.php
+
+		-
+			message: '#^Method WT_Mailchimp_Front_End\:\:wt_mailchimp_add_subscribe_checkbox\(\) should return checkbox but return statement is missing\.$#'
+			identifier: return.missing
+			count: 2
+			path: kits/wootoolkit-mailchimp/includes/mailchimp-front-end.php
+
+		-
+			message: '#^Method WT_Mailchimp_Front_End\:\:wt_mailchimp_get_customers\(\) should return array but empty return statement found\.$#'
+			identifier: return.empty
+			count: 4
+			path: kits/wootoolkit-mailchimp/includes/mailchimp-front-end.php
+
+		-
+			message: '#^Method WT_Mailchimp_Front_End\:\:wt_mailchimp_get_customers\(\) should return array but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: kits/wootoolkit-mailchimp/includes/mailchimp-front-end.php
+
+		-
+			message: '#^Action callback returns object but should not return anything\.$#'
+			identifier: return.void
+			count: 1
+			path: kits/wootoolkit-products-per-page/includes/products-per-page-front-end.php
+
+		-
+			message: '#^Call to an undefined method WC_Session\:\:set_customer_session_cookie\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: kits/wootoolkit-products-per-page/includes/products-per-page-front-end.php
+
+		-
+			message: '#^Method WT_Products_Per_Page_Front_End\:\:woocommerce_product_query\(\) should return object but return statement is missing\.$#'
+			identifier: return.missing
+			count: 2
+			path: kits/wootoolkit-products-per-page/includes/products-per-page-front-end.php
+
+		-
+			message: '#^Parameter \#1 \$text of function esc_html expects string, int given\.$#'
+			identifier: argument.type
+			count: 1
+			path: kits/wootoolkit-products-per-page/includes/products-per-page-front-end.php
+
+		-
+			message: '#^Access to an undefined property WC_Order\|WC_Order_Refund\:\:\$order_number\.$#'
+			identifier: property.notFound
+			count: 1
+			path: kits/wootoolkit-sequential-order-numbers/wootoolkit-sequential-order-numbers.php
+
+		-
+			message: '#^Binary operation "\." between array and '' AND meta_key NOT…'' results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: kits/wootoolkit-sequential-order-numbers/wootoolkit-sequential-order-numbers.php
+
+		-
+			message: '#^Method WT_Seq_Order_Number\:\:get_order_number\(\) should return string but returns int\<min, \-1\>\|int\<1, max\>\.$#'
+			identifier: return.type
+			count: 1
+			path: kits/wootoolkit-sequential-order-numbers/wootoolkit-sequential-order-numbers.php
+
+		-
+			message: '#^Array has 2 duplicate keys with value ''desc'' \(''desc'', ''desc''\)\.$#'
+			identifier: array.duplicateKey
+			count: 1
+			path: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php
+
+		-
+			message: '#^Method WooToolkit_Customizer\:\:customize\(\) should return string but returns true\.$#'
+			identifier: return.type
+			count: 1
+			path: kits/wootoolkit-woo-customizer/wootoolkit-woo-customizer.php
+
+		-
+			message: '#^Property WooToolkit_Customizer\:\:\$admin_settings \(Customizer_Admin_Settings\) does not accept WT_Customizer_Admin_Settings\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: kits/wootoolkit-woo-customizer/wootoolkit-woo-customizer.php
+
+		-
+			message: '#^Property WooToolkit_Customizer\:\:\$admin_settings has unknown class Customizer_Admin_Settings as its type\.$#'
+			identifier: class.notFound
+			count: 1
+			path: kits/wootoolkit-woo-customizer/wootoolkit-woo-customizer.php
+
+		-
+			message: '#^Strict comparison using \=\=\= between ''customizer_true'' and ''customizer_true'' will always evaluate to true\.$#'
+			identifier: identical.alwaysTrue
+			count: 1
+			path: kits/wootoolkit-woo-customizer/wootoolkit-woo-customizer.php
+
+		-
+			message: '#^Strict comparison using \=\=\= between ''customizer_true'' and mixed~\(0\|0\.0\|''''\|''0''\|''customizer_true''\|array\{\}\|false\|null\) will always evaluate to false\.$#'
+			identifier: identical.alwaysFalse
+			count: 1
+			path: kits/wootoolkit-woo-customizer/wootoolkit-woo-customizer.php
