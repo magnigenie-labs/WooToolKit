@@ -78,6 +78,8 @@ final class Plugin {
 	public function register_kits(): void {
 		Installer::maybe_upgrade();
 
+		$this->registry->register( new Kits\WholesalePrices\WholesalePricesKit() );
+
 		foreach ( self::classic_kits() as $file => $hpos ) {
 			$this->registry->register( new ClassicKit( WOOTOOLKIT_PATH . 'kits/' . $file, $hpos ) );
 		}

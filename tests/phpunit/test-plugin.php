@@ -18,15 +18,24 @@ class Test_Plugin extends WP_UnitTestCase {
 		$this->assertSame( '2.0.0-dev', WOOTOOLKIT_VERSION );
 	}
 
+	public function test_the_2x_kits_are_registered_first() {
+		$this->assertSame( 'wholesale-prices', array_key_first( Plugin::instance()->registry()->all() ) );
+	}
+
 	public function test_the_ten_classic_kits_are_registered_with_stable_ids() {
-		$ids = array_keys( Plugin::instance()->registry()->all() );
+		$classic = array_filter(
+			Plugin::instance()->registry()->all(),
+			static function ( $kit ) {
+				return $kit->is_classic();
+			}
+		);
+		$ids     = array_keys( $classic );
 		sort( $ids );
 		$this->assertSame(
 			array( 'accordions', 'catalog', 'continue-shopping', 'custom-product-tabs', 'empty-cart', 'mailchimp', 'product-sorting-options', 'products-per-page', 'sequential-order-numbers', 'woo-customizer' ),
 			$ids
 		);
-		foreach ( Plugin::instance()->registry()->all() as $id => $kit ) {
-			$this->assertTrue( $kit->is_classic(), "{$id} should be a Classic kit." );
+		foreach ( $classic as $id => $kit ) {
 			$this->assertNotSame( $id, $kit->name(), "{$id} should read its name from the Kit Name header." );
 		}
 	}

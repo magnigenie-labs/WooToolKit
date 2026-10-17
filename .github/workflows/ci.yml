@@ -99,9 +99,15 @@ jobs:
         run: bash bin/ci-run.sh PHPUnit vendor/bin/phpunit
 
   e2e:
-    name: E2E (latest WP + WC)
+    name: E2E (latest WP + WC, ${{ matrix.theme }})
     needs: versions
     runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        theme: [ storefront, twentytwentyfive ]
+    env:
+      E2E_THEME: ${{ matrix.theme }}
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
@@ -126,7 +132,7 @@ jobs:
       - uses: actions/upload-artifact@v7
         if: failure()
         with:
-          name: playwright-report
+          name: playwright-report-${{ matrix.theme }}
           path: playwright-report
           retention-days: 7
 

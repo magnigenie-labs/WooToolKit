@@ -35,12 +35,13 @@ tests_add_filter(
 		require $wootoolkit_wc_file;
 		require $wootoolkit_plugin_dir . '/wootoolkit.php';
 		// The activation hook does not run under PHPUnit. Mark 2.0 as installed and switch on every
-		// Classic kit before kits boot on init, so kit-level tests can exercise them.
+		// kit before kits boot on init, so kit-level tests can exercise them.
 		update_option( 'wootoolkit_version', WOOTOOLKIT_VERSION );
 		$wootoolkit_active = array();
 		foreach ( array_keys( WooToolkit\Plugin::classic_kits() ) as $wootoolkit_file ) {
 			$wootoolkit_active[ ( new WooToolkit\Kit\ClassicKit( WOOTOOLKIT_PATH . 'kits/' . $wootoolkit_file ) )->id() ] = 'yes';
 		}
+		$wootoolkit_active['wholesale-prices'] = 'yes';
 		update_option( 'wootoolkit_active_kits', $wootoolkit_active );
 	}
 );

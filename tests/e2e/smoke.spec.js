@@ -21,7 +21,7 @@ test.describe( 'admin', () => {
 
 	test( 'the WooToolkit settings tab lists every kit', async ( { page } ) => {
 		await page.goto( TAB );
-		await expect( page.locator( 'input[type="checkbox"][name^="wootoolkit_active_kits["]' ) ).toHaveCount( 10 );
+		await expect( page.locator( 'input[type="checkbox"][name^="wootoolkit_active_kits["]' ) ).toHaveCount( 11 );
 	} );
 
 	test( 'switching a kit on and off saves through WooCommerce settings', async ( { page } ) => {
