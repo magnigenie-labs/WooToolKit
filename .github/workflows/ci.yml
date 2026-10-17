@@ -123,7 +123,7 @@ jobs:
       - name: Fail on PHP notices from WooToolkit
         run: |
           npx wp-env run cli bash -c 'test ! -f wp-content/debug.log || ! grep "plugins/wootoolkit/" wp-content/debug.log'
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: failure()
         with:
           name: playwright-report
@@ -183,7 +183,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - run: bash bin/build-zip.sh
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: wootoolkit-zip
           path: dist/*.zip
