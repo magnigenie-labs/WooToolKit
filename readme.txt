@@ -92,6 +92,8 @@ It contains 10 free kits to start with, to help you address your issues without 
 = 2.0.0 (in development) =
 * New: Kits are managed under WooCommerce > Settings > WooToolkit, which replaces the old Installed Kits screen.
 * New: Kit framework and registry. WooToolkit declares HPOS and Cart & Checkout block compatibility based on the kits you actually have switched on.
+* New: Wholesale prices kit. A Wholesale customer role with per-product, per-variation, per-category or store-wide wholesale prices, in classic templates, the blocks, the Store API, the cart and checkout.
+* New: Catalog mode kit, replacing the 1.x Catalog kit. Hide prices and stop purchases for everyone, guests, or everyone except wholesale customers, on all products, chosen categories or chosen products. Purchases are refused by WooCommerce itself, so add-to-cart links and the Store API are blocked too. 1.x Catalog settings are carried over.
 * Changed: The 1.x kits become "Classic kits" (bug fixes only). Their settings moved to WooCommerce > WooToolkit Classic.
 * Changed: Fresh installs start with no kits switched on. Upgrades from 1.x keep every kit that was on.
 * Changed: WooCommerce is now a required plugin. Without it WooToolkit shows a notice instead of deactivating itself.

@@ -19,10 +19,10 @@ class Test_Plugin extends WP_UnitTestCase {
 	}
 
 	public function test_the_2x_kits_are_registered_first() {
-		$this->assertSame( 'wholesale-prices', array_key_first( Plugin::instance()->registry()->all() ) );
+		$this->assertSame( array( 'catalog-mode', 'wholesale-prices' ), array_slice( array_keys( Plugin::instance()->registry()->all() ), 0, 2 ) );
 	}
 
-	public function test_the_ten_classic_kits_are_registered_with_stable_ids() {
+	public function test_the_nine_classic_kits_are_registered_with_stable_ids() {
 		$classic = array_filter(
 			Plugin::instance()->registry()->all(),
 			static function ( $kit ) {
@@ -32,7 +32,7 @@ class Test_Plugin extends WP_UnitTestCase {
 		$ids     = array_keys( $classic );
 		sort( $ids );
 		$this->assertSame(
-			array( 'accordions', 'catalog', 'continue-shopping', 'custom-product-tabs', 'empty-cart', 'mailchimp', 'product-sorting-options', 'products-per-page', 'sequential-order-numbers', 'woo-customizer' ),
+			array( 'accordions', 'continue-shopping', 'custom-product-tabs', 'empty-cart', 'mailchimp', 'product-sorting-options', 'products-per-page', 'sequential-order-numbers', 'woo-customizer' ),
 			$ids
 		);
 		foreach ( $classic as $id => $kit ) {

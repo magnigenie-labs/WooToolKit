@@ -50,14 +50,14 @@ class Test_Registry extends WP_UnitTestCase {
 
 	public function test_feature_support_is_the_and_of_active_kits() {
 		$modern   = new WooToolkit_Test_Kit( 'modern' );
-		$classic  = new ClassicKit( WOOTOOLKIT_PATH . 'kits/wootoolkit-catalog/wootoolkit-catalog.php' );
+		$classic  = new ClassicKit( WOOTOOLKIT_PATH . 'kits/wootoolkit-empty-cart/wootoolkit-empty-cart.php' );
 		$registry = $this->registry_with( array( $modern, $classic ) );
 
 		$registry->set_active( array( 'modern' ) );
 		$this->assertTrue( $registry->supports( 'hpos' ) );
 		$this->assertTrue( $registry->supports( 'blocks' ) );
 
-		$registry->set_active( array( 'modern', 'catalog' ) );
+		$registry->set_active( array( 'modern', 'empty-cart' ) );
 		$this->assertTrue( $registry->supports( 'hpos' ) );
 		$this->assertFalse( $registry->supports( 'blocks' ), 'Classic kits do not support the blocks.' );
 	}

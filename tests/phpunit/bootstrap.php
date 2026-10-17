@@ -42,7 +42,11 @@ tests_add_filter(
 			$wootoolkit_active[ ( new WooToolkit\Kit\ClassicKit( WOOTOOLKIT_PATH . 'kits/' . $wootoolkit_file ) )->id() ] = 'yes';
 		}
 		$wootoolkit_active['wholesale-prices'] = 'yes';
+		$wootoolkit_active['catalog-mode']     = 'yes';
 		update_option( 'wootoolkit_active_kits', $wootoolkit_active );
+		// Catalog mode is on, but only for products ticked one by one, so other tests see a normal store.
+		// Tests change the scope inside their own (rolled back) transaction.
+		update_option( 'wootoolkit_catalog_scope', 'products' );
 	}
 );
 

@@ -79,6 +79,7 @@ final class Plugin {
 		Installer::maybe_upgrade();
 
 		$this->registry->register( new Kits\WholesalePrices\WholesalePricesKit() );
+		$this->registry->register( new Kits\CatalogMode\CatalogModeKit() );
 
 		foreach ( self::classic_kits() as $file => $hpos ) {
 			$this->registry->register( new ClassicKit( WOOTOOLKIT_PATH . 'kits/' . $file, $hpos ) );
@@ -127,7 +128,6 @@ final class Plugin {
 	public static function classic_kits(): array {
 		return array(
 			'wootoolkit-accordions/wootoolkit-accordions.php' => true,
-			'wootoolkit-catalog/wootoolkit-catalog.php' => true,
 			'wootoolkit-continue-shopping/wootoolkit-continue-shopping.php' => true,
 			'wootoolkit-custom-product-tabs/wootoolkit-custom-product-tabs.php' => true,
 			'wootoolkit-empty-cart/wootoolkit-empty-cart.php' => true,

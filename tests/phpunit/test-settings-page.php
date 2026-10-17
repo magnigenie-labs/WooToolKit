@@ -32,15 +32,15 @@ class Test_Settings_Page extends WP_UnitTestCase {
 		list( $page ) = $this->page_for(
 			array(
 				new WooToolkit_Test_Kit( 'quotes' ),
-				new ClassicKit( WOOTOOLKIT_PATH . 'kits/wootoolkit-catalog/wootoolkit-catalog.php' ),
+				new ClassicKit( WOOTOOLKIT_PATH . 'kits/wootoolkit-empty-cart/wootoolkit-empty-cart.php' ),
 			)
 		);
 		$checkboxes   = wp_list_filter( $page->get_settings_for_section( '' ), array( 'type' => 'checkbox' ) );
 
-		$this->assertSame( array( 'wootoolkit_active_kits[quotes]', 'wootoolkit_active_kits[catalog]' ), array_values( wp_list_pluck( $checkboxes, 'id' ) ) );
-		$catalog = array_values( $checkboxes )[1];
-		$this->assertStringContainsString( 'Classic kit', $catalog['desc'] );
-		$this->assertStringContainsString( 'not the blocks', $catalog['desc'] );
+		$this->assertSame( array( 'wootoolkit_active_kits[quotes]', 'wootoolkit_active_kits[empty-cart]' ), array_values( wp_list_pluck( $checkboxes, 'id' ) ) );
+		$classic = array_values( $checkboxes )[1];
+		$this->assertStringContainsString( 'Classic kit', $classic['desc'] );
+		$this->assertStringContainsString( 'not the blocks', $classic['desc'] );
 	}
 
 	public function test_saving_the_kit_list_through_woocommerce_switches_kits() {
