@@ -13,12 +13,15 @@ test.describe( 'catalog mode', () => {
 		return product;
 	};
 
-	test( 'the product page shows no price and no add-to-cart form', async ( { page } ) => {
+	test( 'the product page shows no price and no add-to-cart form', async ( { page, request } ) => {
+		const product = await productId( request );
 		await page.goto( '/product/e2e-catalog-product/' );
 		const main = page.locator( 'main' );
 		await expect( main ).toContainText( 'Call for price' );
 		await expect( main ).not.toContainText( '29.00' );
-		await expect( main.getByRole( 'button', { name: /add to cart/i } ) ).toHaveCount( 0 );
+		// Related products (the normal E2E Product) may still show their own Add to cart buttons.
+		await expect( main.locator( 'form.cart' ) ).toHaveCount( 0 );
+		await expect( main.locator( `[data-product_id="${ product.id }"], [name="add-to-cart"][value="${ product.id }"]` ) ).toHaveCount( 0 );
 		await expect( main.getByRole( 'link', { name: 'Ask for a price' } ) ).toHaveAttribute( 'href', 'https://example.test/contact' );
 	} );
 
