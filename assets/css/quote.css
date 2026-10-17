@@ -1,8 +1,7 @@
 /* Request a quote kit. Low specificity (:where) so classic themes keep their own styles. */
 :where(.wootoolkit-add-to-quote) { margin-top: 0.5em; }
-/* Next to Add to cart, not on a row of its own (block themes give form buttons the full width). */
-.wp-block-woocommerce-add-to-cart-form form.cart .wootoolkit-add-to-quote,
-form.cart .wootoolkit-add-to-quote { flex: 0 0 auto; flex-basis: auto; width: auto; margin-top: 0; margin-left: 0.5em; }
+/* Block themes put it on its own row under Add to cart; keep a gap so the two buttons don't touch. */
+form.cart .wootoolkit-add-to-quote { margin-top: 0.75em; }
 :where(.wootoolkit-quote-form) { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75em; margin: 1em 0; }
 :where(.wootoolkit-quote-form) table.variations { flex-basis: 100%; }
 :where(.wootoolkit-quote-form, .wootoolkit-quote) input.qty { width: 5em; }
