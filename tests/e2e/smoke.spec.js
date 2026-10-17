@@ -22,10 +22,17 @@ test.describe( 'admin', () => {
 	test( 'deactivating and reactivating a kit works through the nonce links', async ( { page } ) => {
 		const accordionRow = () => page.locator( '#the-list > tr', { hasText: 'Accordions' } ).first();
 		const clickAction = async ( name, message ) => {
-			await Promise.all( [
-				page.waitForURL( new RegExp( `message=${ message }` ), { timeout: 30000 } ),
-				accordionRow().getByRole( 'link', { name, exact: true } ).click(),
-			] );
+			try {
+				await Promise.all( [
+					page.waitForURL( new RegExp( `message=${ message }` ), { timeout: 30000 } ),
+					accordionRow().getByRole( 'link', { name, exact: true } ).click(),
+				] );
+			} catch ( error ) {
+				// Print what the browser actually got, so the CI annotation explains the failure.
+				const body = ( await page.locator( 'body' ).innerText().catch( () => '' ) ).replace( /\s+/g, ' ' );
+				console.log( `DIAG ${ name }: url=${ page.url() } title=${ await page.title() } body=${ body.slice( 0, 1200 ) }` );
+				throw error;
+			}
 		};
 
 		await page.goto( '/wp-admin/admin.php?page=woo-toolkit' );
