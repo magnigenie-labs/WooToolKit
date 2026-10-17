@@ -24,8 +24,10 @@ make_image hat     '#fecaca-#dc2626' 'Branded Hard Hat'
 product() { # slug name price image [catalog]
 	if [ "$(wp post list --post_type=product --name="$1" --format=count)" = "0" ]; then
 		id=$(wp wc product create --name="$2" --slug="$1" --regular_price="$3" --short_description="Trade pricing available. Ships in 2 business days." --user=admin --porcelain | tr -d '[:space:]')
-		img=$(wp media import "wp-content/plugins/wootoolkit/.screens/$4.png" --post_id="$id" --featured_image --porcelain | tr -d '[:space:]')
-		[ -n "${5:-}" ] && wp post meta update "$id" _wootoolkit_catalog yes
+		wp media import "wp-content/plugins/wootoolkit/.screens/$4.png" --post_id="$id" --featured_image --porcelain
+		if [ -n "${5:-}" ]; then
+			wp post meta update "$id" _wootoolkit_catalog yes
+		fi
 	fi
 }
 product industrial-work-gloves 'Industrial Work Gloves' 19 gloves
