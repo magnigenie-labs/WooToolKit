@@ -13,13 +13,16 @@ mkdir -p "$BASE"
 cd "$BASE"
 
 if [ ! -f wordpress/wp-settings.php ]; then
-	curl -sSfL "https://wordpress.org/wordpress-${WP}.zip" -o wp.zip
+	curl -sSfL --retry 5 --retry-all-errors --retry-delay 3 "https://wordpress.org/wordpress-${WP}.zip" -o wp.zip
 	unzip -q wp.zip && rm wp.zip
 fi
 
 if [ ! -f tests/includes/functions.php ]; then
 	rm -rf develop
-	git clone -q --depth 1 --branch "$WP" --filter=blob:none --sparse https://github.com/WordPress/wordpress-develop.git develop
+	for attempt in 1 2 3; do
+		git clone -q --depth 1 --branch "$WP" --filter=blob:none --sparse https://github.com/WordPress/wordpress-develop.git develop && break
+		rm -rf develop; sleep 5
+	done
 	git -C develop sparse-checkout set tests/phpunit/includes tests/phpunit/data
 	mkdir -p tests
 	cp -R develop/tests/phpunit/includes develop/tests/phpunit/data tests/
@@ -36,7 +39,7 @@ sed -e "s:dirname( __FILE__ ) . '/src/':'${BASE}/wordpress/':" \
 
 if [ "$(cat wordpress/.wc-version 2>/dev/null)" != "$WC" ]; then
 	rm -rf wordpress/wp-content/plugins/woocommerce
-	curl -sSfL "https://downloads.wordpress.org/plugin/woocommerce.${WC}.zip" -o wc.zip
+	curl -sSfL --retry 5 --retry-all-errors --retry-delay 3 "https://downloads.wordpress.org/plugin/woocommerce.${WC}.zip" -o wc.zip
 	unzip -q wc.zip -d wordpress/wp-content/plugins/ && rm wc.zip
 	echo "$WC" > wordpress/.wc-version
 fi
