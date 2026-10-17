@@ -1,9 +1,23 @@
 /* Request a quote kit. Low specificity (:where) so classic themes keep their own styles. */
 :where(.wootoolkit-add-to-quote) { margin-top: 0.5em; }
-:where(form.cart) .wootoolkit-add-to-quote { flex: 0 0 auto; width: auto; margin-left: 0.5em; }
+/* Next to Add to cart, not on a row of its own (block themes give form buttons the full width). */
+.wp-block-woocommerce-add-to-cart-form form.cart .wootoolkit-add-to-quote,
+form.cart .wootoolkit-add-to-quote { flex: 0 0 auto; flex-basis: auto; width: auto; margin-top: 0; margin-left: 0.5em; }
 :where(.wootoolkit-quote-form) { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75em; margin: 1em 0; }
 :where(.wootoolkit-quote-form) table.variations { flex-basis: 100%; }
 :where(.wootoolkit-quote-form, .wootoolkit-quote) input.qty { width: 5em; }
+.wootoolkit-quote-form .quantity input.qty {
+	font: inherit;
+	width: 4.5em;
+	min-height: 3em;
+	padding: 0.5em;
+	text-align: center;
+	box-sizing: border-box;
+	border: 1px solid currentColor;
+	border-radius: 4px;
+	background: transparent;
+	color: inherit;
+}
 :where(.wootoolkit-quote) :is(input.input-text, textarea.input-text, input.qty) {
 	font: inherit;
 	padding: 0.6em 0.75em;
