@@ -10,6 +10,17 @@ This file is for developers. The WordPress.org listing lives in `readme.txt`.
 
 **PHPUnit without Docker:** `bin/install-wp-tests.sh 7.1.3 11.2.1` (MySQL needed; args 3-6 = db name/user/pass/host), with `PLUGIN_SRC=$PWD` set, then run `vendor/bin/phpunit` from `/tmp/wp-tests/wordpress/wp-content/plugins/wootoolkit` with `WP_TESTS_DIR=/tmp/wp-tests/tests`. CI runs PHPUnit this way; wp-env is only used for E2E.
 
+## Code layout
+
+- `src/`: 2.0 code, namespace `WooToolkit\`, loaded by a small PSR-4 autoloader in `wootoolkit.php`. Composer is used for development only.
+  - `Plugin`: wires hooks.
+  - `Kit\Kit`: the kit interface. `Kit\Registry` tracks registered and active kits, and `Kit\ClassicKit` adapts the 1.x kits.
+  - `Admin\SettingsPage`: the WooCommerce > Settings > WooToolkit tab.
+  - `Install\Installer`: install, plus the 1.x to 2.0 migration.
+- `kits/`: the 1.x "Classic" kits, loaded unchanged through `ClassicKit`. Bug fixes only.
+- `includes/wootoolkit.settings.class.php`: the settings screen the Classic kits still use (WooCommerce > WooToolkit Classic).
+- Add-ons register kits with `do_action( 'wootoolkit_register_kits', $registry )`. Active kits are stored in the `wootoolkit_active_kits` option as id => `yes`/`no`.
+
 ## Requirements
 
 PHP 7.4+, Composer 2, Node 20+ and Docker. wp-env needs Docker.

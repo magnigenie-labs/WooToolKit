@@ -1,9 +1,11 @@
 <?php
 /**
- * Smoke tests: the plugin loads next to WooCommerce and registers its kits.
+ * Smoke tests: the plugin loads next to WooCommerce and registers the Classic kits.
  *
  * @package WooToolkit
  */
+
+use WooToolkit\Plugin;
 
 /**
  * Plugin bootstrap tests.
@@ -12,30 +14,30 @@ class Test_Plugin extends WP_UnitTestCase {
 
 	public function test_woocommerce_and_wootoolkit_are_loaded() {
 		$this->assertTrue( class_exists( 'WooCommerce' ), 'WooCommerce should be loaded.' );
-		$this->assertInstanceOf( 'WooToolkit', $GLOBALS['wootoolkit'] );
-		$this->assertTrue( defined( 'WOOTOOLKIT_VERSION' ) );
+		$this->assertInstanceOf( Plugin::class, Plugin::instance() );
+		$this->assertSame( '2.0.0-dev', WOOTOOLKIT_VERSION );
 	}
 
-	public function test_all_bundled_kits_are_discovered() {
-		$kits = $GLOBALS['wootoolkit']->get_kits();
-		$this->assertCount( 10, $kits );
-		foreach ( $kits as $file => $kit ) {
-			$this->assertStringEndsWith( '.php', $file );
-			$this->assertNotEmpty( $kit['Name'], "Kit {$file} has no name." );
+	public function test_the_ten_classic_kits_are_registered_with_stable_ids() {
+		$ids = array_keys( Plugin::instance()->registry()->all() );
+		sort( $ids );
+		$this->assertSame(
+			array( 'accordions', 'catalog', 'continue-shopping', 'custom-product-tabs', 'empty-cart', 'mailchimp', 'product-sorting-options', 'products-per-page', 'sequential-order-numbers', 'woo-customizer' ),
+			$ids
+		);
+		foreach ( Plugin::instance()->registry()->all() as $id => $kit ) {
+			$this->assertTrue( $kit->is_classic(), "{$id} should be a Classic kit." );
+			$this->assertNotSame( $id, $kit->name(), "{$id} should read its name from the Kit Name header." );
 		}
 	}
 
-	public function test_install_activates_every_kit() {
-		delete_option( '_woo_active_kits' );
-		$GLOBALS['wootoolkit']->install();
-		$this->assertSame( array_keys( $GLOBALS['wootoolkit']->get_kits() ), get_option( '_woo_active_kits' ) );
+	public function test_active_classic_kits_are_booted_on_init() {
+		$this->assertTrue( class_exists( 'WT_Accordions' ), 'The Accordions kit should have been loaded.' );
+		$this->assertArrayHasKey( 'wootoolkit_custom_product_tabs', $GLOBALS );
 	}
 
-	public function test_upgrade_removes_legacy_customer_email_list() {
-		update_option( 'wt_mailchimp_mails', array( 'old@example.com' ) );
-		update_option( 'wootoolkit_version', '1.0.2' );
-		woo_tk_maybe_upgrade();
-		$this->assertFalse( get_option( 'wt_mailchimp_mails' ) );
-		$this->assertSame( WOOTOOLKIT_VERSION, get_option( 'wootoolkit_version' ) );
+	public function test_classic_settings_screen_is_available_while_a_classic_kit_is_active() {
+		$this->assertTrue( Plugin::instance()->registry()->has_active_classic() );
+		$this->assertTrue( class_exists( 'WooToolkit_Settings_API' ) );
 	}
 }

@@ -34,9 +34,14 @@ tests_add_filter(
 	static function () use ( $wootoolkit_wc_file, $wootoolkit_plugin_dir ) {
 		require $wootoolkit_wc_file;
 		require $wootoolkit_plugin_dir . '/wootoolkit.php';
-		// The activation hook does not run under PHPUnit; activate every kit the
-		// way WooToolkit::install() does, before kits load on init.
-		$GLOBALS['wootoolkit']->install();
+		// The activation hook does not run under PHPUnit. Mark 2.0 as installed and switch on every
+		// Classic kit before kits boot on init, so kit-level tests can exercise them.
+		update_option( 'wootoolkit_version', WOOTOOLKIT_VERSION );
+		$wootoolkit_active = array();
+		foreach ( array_keys( WooToolkit\Plugin::classic_kits() ) as $wootoolkit_file ) {
+			$wootoolkit_active[ ( new WooToolkit\Kit\ClassicKit( WOOTOOLKIT_PATH . 'kits/' . $wootoolkit_file ) )->id() ] = 'yes';
+		}
+		update_option( 'wootoolkit_active_kits', $wootoolkit_active );
 	}
 );
 
@@ -52,5 +57,5 @@ tests_add_filter(
 
 require $wootoolkit_tests_dir . '/includes/bootstrap.php';
 
-require __DIR__ . '/helpers/class-wootoolkit-test-redirect.php';
+require __DIR__ . '/helpers/class-wootoolkit-test-kit.php';
 require __DIR__ . '/helpers/class-wc-helper-product-minimal.php';

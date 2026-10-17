@@ -13,46 +13,49 @@ test.describe( 'storefront (logged out)', () => {
 } );
 
 test.describe( 'admin', () => {
-	test( 'Installed Kits screen lists every kit', async ( { page } ) => {
-		await page.goto( '/wp-admin/admin.php?page=woo-toolkit' );
-		await expect( page.getByRole( 'heading', { name: 'Toolkits' } ) ).toBeVisible();
-		await expect( page.locator( '#the-list > tr' ) ).toHaveCount( 10 );
+	const TAB = '/wp-admin/admin.php?page=wc-settings&tab=wootoolkit';
+	const save = async ( page ) => {
+		await page.locator( 'button[name="save"]' ).click();
+		await expect( page.locator( '#message, .updated, .notice-success' ).first() ).toContainText( 'Your settings have been saved.' );
+	};
+
+	test( 'the WooToolkit settings tab lists every kit', async ( { page } ) => {
+		await page.goto( TAB );
+		await expect( page.locator( 'input[type="checkbox"][name^="wootoolkit_active_kits["]' ) ).toHaveCount( 10 );
 	} );
 
-	test( 'deactivating and reactivating a kit works through the nonce links', async ( { page } ) => {
-		const accordionRow = () => page.locator( '#the-list > tr', { hasText: 'Accordions' } ).first();
-		const clickAction = async ( name, message ) => {
-			try {
-				await Promise.all( [
-					page.waitForURL( new RegExp( `message=${ message }` ), { timeout: 30000 } ),
-					accordionRow().getByRole( 'link', { name, exact: true } ).click(),
-				] );
-			} catch ( error ) {
-				// Print what the browser actually got, so the CI annotation explains the failure.
-				const body = ( await page.locator( 'body' ).innerText().catch( () => '' ) ).replace( /\s+/g, ' ' );
-				console.log( `DIAG ${ name }: url=${ page.url() } title=${ await page.title() } body=${ body.slice( 0, 1200 ) }` );
-				throw error;
-			}
-		};
+	test( 'switching a kit on and off saves through WooCommerce settings', async ( { page } ) => {
+		const box = page.locator( 'input[name="wootoolkit_active_kits[accordions]"]' );
+		const classicMenu = page.locator( '#adminmenu a[href*="page=woo-toolkit-settings"]' );
 
-		await page.goto( '/wp-admin/admin.php?page=woo-toolkit' );
-		// Start from a known state, so a retry does not depend on what the previous attempt did.
-		if ( await accordionRow().getByRole( 'link', { name: 'Activate', exact: true } ).count() ) {
-			await clickAction( 'Activate', 1 );
+		await page.goto( TAB );
+		// Start from a known state, so a retry does not depend on the previous attempt.
+		if ( await box.isChecked() ) {
+			await box.uncheck();
+			await save( page );
 		}
+		await expect( classicMenu ).toHaveCount( 0 );
 
-		await clickAction( 'Deactivate', 2 );
-		await expect( page.locator( '#message' ) ).toContainText( 'Kit deactivated successfully.', { timeout: 15000 } );
-		await expect( accordionRow() ).toHaveClass( /inactive/ );
+		await box.check();
+		await save( page );
+		await expect( box ).toBeChecked();
+		await expect( classicMenu ).toHaveCount( 1 );
 
-		await clickAction( 'Activate', 1 );
-		await expect( page.locator( '#message' ) ).toContainText( 'Kit activated successfully.', { timeout: 15000 } );
-		await expect( accordionRow() ).toHaveClass( /(^|\s)active(\s|$)/ );
+		await box.uncheck();
+		await save( page );
+		await expect( box ).not.toBeChecked();
+		await expect( classicMenu ).toHaveCount( 0 );
 	} );
 
-	test( 'a forged kit action link without a nonce is rejected', async ( { page } ) => {
-		const plugin = encodeURIComponent( 'wootoolkit-accordions/wootoolkit-accordions.php' );
-		await page.goto( `/wp-admin/admin.php?page=woo-toolkit&action=deactivate&plugin=${ plugin }` );
-		await expect( page.locator( 'body' ) ).toContainText( 'The link you followed has expired' );
+	test( 'the classic kit settings screen loads while a classic kit is on', async ( { page } ) => {
+		await page.goto( TAB );
+		const box = page.locator( 'input[name="wootoolkit_active_kits[empty-cart]"]' );
+		if ( ! ( await box.isChecked() ) ) {
+			await box.check();
+			await save( page );
+		}
+		const response = await page.goto( '/wp-admin/admin.php?page=woo-toolkit-settings' );
+		expect( response?.status() ).toBe( 200 );
+		await expect( page.locator( '.nav-tab-wrapper' ) ).toContainText( 'Empty Cart' );
 	} );
 } );

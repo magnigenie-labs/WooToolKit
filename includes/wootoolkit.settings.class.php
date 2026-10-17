@@ -118,16 +118,14 @@ class WooToolkit_Settings_API {
      */
     function admin_menu() {
 
-        // Checking for active kits
-        $current_kits = get_option( '_woo_active_kits', array() );
+        // Classic kits keep this screen; it lives under the WooCommerce menu since 2.0.
+        if ( \WooToolkit\Plugin::instance()->registry()->has_active_classic() ) {
 
-        if( !empty($current_kits) ) {
-
-            add_submenu_page( 
-                'woo-toolkit', 
-                __( 'Settings', 'wootoolkit' ), 
-                __( 'Settings', 'wootoolkit' ),
-                'manage_options', 
+            add_submenu_page(
+                'woocommerce',
+                __( 'WooToolkit Classic kit settings', 'wootoolkit' ),
+                __( 'WooToolkit Classic', 'wootoolkit' ),
+                'manage_options',
                 'woo-toolkit-settings',
                 array( $this, 'wootoolkit_admin_page' )
             );

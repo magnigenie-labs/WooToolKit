@@ -89,6 +89,13 @@ It contains 10 free kits to start with, to help you address your issues without 
 
 == Changelog ==
 
+= 2.0.0 (in development) =
+* New: Kits are managed under WooCommerce > Settings > WooToolkit, which replaces the old Installed Kits screen.
+* New: Kit framework and registry. WooToolkit declares HPOS and Cart & Checkout block compatibility based on the kits you actually have switched on.
+* Changed: The 1.x kits become "Classic kits" (bug fixes only). Their settings moved to WooCommerce > WooToolkit Classic.
+* Changed: Fresh installs start with no kits switched on. Upgrades from 1.x keep every kit that was on.
+* Changed: WooCommerce is now a required plugin. Without it WooToolkit shows a notice instead of deactivating itself.
+
 = 1.0.3 =
 * Security: Kit activation and bulk actions now require a nonce and the manage_options capability.
 * Security: Fixed a reflected XSS on the Settings screen through the tab parameter.

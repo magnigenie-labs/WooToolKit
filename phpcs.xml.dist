@@ -30,6 +30,17 @@
 		<exclude-pattern>/index\.php$</exclude-pattern>
 	</rule>
 
+	<!-- Capabilities registered by WooCommerce. -->
+	<rule ref="WordPress.WP.Capabilities">
+		<properties>
+			<property name="custom_capabilities" type="array">
+				<element value="manage_woocommerce"/>
+				<element value="edit_products"/>
+				<element value="edit_shop_orders"/>
+			</property>
+		</properties>
+	</rule>
+
 	<rule ref="WordPress.WP.I18n">
 		<properties>
 			<property name="text_domain" type="array">

@@ -9,7 +9,6 @@ parameters:
 		- wootoolkit.php
 		- includes
 		- kits
-		- templates
 		- src
 	scanFiles:
 		- vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php
