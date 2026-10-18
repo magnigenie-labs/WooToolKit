@@ -27,6 +27,22 @@ if ( getenv( 'WP_TESTS_CONFIG' ) ) {
 
 define( 'WP_TESTS_PHPUNIT_POLYFILLS_PATH', $wootoolkit_plugin_dir . '/vendor/yoast/phpunit-polyfills' );
 
+// Load WooToolkit classes from this checkout. When vendor/ is a symlink to another checkout's (the
+// parallel VPS runner), Composer's PSR-4 map points at that checkout's src/ and would win.
+spl_autoload_register(
+	static function ( $class_name ) use ( $wootoolkit_plugin_dir ) {
+		if ( 0 !== strpos( $class_name, 'WooToolkit\\' ) ) {
+			return;
+		}
+		$file = $wootoolkit_plugin_dir . '/src/' . str_replace( '\\', '/', substr( $class_name, strlen( 'WooToolkit\\' ) ) ) . '.php';
+		if ( is_readable( $file ) ) {
+			require $file;
+		}
+	},
+	true,
+	true
+);
+
 require_once $wootoolkit_tests_dir . '/includes/functions.php';
 
 $wootoolkit_wc_file = getenv( 'WC_PLUGIN_FILE' );
@@ -49,6 +65,7 @@ tests_add_filter(
 		$wootoolkit_active['wholesale-prices'] = 'yes';
 		$wootoolkit_active['catalog-mode']     = 'yes';
 		$wootoolkit_active['request-a-quote']  = 'yes';
+		$wootoolkit_active['wishlist']         = 'yes';
 		update_option( 'wootoolkit_active_kits', $wootoolkit_active );
 		// Catalog mode is on, but only for products ticked one by one, so other tests see a normal store.
 		// Tests change the scope inside their own (rolled back) transaction.

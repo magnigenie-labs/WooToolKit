@@ -21,6 +21,21 @@ This file is for developers. The WordPress.org listing lives in `readme.txt`.
 - `includes/wootoolkit.settings.class.php`: the settings screen the Classic kits still use (WooCommerce > WooToolkit Classic).
 - Add-ons register kits with `do_action( 'wootoolkit_register_kits', $registry )`. Active kits are stored in the `wootoolkit_active_kits` option as id => `yes`/`no`.
 
+## Wishlist kit hooks
+
+The Wishlist kit (`src/Kits/Wishlist/`) is built to be extended (the Wishlist Pro kit uses only these).
+
+**Storage API** (`WooToolkit\Kits\Wishlist\Store`, lists are private `wtk_wishlist` posts; `Owner::current()`, `Owner::user( $id )`, `Owner::guest( $token )`):
+`lists( $owner )`, `default_list( $owner, $create )`, `create_list( $owner, $title )`, `owns( $owner, $list_id )`, `items( $list_id )`, `add_item( $list_id, $product_id, $variation_id )`, `remove_item( $list_id, $key )`, `remove_product( $owner, $product_id, $variation_id, $list_id )`, `delete_list( $list_id )`, `share_url( $list_id )`, `lists_with( $product_id, $after_id, $limit, $users_only )`, `count_lists_with( $product_id )`. Items: key `"<product_id>-<variation_id>"` => `product_id`, `variation_id`, `added` (timestamp), `price` (when added). Each list also has one `_wtk_wishlist_product` meta row per product, for meta queries and counts.
+
+**REST** (`wootoolkit/v1`): `GET /wishlist`, `POST /wishlist/items` (`product_id`, `variation_id`, `list_id`), `DELETE /wishlist/items/<product_id>` (`variation_id`, `list_id`). Logged-in visitors authenticate with the REST nonce, guests with their HttpOnly token cookie; `list_id` must be the caller's own list (else 404).
+
+**Actions:** `wootoolkit_wishlist_item_added` ( `$list_id, $key, $item` ), `wootoolkit_wishlist_item_removed` ( `$list_id, $key, $item` ), `wootoolkit_wishlist_list_created` ( `$list_id, $owner` ), `wootoolkit_wishlist_list_deleted` ( `$list_id` ), `wootoolkit_wishlist_merged` ( `$list_id, $user_id, $guest_list_ids` ), and in the template `wootoolkit_wishlist_before_table` / `wootoolkit_wishlist_after_table` ( `$args` ) and `wootoolkit_wishlist_row_actions` ( `$row, $args` ).
+
+**Filters:** `wootoolkit_wishlist_max_items` (100 per list), `wootoolkit_wishlist_max_lists` (1 per owner), `wootoolkit_wishlist_default_list`, `wootoolkit_wishlist_current_list` (the list the page shows), `wootoolkit_wishlist_can_add` (return a `WP_Error` to refuse), `wootoolkit_wishlist_is_shared`, `wootoolkit_wishlist_template_data`, `wootoolkit_wishlist_row_data`, `wootoolkit_wishlist_button_html` (must stay free of per-visitor state), `wootoolkit_wishlist_rest_state`, `wootoolkit_wishlist_script_config`, `wootoolkit_wishlist_guest_hourly_limit` (20 new guest lists per IP per hour), `wootoolkit_wishlist_client_ip`, `wootoolkit_wishlist_cookie_options`, `wootoolkit_wishlist_redirect`.
+
+The storefront script fires a `wootoolkit-wishlist-updated` DOM event (detail: the REST state) and exposes `window.wootoolkitWishlistApi.request( method, path, body )`.
+
 ## Requirements
 
 PHP 7.4+, Composer 2, Node 20+ and Docker. wp-env needs Docker.
