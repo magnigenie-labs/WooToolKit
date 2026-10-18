@@ -256,7 +256,8 @@ final class Data {
 			}
 			$rows[] = array(
 				'label'  => rtrim( self::plain( (string) $total['label'] ), ':' ),
-				'value'  => self::plain( (string) $total['value'] ),
+				// After a refund the total is "<del>old</del> <ins>new</ins>": keep the new one.
+				'value'  => self::plain( (string) preg_replace( '#<del\b[^>]*>.*?</del>#is', '', (string) $total['value'] ) ),
 				'strong' => 'order_total' === $key,
 			);
 		}

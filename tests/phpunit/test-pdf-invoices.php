@@ -179,6 +179,21 @@ class Test_Pdf_Invoices extends WP_UnitTestCase {
 		$this->assertStringContainsString( '12.34', $page );
 	}
 
+	public function test_after_a_refund_the_total_shows_only_the_new_amount() {
+		$order = $this->order();
+		wc_create_refund(
+			array(
+				'order_id' => $order->get_id(),
+				'amount'   => 5,
+			)
+		);
+		$order  = wc_get_order( $order->get_id() );
+		$totals = Documents::data( 'invoice', $order )['totals'];
+		$last   = end( $totals );
+		$this->assertTrue( $last['strong'] );
+		$this->assertSame( WooToolkit\Kits\PdfInvoices\Data::money( (float) $order->get_total() - 5, array( 'currency' => $order->get_currency() ) ), $last['value'] );
+	}
+
 	public function test_a_long_order_continues_on_new_pages_under_a_repeated_table_header() {
 		$order = $this->order( array( 'items' => 45 ) );
 		$pdf   = Documents::render(
