@@ -69,3 +69,11 @@
 	.wootoolkit-wishlist .shop_table tr { display: block; padding: 0.75em 0; border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
 	.wootoolkit-wishlist .shop_table td { display: block; padding: 0.25em 0; }
 }
+
+/* Block themes give buttons wide padding; keep the table's buttons on one line and compact. */
+.wootoolkit-wishlist-table .product-add-to-cart .button {
+	white-space: nowrap;
+	padding: 0.6em 1.1em;
+	font-size: 0.9em;
+	line-height: 1.3;
+}
