@@ -171,7 +171,7 @@
 	}
 
 	$( document )
-		.on( 'click', '.wootoolkit-swatches .wootoolkit-swatch', function ( event ) {
+		.on( 'click', '.wootoolkit-swatches-wrap .wootoolkit-swatch', function ( event ) {
 			event.preventDefault();
 			choose( $( this ).closest( '.wootoolkit-swatches' ), this.getAttribute( 'data-value' ) );
 			this.focus();
