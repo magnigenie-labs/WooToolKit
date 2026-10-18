@@ -19,6 +19,14 @@ defined( 'ABSPATH' ) || exit;
  */
 final class Frontend {
 
+	/**
+	 * Products whose heart a product block printed and the classic loop hook has not yet skipped.
+	 *
+	 * @var array<int, bool>
+	 */
+	private static $block_done = array();
+
+
 	const NONCE      = 'wootoolkit_wishlist';
 	const ADD_PARAM  = 'wootoolkit_wishlist_add';
 	const LIST_PARAM = 'wootoolkit_wishlist_list';
@@ -335,6 +343,12 @@ final class Frontend {
 	 */
 	public static function loop_button(): void {
 		global $product;
+		if ( $product instanceof \WC_Product && isset( self::$block_done[ $product->get_id() ] ) ) {
+			// Block templates also run this hook after each product (WooCommerce's compatibility
+			// layer), right after the product's blocks, which already printed the heart.
+			unset( self::$block_done[ $product->get_id() ] );
+			return;
+		}
 		if ( Settings::in_loops() && $product instanceof \WC_Product ) {
 			echo self::button( $product, 'loop' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in button().
 		}
@@ -354,7 +368,11 @@ final class Frontend {
 			return $content;
 		}
 		$product = self::block_product( $instance );
-		return $product ? $content . self::button( $product, 'loop' ) : $content;
+		if ( ! $product ) {
+			return $content;
+		}
+		self::$block_done[ $product->get_id() ] = true;
+		return $content . self::button( $product, 'loop' );
 	}
 
 	/**

@@ -522,4 +522,25 @@ class Test_Wishlist extends WP_UnitTestCase {
 		WooToolkit\Kits\Wishlist\Maintenance::unschedule();
 		$this->assertNull( WC()->queue()->get_next( WooToolkit\Kits\Wishlist\Maintenance::HOOK, array(), WooToolkit\Kits\Wishlist\Maintenance::GROUP ) );
 	}
+
+	public function test_block_templates_do_not_print_the_loop_heart_twice() {
+		$product = wc_get_product( $this->product() );
+		$parsed  = array(
+			'blockName'    => 'woocommerce/product-button',
+			'attrs'        => array(),
+			'innerBlocks'  => array(),
+			'innerHTML'    => '',
+			'innerContent' => array(),
+		);
+		$block   = WooToolkit\Kits\Wishlist\Frontend::render_loop_block( '<button></button>', $parsed, new WP_Block( $parsed, array( 'postId' => $product->get_id() ) ) );
+		$this->assertStringContainsString( 'wootoolkit-wishlist-button', $block );
+
+		$GLOBALS['product'] = $product; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+		ob_start();
+		do_action( 'woocommerce_after_shop_loop_item' );
+		$this->assertStringNotContainsString( 'wootoolkit-wishlist-button', (string) ob_get_clean(), 'The compatibility layer run is skipped.' );
+		ob_start();
+		do_action( 'woocommerce_after_shop_loop_item' );
+		$this->assertStringContainsString( 'wootoolkit-wishlist-button', (string) ob_get_clean(), 'A classic loop still gets it.' );
+	}
 }
