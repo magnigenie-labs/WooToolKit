@@ -214,6 +214,11 @@ final class Pricing {
 	 * @return mixed
 	 */
 	public static function filter_price( $price, $product ) {
+		// A price set on this object at runtime (cart kits calling set_price(), e.g. tiered or add-on
+		// pricing that already started from the wholesale price) wins over the stored wholesale price.
+		if ( $product instanceof \WC_Product && array_key_exists( 'price', $product->get_changes() ) ) {
+			return $price;
+		}
 		$wholesale = self::applies() && $product instanceof \WC_Product ? self::wholesale_price( $product ) : null;
 		return null === $wholesale ? $price : wc_format_decimal( $wholesale );
 	}

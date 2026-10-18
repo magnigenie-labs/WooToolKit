@@ -252,4 +252,17 @@ class Test_Wholesale_Prices extends WP_UnitTestCase {
 		$this->as_user( $this->retail_user );
 		$this->assertSame( '<span>Sale!</span>', apply_filters( 'woocommerce_sale_flash', '<span>Sale!</span>', null, wc_get_product( $id ) ) );
 	}
+
+	public function test_a_price_set_at_runtime_wins_over_the_wholesale_price() {
+		$id = $this->product( '100', '70' );
+		$this->as_user( $this->wholesale_user );
+		wc_load_cart();
+		WC()->cart->empty_cart();
+		WC()->cart->add_to_cart( $id, 1 );
+		$item = current( WC()->cart->get_cart() );
+		$this->assertSame( '70', $item['data']->get_price(), 'Cart items start at the wholesale price.' );
+		$item['data']->set_price( 63 );
+		$this->assertEquals( 63, (float) $item['data']->get_price() );
+		WC()->cart->empty_cart();
+	}
 }

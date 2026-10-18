@@ -106,6 +106,8 @@ final class WholesalePricesKit implements Kit {
 	public function boot(): void {
 		Customer::register_role();
 		add_action( 'set_user_role', array( Customer::class, 'flush_cache' ) );
+		add_action( 'add_user_role', array( Customer::class, 'flush_cache' ) );
+		add_action( 'remove_user_role', array( Customer::class, 'flush_cache' ) );
 		add_action( 'woocommerce_update_options_wootoolkit_' . $this->id(), array( Pricing::class, 'flush_cache' ) );
 		Pricing::hooks();
 		ProductFields::hooks();
