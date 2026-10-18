@@ -20,6 +20,21 @@ if ( ! file_exists( $wootoolkit_tests_dir . '/includes/functions.php' ) ) {
 
 $wootoolkit_plugin_dir = dirname( __DIR__, 2 );
 
+// Load WooToolkit classes from this checkout's src/ first: the Composer autoloader that runs PHPUnit may
+// belong to another checkout (a shared vendor directory), and would otherwise load that copy's classes.
+spl_autoload_register(
+	static function ( $class_name ) use ( $wootoolkit_plugin_dir ) {
+		if ( 0 === strpos( $class_name, 'WooToolkit\\' ) ) {
+			$file = $wootoolkit_plugin_dir . '/src/' . str_replace( '\\', '/', substr( $class_name, strlen( 'WooToolkit\\' ) ) ) . '.php';
+			if ( is_readable( $file ) ) {
+				require $file;
+			}
+		}
+	},
+	true,
+	true
+);
+
 // Optional per-run config (own table prefix), so parallel runs on one database don't collide.
 if ( getenv( 'WP_TESTS_CONFIG' ) ) {
 	define( 'WP_TESTS_CONFIG_FILE_PATH', getenv( 'WP_TESTS_CONFIG' ) );
@@ -49,6 +64,7 @@ tests_add_filter(
 		$wootoolkit_active['wholesale-prices'] = 'yes';
 		$wootoolkit_active['catalog-mode']     = 'yes';
 		$wootoolkit_active['request-a-quote']  = 'yes';
+		$wootoolkit_active['checkout-fields']  = 'yes';
 		update_option( 'wootoolkit_active_kits', $wootoolkit_active );
 		// Catalog mode is on, but only for products ticked one by one, so other tests see a normal store.
 		// Tests change the scope inside their own (rolled back) transaction.

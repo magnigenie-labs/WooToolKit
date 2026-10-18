@@ -1,0 +1,13 @@
+.wtk-cf { max-width: 1100px; }
+.wtk-cf__table { border-collapse: collapse; }
+.wtk-cf__table th, .wtk-cf__table td { vertical-align: middle; padding: 8px; }
+.wtk-cf__table input[type="text"], .wtk-cf__table select, .wtk-cf__table textarea { width: 100%; max-width: none; }
+.wtk-cf__narrow { width: 1%; white-space: nowrap; text-align: center; }
+.wtk-cf__core tr:nth-child(odd) td { background: #f6f7f7; }
+.wtk-cf__field { border-top: 2px solid #c3c4c7; }
+.wtk-cf__details td { padding-top: 0; }
+.wtk-cf__details p { margin: 0 0 8px; }
+.wtk-cf__details label { display: block; font-weight: 600; margin-bottom: 4px; }
+.wtk-cf__details:empty, .wtk-cf__details td:empty { padding: 0; }
+.wtk-cf__actions { display: flex; gap: 16px; align-items: center; }
+.wtk-cf [hidden] { display: none !important; }
