@@ -83,6 +83,7 @@ final class Plugin {
 		$this->registry->register( new Kits\VariationSwatches\VariationSwatchesKit() );
 		$this->registry->register( new Kits\Wishlist\WishlistKit() );
 		$this->registry->register( new Kits\CheckoutFields\CheckoutFieldsKit() );
+		$this->registry->register( new Kits\PdfInvoices\PdfInvoicesKit() );
 
 		foreach ( self::classic_kits() as $file => $hpos ) {
 			$this->registry->register( new ClassicKit( WOOTOOLKIT_PATH . 'kits/' . $file, $hpos ) );

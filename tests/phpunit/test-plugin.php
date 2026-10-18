@@ -20,10 +20,13 @@ class Test_Plugin extends WP_UnitTestCase {
 
 	public function test_the_2x_kits_are_registered_first() {
 		// Every 2.x kit comes before the Classic kits.
-		$two = array( 'catalog-mode', 'checkout-fields', 'request-a-quote', 'variation-swatches', 'wholesale-prices', 'wishlist' );
+		$two = array( 'catalog-mode', 'checkout-fields', 'pdf-invoices', 'request-a-quote', 'variation-swatches', 'wholesale-prices', 'wishlist' );
 		$ids = array_slice( array_keys( Plugin::instance()->registry()->all() ), 0, count( $two ) );
 		sort( $ids );
 		$this->assertSame( $two, $ids );
+		foreach ( $two as $id ) {
+			$this->assertFalse( Plugin::instance()->registry()->get( $id )->is_classic() );
+		}
 	}
 
 	public function test_the_nine_classic_kits_are_registered_with_stable_ids() {

@@ -52,6 +52,7 @@ tests_add_filter(
 		$wootoolkit_active['variation-swatches'] = 'yes';
 		$wootoolkit_active['wishlist']           = 'yes';
 		$wootoolkit_active['checkout-fields']    = 'yes';
+		$wootoolkit_active['pdf-invoices']       = 'yes';
 		update_option( 'wootoolkit_active_kits', $wootoolkit_active );
 		// Catalog mode is on, but only for products ticked one by one, so other tests see a normal store.
 		// Tests change the scope inside their own (rolled back) transaction.
