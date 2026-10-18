@@ -37,7 +37,9 @@ spl_autoload_register(
 		if ( is_readable( $file ) ) {
 			require $file;
 		}
-	}
+	},
+	true,
+	true // First, so this copy's classes win over any other autoloader mapping the same namespace (e.g. a Composer dev autoloader of another checkout).
 );
 
 // Settings screen used by the Classic kits (WooCommerce > WooToolkit Classic).

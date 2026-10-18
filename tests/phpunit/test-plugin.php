@@ -19,7 +19,13 @@ class Test_Plugin extends WP_UnitTestCase {
 	}
 
 	public function test_the_2x_kits_are_registered_first() {
-		$this->assertSame( array( 'catalog-mode', 'request-a-quote', 'wholesale-prices' ), array_slice( array_keys( Plugin::instance()->registry()->all() ), 0, 3 ) );
+		$ids = array_keys( Plugin::instance()->registry()->all() );
+		$new = array( 'catalog-mode', 'pdf-invoices', 'request-a-quote', 'wholesale-prices' );
+		$this->assertSame( $new, array_values( array_intersect( $ids, $new ) ), '2.x kits are sorted by name.' );
+		foreach ( $new as $id ) {
+			$this->assertFalse( Plugin::instance()->registry()->get( $id )->is_classic() );
+			$this->assertLessThan( count( $ids ) - 9, array_search( $id, $ids, true ), "{$id} comes before the Classic kits." );
+		}
 	}
 
 	public function test_the_nine_classic_kits_are_registered_with_stable_ids() {
