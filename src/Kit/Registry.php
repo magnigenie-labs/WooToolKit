@@ -119,10 +119,32 @@ final class Registry {
 	}
 
 	/**
-	 * Boots each active kit once.
+	 * Kits a kit needs that are not switched on (empty when it has none, or all are on).
+	 *
+	 * @param Kit $kit Kit.
+	 * @return string[] Kit ids.
+	 */
+	public function missing_requirements( Kit $kit ): array {
+		if ( ! $kit instanceof HasRequirements ) {
+			return array();
+		}
+		$missing = array();
+		foreach ( $kit->requires() as $id ) {
+			if ( ! $this->is_active( (string) $id ) ) {
+				$missing[] = (string) $id;
+			}
+		}
+		return $missing;
+	}
+
+	/**
+	 * Boots each active kit once (skipping kits whose required kits are off).
 	 */
 	public function boot_active(): void {
 		foreach ( $this->active() as $id => $kit ) {
+			if ( $this->missing_requirements( $kit ) ) {
+				continue;
+			}
 			if ( empty( $this->booted[ $id ] ) ) {
 				$this->booted[ $id ] = true;
 				$kit->boot();

@@ -96,4 +96,40 @@ class Test_Registry extends WP_UnitTestCase {
 		WooToolkit\Plugin::instance()->register_kits();
 		$this->assertSame( $kit, WooToolkit\Plugin::instance()->registry()->get( 'addon' ) );
 	}
+
+	public function test_kits_with_missing_requirements_do_not_boot() {
+		$base = new WooToolkit_Test_Kit( 'base' );
+
+		$dependent = new class() extends WooToolkit\Kit\AbstractKit implements WooToolkit\Kit\HasRequirements {
+			public $boots = 0;
+			public function id(): string {
+				return 'dependent';
+			}
+			public function name(): string {
+				return 'Dependent';
+			}
+			public function description(): string {
+				return '';
+			}
+			public function requires(): array {
+				return array( 'base' );
+			}
+			public function boot(): void {
+				++$this->boots;
+			}
+		};
+
+		$registry = $this->registry_with( array( $base, $dependent ) );
+
+		$registry->set_active( array( 'dependent' ) );
+		$this->assertSame( array( 'base' ), $registry->missing_requirements( $dependent ) );
+		$registry->boot_active();
+		$this->assertSame( 0, $dependent->boots );
+
+		$registry->set_active( array( 'dependent', 'base' ) );
+		$this->assertSame( array(), $registry->missing_requirements( $dependent ) );
+		$registry->boot_active();
+		$this->assertSame( 1, $dependent->boots );
+		$this->assertTrue( $dependent->compat()['blocks'], 'AbstractKit defaults to blocks + HPOS support.' );
+	}
 }

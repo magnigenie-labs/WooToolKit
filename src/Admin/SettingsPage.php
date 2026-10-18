@@ -9,6 +9,8 @@ namespace WooToolkit\Admin;
 
 use WooToolkit\Install\Installer;
 use WooToolkit\Kit\ClassicKit;
+use WooToolkit\Kit\HasRequirements;
+use WooToolkit\Kit\ProKit;
 use WooToolkit\Kit\Kit;
 use WooToolkit\Kit\Registry;
 
@@ -120,6 +122,21 @@ class SettingsPage extends \WC_Settings_Page {
 		}
 		if ( $kit->is_classic() ) {
 			$parts[] = '<strong>' . esc_html__( 'Classic kit', 'wootoolkit' ) . '</strong>';
+		}
+		if ( $kit instanceof ProKit ) {
+			$parts[] = '<strong>' . esc_html__( 'Pro kit', 'wootoolkit' ) . '</strong>';
+		}
+		if ( $kit instanceof HasRequirements && $kit->requires() ) {
+			$names = array();
+			foreach ( $kit->requires() as $required ) {
+				$other   = $this->registry->get( (string) $required );
+				$names[] = $other ? $other->name() : (string) $required;
+			}
+			$missing = $this->registry->is_active( $kit->id() ) && $this->registry->missing_requirements( $kit );
+			/* translators: %s: comma-separated kit names */
+			$text = sprintf( __( 'Needs: %s', 'wootoolkit' ), implode( ', ', $names ) );
+
+			$parts[] = $missing ? '<span style="color:#b32d2e">' . esc_html( $text . ' ' . __( '(switch it on, or this kit stays inactive)', 'wootoolkit' ) ) . '</span>' : esc_html( $text );
 		}
 		if ( empty( $compat['blocks'] ) ) {
 			$parts[] = esc_html__( 'Classic cart and checkout only (not the blocks)', 'wootoolkit' );
