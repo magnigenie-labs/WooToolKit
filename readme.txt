@@ -40,6 +40,14 @@ WooToolkit turns a WooCommerce store into a B2B store. Switch on only the kits y
 * Emails for the store ("New quote request") and the customer ("Your quote"), editable under WooCommerce > Settings > Emails.
 * Quotes stay out of WooCommerce Analytics until they are paid.
 
+= Wishlist =
+
+* A heart **Add to wishlist** button on product pages and in the shop, category pages and product blocks, in block and classic themes.
+* Works for guests (their list is kept on the server and merged into their account when they log in) and for logged-in customers.
+* A wishlist page (Wishlist block or `[wootoolkit_wishlist]` shortcode) with image, price, stock, add to cart and remove, plus a **My Account > Wishlist** page.
+* A read-only share link for each wishlist (can be turned off), and a header counter (Wishlist counter block or `[wootoolkit_wishlist_count]`).
+* Cache friendly: pages are printed without anyone's wishlist in them; the hearts and counter are filled in after the page loads.
+
 = Classic kits =
 
 Sites that used WooToolkit 1.x keep their kits as **Classic kits**: Accordions, Continue Shopping, Custom Product Tabs, Empty Cart, Mailchimp, Product Sorting Options, Products Per Page, Sequential Order Numbers and WooCommerce Customizer. They get bug fixes but no new features, and they only work with the classic cart and checkout.
@@ -103,6 +111,7 @@ Quote requests are stored as WooCommerce orders, with the name, email, phone, co
 * New: Wholesale prices kit. A Wholesale customer role with per-product, per-variation, per-category or store-wide wholesale prices, in classic templates, the blocks, the Store API, the cart and checkout.
 * New: Catalog mode kit, replacing the 1.x Catalog kit. Hide prices and stop purchases for everyone, guests, or everyone except wholesale customers, on all products, chosen categories or chosen products. Purchases are refused by WooCommerce itself, so add-to-cart links and the Store API are blocked too. 1.x Catalog settings are carried over.
 * New: Request a quote kit. Shoppers add products to a quote list and send a request; each quote is a WooCommerce order with the status "Quote requested". Edit the prices, choose "Send quote to customer", and the customer pays through WooCommerce's pay-for-order page. Includes a Quote block and [wootoolkit_quote] shortcode, two emails, and an "Add to quote" button for Catalog mode.
+* New: Wishlist kit. A heart on product pages and loops for guests and customers, a wishlist page and block, a My Account page, share links, a header counter and REST endpoints (wootoolkit/v1/wishlist). Guest lists are merged on login and cleaned up after 30 days.
 * Changed: The 1.x kits become "Classic kits" (bug fixes only). Their settings moved to WooCommerce > WooToolkit Classic.
 * Changed: Fresh installs start with no kits switched on. Upgrades from 1.x keep every kit that was on.
 * Changed: WooCommerce is now a required plugin. Without it WooToolkit shows a notice instead of deactivating itself.
