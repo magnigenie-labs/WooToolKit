@@ -20,6 +20,11 @@ if ( ! file_exists( $wootoolkit_tests_dir . '/includes/functions.php' ) ) {
 
 $wootoolkit_plugin_dir = dirname( __DIR__, 2 );
 
+// Optional per-run config (own table prefix), so parallel runs on one database don't collide.
+if ( getenv( 'WP_TESTS_CONFIG' ) ) {
+	define( 'WP_TESTS_CONFIG_FILE_PATH', getenv( 'WP_TESTS_CONFIG' ) );
+}
+
 define( 'WP_TESTS_PHPUNIT_POLYFILLS_PATH', $wootoolkit_plugin_dir . '/vendor/yoast/phpunit-polyfills' );
 
 require_once $wootoolkit_tests_dir . '/includes/functions.php';
@@ -58,6 +63,15 @@ tests_add_filter(
 		WC_Install::install();
 		$GLOBALS['wp_roles'] = null; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 		wp_roles();
+		// WTK_HPOS=1: store orders in the High-Performance Order Storage tables (no sync), so kits are
+		// tested on both order storage types.
+		$wootoolkit_hpos = getenv( 'WTK_HPOS' ) ? 'yes' : 'no';
+		if ( 'yes' === $wootoolkit_hpos ) {
+			wc_get_container()->get( Automattic\WooCommerce\Internal\DataStores\Orders\DataSynchronizer::class )->create_database_tables();
+		}
+		update_option( 'woocommerce_feature_custom_order_tables_enabled', $wootoolkit_hpos );
+		update_option( 'woocommerce_custom_orders_table_enabled', $wootoolkit_hpos );
+		update_option( 'woocommerce_custom_orders_table_data_sync_enabled', 'no' );
 	}
 );
 
