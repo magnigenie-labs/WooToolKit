@@ -180,7 +180,15 @@ final class Pricing {
 		foreach ( wc_get_product_term_ids( $product_id, 'product_cat' ) as $term_id ) {
 			$best = max( $best, self::sanitize_percent( get_term_meta( $term_id, self::TERM_META, true ) ) );
 		}
-		return $best > 0 ? $best : self::sanitize_percent( get_option( self::OPT_DISCOUNT, '' ) );
+		$discount = $best > 0 ? $best : self::sanitize_percent( get_option( self::OPT_DISCOUNT, '' ) );
+
+		/**
+		 * Wholesale discount (%) for a product and the current customer, e.g. per wholesale level.
+		 *
+		 * @param float       $discount Category or store-wide discount.
+		 * @param \WC_Product $product  Product or variation.
+		 */
+		return self::sanitize_percent( apply_filters( 'wootoolkit_wholesale_discount', $discount, $product ) );
 	}
 
 	/**
