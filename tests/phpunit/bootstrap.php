@@ -20,21 +20,6 @@ if ( ! file_exists( $wootoolkit_tests_dir . '/includes/functions.php' ) ) {
 
 $wootoolkit_plugin_dir = dirname( __DIR__, 2 );
 
-// Load WooToolkit classes from this checkout's src/ first: the Composer autoloader that runs PHPUnit may
-// belong to another checkout (a shared vendor directory), and would otherwise load that copy's classes.
-spl_autoload_register(
-	static function ( $class_name ) use ( $wootoolkit_plugin_dir ) {
-		if ( 0 === strpos( $class_name, 'WooToolkit\\' ) ) {
-			$file = $wootoolkit_plugin_dir . '/src/' . str_replace( '\\', '/', substr( $class_name, strlen( 'WooToolkit\\' ) ) ) . '.php';
-			if ( is_readable( $file ) ) {
-				require $file;
-			}
-		}
-	},
-	true,
-	true
-);
-
 // Optional per-run config (own table prefix), so parallel runs on one database don't collide.
 if ( getenv( 'WP_TESTS_CONFIG' ) ) {
 	define( 'WP_TESTS_CONFIG_FILE_PATH', getenv( 'WP_TESTS_CONFIG' ) );

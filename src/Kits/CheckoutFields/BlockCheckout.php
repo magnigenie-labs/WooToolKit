@@ -33,14 +33,15 @@ final class BlockCheckout {
 	private static $registered = array();
 
 	/**
-	 * Hooks the block checkout.
+	 * Hooks the block checkout. Fields are registered late on init, after every kit (add-ons included)
+	 * has booted and added its filters.
 	 */
 	public static function hooks(): void {
-		self::register();
+		add_action( 'init', array( self::class, 'register' ), 20 );
 	}
 
 	/**
-	 * Registers the enabled extra fields (the kit boots on init, after the theme is set up).
+	 * Registers the enabled extra fields.
 	 */
 	public static function register(): void {
 		if ( ! function_exists( 'woocommerce_register_additional_checkout_field' ) ) {
