@@ -49,6 +49,15 @@ final class Maintenance {
 	}
 
 	/**
+	 * Removes the daily clean-up (called in wp-admin while the kit is off).
+	 */
+	public static function unschedule(): void {
+		if ( function_exists( 'WC' ) && WC()->queue()->get_next( self::HOOK, array(), self::GROUP ) ) {
+			WC()->queue()->cancel_all( self::HOOK, array(), self::GROUP );
+		}
+	}
+
+	/**
 	 * The scheduled action.
 	 */
 	public static function run_cleanup(): void {

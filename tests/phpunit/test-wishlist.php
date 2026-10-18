@@ -515,4 +515,11 @@ class Test_Wishlist extends WP_UnitTestCase {
 		$registry->boot_active();
 		$this->assertSame( 0, $kit->boots, 'A switched-off kit is never booted.' );
 	}
+
+	public function test_cleanup_is_unscheduled_while_the_kit_is_off() {
+		WC()->queue()->schedule_recurring( time() + HOUR_IN_SECONDS, DAY_IN_SECONDS, WooToolkit\Kits\Wishlist\Maintenance::HOOK, array(), WooToolkit\Kits\Wishlist\Maintenance::GROUP );
+		$this->assertNotNull( WC()->queue()->get_next( WooToolkit\Kits\Wishlist\Maintenance::HOOK, array(), WooToolkit\Kits\Wishlist\Maintenance::GROUP ) );
+		WooToolkit\Kits\Wishlist\Maintenance::unschedule();
+		$this->assertNull( WC()->queue()->get_next( WooToolkit\Kits\Wishlist\Maintenance::HOOK, array(), WooToolkit\Kits\Wishlist\Maintenance::GROUP ) );
+	}
 }

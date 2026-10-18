@@ -102,6 +102,10 @@ final class Plugin {
 	public function boot_kits(): void {
 		if ( class_exists( 'WooCommerce' ) ) {
 			$this->registry->boot_active();
+			if ( ! $this->registry->is_active( 'wishlist' ) ) {
+				// The Wishlist kit's daily guest clean-up must not outlive the kit.
+				add_action( 'admin_init', array( Kits\Wishlist\Maintenance::class, 'unschedule' ) );
+			}
 		}
 	}
 
