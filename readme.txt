@@ -47,6 +47,12 @@ WooToolkit turns a WooCommerce store into a B2B store. Switch on only the kits y
 * A wishlist page (Wishlist block or `[wootoolkit_wishlist]` shortcode) with image, price, stock, add to cart and remove, plus a **My Account > Wishlist** page.
 * A read-only share link for each wishlist (can be turned off), and a header counter (Wishlist counter block or `[wootoolkit_wishlist_count]`).
 * Cache friendly: pages are printed without anyone's wishlist in them; the hearts and counter are filled in after the page loads.
+= Checkout fields =
+
+* Rename, reorder, hide or require the built-in address fields, and change their placeholders. Edits apply to the billing and shipping address in every country, in the Checkout block and the classic checkout.
+* Add your own fields: text, text area, dropdown, checkbox, email, phone or number, in the contact, address or order section.
+* Extra fields use WooCommerce's own Additional Checkout Fields in the Checkout block, and the same field id and order meta in the classic checkout, so one value shows on the order screen (editable), in order emails and on the customer's order pages.
+* Limits of the Checkout block, shown on the settings screen too: it has no text area (one line instead), no email/phone/number inputs (text inputs, checked when the order is placed) and no placeholders for built-in fields, and the email and order notes fields can only be changed in the classic checkout.
 
 = Classic kits =
 
@@ -66,7 +72,7 @@ Open a topic in the [support forum](https://wordpress.org/support/plugin/wootool
 
 = Does it work with the Cart & Checkout blocks and HPOS? =
 
-Yes. Wholesale prices, Catalog mode and Request a quote support both. WooToolkit tells WooCommerce which features it supports based on the kits you have switched on. The Classic kits support only the classic cart and checkout, and Sequential Order Numbers does not support HPOS.
+Yes. Wholesale prices, Catalog mode, Request a quote and Checkout fields support both. WooToolkit tells WooCommerce which features it supports based on the kits you have switched on. The Classic kits support only the classic cart and checkout, and Sequential Order Numbers does not support HPOS.
 
 = How do I make someone a wholesale customer? =
 
@@ -112,6 +118,7 @@ Quote requests are stored as WooCommerce orders, with the name, email, phone, co
 * New: Catalog mode kit, replacing the 1.x Catalog kit. Hide prices and stop purchases for everyone, guests, or everyone except wholesale customers, on all products, chosen categories or chosen products. Purchases are refused by WooCommerce itself, so add-to-cart links and the Store API are blocked too. 1.x Catalog settings are carried over.
 * New: Request a quote kit. Shoppers add products to a quote list and send a request; each quote is a WooCommerce order with the status "Quote requested". Edit the prices, choose "Send quote to customer", and the customer pays through WooCommerce's pay-for-order page. Includes a Quote block and [wootoolkit_quote] shortcode, two emails, and an "Add to quote" button for Catalog mode.
 * New: Wishlist kit. A heart on product pages and loops for guests and customers, a wishlist page and block, a My Account page, share links, a header counter and REST endpoints (wootoolkit/v1/wishlist). Guest lists are merged on login and cleaned up after 30 days.
+* New: Checkout fields kit. Edit label, placeholder, required, hidden and order of the built-in checkout fields, and add text, text area, dropdown, checkbox, email, phone and number fields to the contact, address or order section of the Checkout block and the classic checkout.
 * Changed: The 1.x kits become "Classic kits" (bug fixes only). Their settings moved to WooCommerce > WooToolkit Classic.
 * Changed: Fresh installs start with no kits switched on. Upgrades from 1.x keep every kit that was on.
 * Changed: WooCommerce is now a required plugin. Without it WooToolkit shows a notice instead of deactivating itself.
