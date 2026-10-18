@@ -26,6 +26,7 @@ final class Display {
 		add_action( 'woocommerce_email_customer_details', array( self::class, 'email_fields' ), 30, 3 );
 		add_action( 'woocommerce_email_customer_address_section', array( self::class, 'email_address_fields' ), 30, 4 );
 		add_action( 'woocommerce_order_details_after_order_table', array( self::class, 'order_details' ), 20 );
+		add_filter( 'wootoolkit_pdf_invoices_extra_fields', array( self::class, 'pdf_fields' ), 10, 3 );
 	}
 
 	/**
@@ -264,5 +265,38 @@ final class Display {
 			echo '<dt>' . esc_html( $label ) . '</dt><dd>' . nl2br( esc_html( $row[3] ) ) . '</dd>';
 		}
 		echo '</dl></section>';
+	}
+
+	/**
+	 * PDF invoices (Pro): custom field values to print on the order's documents. Packing slips get
+	 * them too, since delivery instructions often live in a custom field.
+	 *
+	 * @param mixed     $fields Rows so far.
+	 * @param \WC_Order $order  Order.
+	 * @param string    $type   Document type.
+	 * @return array<int, array{label: string, value: string}>
+	 */
+	public static function pdf_fields( $fields, $order = null, $type = '' ): array {
+		unset( $type );
+		$fields = is_array( $fields ) ? $fields : array();
+		if ( ! $order instanceof \WC_Order ) {
+			return $fields;
+		}
+		$groups = array(
+			'billing'  => __( 'billing', 'wootoolkit' ),
+			'shipping' => __( 'shipping', 'wootoolkit' ),
+		);
+		foreach ( self::values( $order, array( 'contact', 'address', 'order' ) ) as $row ) {
+			$label = (string) $row[0]['label'];
+			if ( isset( $groups[ $row[1] ] ) ) {
+				/* translators: 1: field label, 2: "billing" or "shipping" */
+				$label = sprintf( __( '%1$s (%2$s)', 'wootoolkit' ), $label, $groups[ $row[1] ] );
+			}
+			$fields[] = array(
+				'label' => $label,
+				'value' => (string) $row[3],
+			);
+		}
+		return $fields;
 	}
 }

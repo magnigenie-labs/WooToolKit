@@ -568,6 +568,11 @@ class Test_Checkout_Fields extends WP_UnitTestCase {
 		$shipping = apply_filters( 'woocommerce_admin_shipping_fields', array(), $order, 'edit' );
 		$this->assertSame( 'gold', $shipping['_wc_other/wootoolkit/wrapping']['value'] );
 		$this->assertArrayHasKey( '_wc_shipping/wootoolkit/vat', $shipping, 'Empty fields can be filled in on the order screen.' );
+
+		// PDF invoices (Pro) prints the same values.
+		$pdf = apply_filters( 'wootoolkit_pdf_invoices_extra_fields', array(), $order, 'invoice' );
+		$this->assertContains( 'Wrapping: Gold paper', array_map( array( $this, 'pdf_row' ), $pdf ) );
+		$this->assertContains( 'VAT number (billing): DE1', array_map( array( $this, 'pdf_row' ), $pdf ) );
 	}
 
 	public function test_order_screen_edits_need_the_capability_and_are_cleaned() {
@@ -651,5 +656,9 @@ class Test_Checkout_Fields extends WP_UnitTestCase {
 		$this->assertSame( 'date', Fields::all_custom_fields()[0]['type'] );
 		$this->assertSame( 'date', $this->block_fields()['wootoolkit/delivery']['type'] );
 		remove_all_filters( 'wootoolkit_checkout_fields_types' );
+	}
+
+	public function pdf_row( array $row ): string {
+		return $row['label'] . ': ' . $row['value'];
 	}
 }
