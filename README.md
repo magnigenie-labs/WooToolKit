@@ -21,6 +21,23 @@ This file is for developers. The WordPress.org listing lives in `readme.txt`.
 - `includes/wootoolkit.settings.class.php`: the settings screen the Classic kits still use (WooCommerce > WooToolkit Classic).
 - Add-ons register kits with `do_action( 'wootoolkit_register_kits', $registry )`. Active kits are stored in the `wootoolkit_active_kits` option as id => `yes`/`no`.
 
+## Variation swatches hooks
+
+The Variation swatches kit (`src/Kits/VariationSwatches/`) exposes these for add-ons such as the Pro kit:
+
+| Hook | Type | Arguments | Use |
+| --- | --- | --- | --- |
+| `wootoolkit_variation_swatches_types` | filter | `array $types` (type => label) | Add a swatch type (e.g. `radio`). Unknown types render as text buttons unless `..._item_html` renders them. |
+| `wootoolkit_variation_swatches_attribute_type` | filter | `string $type, string $attribute, ?WC_Product $product` | How an attribute is shown: `select` (dropdown), `color`, `image`, `label` or an added type. Per-product overrides hook here. |
+| `wootoolkit_variation_swatches_term_data` | filter | `array $data, ?WP_Term $term, string $attribute, string $value, ?WC_Product $product` | Colour (`color`, hex) and image (`image_id` or `image_url`) of one option. Re-sanitised after the filter. |
+| `wootoolkit_variation_swatches_item` | filter | `array $item, string $attribute, WC_Product $product, string $type` | One swatch before rendering: add `classes`, `tooltip_html` (kses'd), change label/colour/image. |
+| `wootoolkit_variation_swatches_item_html` | filter | `string $html, array $item, string $type, string $attribute, WC_Product $product` | One swatch's button. Keep `role="radio"` and `data-value`. |
+| `wootoolkit_variation_swatches_html` | filter | `string $out, string $select_html, array $args` | The wrapper (WooCommerce's select + the swatch group). |
+| `wootoolkit_variation_swatches_image_size` | filter | `string $size` | Image size of image swatches (default `thumbnail`). |
+| `wootoolkit_variation_swatches_enqueue_assets` | action | none | Fires after the swatch CSS/JS are enqueued. |
+
+PHP helpers: `Swatches::render_group( $args )` (args as for `wc_dropdown_variation_attribute_options()`), `Swatches::attribute_type()`, `Swatches::term_data()`, `Swatches::item_inner()`, `Swatches::options()` and `Storefront::enqueue_assets()` (load the CSS/JS on any page). JS: `window.wootoolkitSwatchesInit( element )` prepares swatches added after page load.
+
 ## Requirements
 
 PHP 7.4+, Composer 2, Node 20+ and Docker. wp-env needs Docker.
