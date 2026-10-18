@@ -26,7 +26,8 @@ define( 'WOOTOOLKIT_FILE', __FILE__ );
 define( 'WOOTOOLKIT_BASE', plugin_basename( __FILE__ ) );
 define( 'WOOTOOLKIT_PATH', plugin_dir_path( __FILE__ ) );
 
-// PSR-4 autoloader for src/ (no Composer at runtime).
+// PSR-4 autoloader for src/ (no Composer at runtime). Prepended, so this copy's classes win over any
+// other autoloader that maps WooToolkit\ elsewhere (e.g. a Composer vendor/ shared between checkouts).
 spl_autoload_register(
 	static function ( $class_name ) {
 		$prefix = 'WooToolkit\\';
@@ -39,7 +40,7 @@ spl_autoload_register(
 		}
 	},
 	true,
-	true // First, so this copy's classes win over any other autoloader mapping the same namespace (e.g. a Composer dev autoloader of another checkout).
+	true
 );
 
 // Settings screen used by the Classic kits (WooCommerce > WooToolkit Classic).
