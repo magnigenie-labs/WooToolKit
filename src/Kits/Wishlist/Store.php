@@ -183,6 +183,16 @@ final class Store {
 	}
 
 	/**
+	 * A list's name (the raw title: get_the_title() would add "Private:").
+	 *
+	 * @param int $list_id List id.
+	 */
+	public static function title( int $list_id ): string {
+		$post = self::get( $list_id );
+		return $post ? (string) $post->post_title : '';
+	}
+
+	/**
 	 * Whether a list belongs to an owner. Guests own a list only with the token it was created for.
 	 *
 	 * @param Owner $owner   Owner.

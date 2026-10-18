@@ -319,6 +319,7 @@ class Test_Wishlist extends WP_UnitTestCase {
 		$_GET['wishlist'] = Store::share_token( $list );
 		$html             = Frontend::render_list( home_url( '/' ) );
 		$this->assertStringContainsString( 'Shared candle', $html );
+		$this->assertStringContainsString( '<h2 class="wootoolkit-wishlist-title">Wishlist</h2>', $html, 'The list name, without "Private:".' );
 		$this->assertStringNotContainsString( 'class="remove"', $html, 'Visitors cannot remove items.' );
 		$this->assertStringNotContainsString( 'wootoolkit-wishlist-share-url', $html );
 		$this->assertStringNotContainsString( Frontend::LIST_PARAM, $html );

@@ -40,7 +40,7 @@ do_action( 'wootoolkit_wishlist_before_table', $template_args );
 	<?php endif; ?>
 <?php else : ?>
 	<?php if ( $read_only && $list ) : ?>
-		<h2 class="wootoolkit-wishlist-title"><?php echo esc_html( get_the_title( $list ) ); ?></h2>
+		<h2 class="wootoolkit-wishlist-title"><?php echo esc_html( \WooToolkit\Kits\Wishlist\Store::title( $list_id ) ); ?></h2>
 	<?php endif; ?>
 	<table class="shop_table shop_table_responsive wootoolkit-wishlist-table">
 		<thead>

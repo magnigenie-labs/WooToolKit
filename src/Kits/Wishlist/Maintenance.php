@@ -150,7 +150,7 @@ final class Maintenance {
 					'data'        => array(
 						array(
 							'name'  => __( 'Name', 'wootoolkit' ),
-							'value' => get_the_title( $list_id ),
+							'value' => Store::title( $list_id ),
 						),
 						array(
 							'name'  => __( 'Products', 'wootoolkit' ),
