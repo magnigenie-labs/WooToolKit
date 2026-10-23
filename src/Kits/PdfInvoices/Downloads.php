@@ -237,7 +237,7 @@ final class Downloads {
 	 */
 	private static function respond( $result ): void {
 		if ( is_wp_error( $result ) ) {
-			wp_die( esc_html( $result->get_error_message() ), esc_html__( 'Document', 'wootoolkit' ), array( 'response' => self::ERROR_STATUS ) );
+			wp_die( esc_html( $result->get_error_message() ), esc_html__( 'Document', 'wootoolkit' ), array( 'response' => (int) self::ERROR_STATUS ) );
 		}
 		try {
 			$pdf = Documents::render( $result );
