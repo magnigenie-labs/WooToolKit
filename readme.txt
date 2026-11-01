@@ -4,7 +4,7 @@ Tags: wholesale, b2b, request a quote, catalog mode, wholesale prices
 Requires at least: 6.0
 Requires PHP: 7.4
 Tested up to: 7.1
-Stable tag: 2.1.0
+Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -126,18 +126,16 @@ Quote requests are stored as WooCommerce orders, with the name, email, phone, co
 
 == Changelog ==
 
-= 2.1.0 =
-* New: Checkout fields kit. Edit label, placeholder, required, hidden and order of the built-in checkout fields, and add text, text area, dropdown, checkbox, email, phone and number fields to the contact, address or order section of the Checkout block and the classic checkout.
-* New: Wishlist kit. A heart on product pages and loops for guests and customers, a wishlist page and block, a My Account page, share links, a header counter and REST endpoints (wootoolkit/v1/wishlist). Guest lists are merged on login and cleaned up after 30 days.
-* New: Variation swatches kit. Colour, image and label swatches for product options on the product page, with greyed-out unavailable combinations and out-of-stock styles.
-* New: PDF invoices & packing slips kit. PDF invoices attached to order emails, sequential invoice numbers, packing slips, and downloads for you and your customers.
-
 = 2.0.0 =
 * New: Kits are managed under WooCommerce > Settings > WooToolkit, which replaces the old Installed Kits screen.
 * New: Kit framework and registry. WooToolkit declares HPOS and Cart & Checkout block compatibility based on the kits you actually have switched on.
 * New: Wholesale prices kit. A Wholesale customer role with per-product, per-variation, per-category or store-wide wholesale prices, in classic templates, the blocks, the Store API, the cart and checkout.
 * New: Catalog mode kit, replacing the 1.x Catalog kit. Hide prices and stop purchases for everyone, guests, or everyone except wholesale customers, on all products, chosen categories or chosen products. Purchases are refused by WooCommerce itself, so add-to-cart links and the Store API are blocked too. 1.x Catalog settings are carried over.
 * New: Request a quote kit. Shoppers add products to a quote list and send a request; each quote is a WooCommerce order with the status "Quote requested". Edit the prices, choose "Send quote to customer", and the customer pays through WooCommerce's pay-for-order page. Includes a Quote block and [wootoolkit_quote] shortcode, two emails, and an "Add to quote" button for Catalog mode.
+* New: Checkout fields kit. Edit label, placeholder, required, hidden and order of the built-in checkout fields, and add text, text area, dropdown, checkbox, email, phone and number fields to the contact, address or order section of the Checkout block and the classic checkout.
+* New: Wishlist kit. A heart on product pages and loops for guests and customers, a wishlist page and block, a My Account page, share links, a header counter and REST endpoints (wootoolkit/v1/wishlist). Guest lists are merged on login and cleaned up after 30 days.
+* New: Variation swatches kit. Colour, image and label swatches for product options on the product page, with greyed-out unavailable combinations and out-of-stock styles.
+* New: PDF invoices & packing slips kit. PDF invoices attached to order emails, sequential invoice numbers, packing slips, and downloads for you and your customers.
 * Changed: The 1.x kits become "Classic kits" (bug fixes only). Their settings moved to WooCommerce > WooToolkit Classic.
 * Changed: Fresh installs start with no kits switched on. Upgrades from 1.x keep every kit that was on.
 * Changed: WooCommerce is now a required plugin. Without it WooToolkit shows a notice instead of deactivating itself.
@@ -172,11 +170,8 @@ Quote requests are stored as WooCommerce orders, with the name, email, phone, co
 
 == Upgrade Notice ==
 
-= 2.1.0 =
-Four new kits: Wishlist, Checkout fields, Variation swatches and PDF invoices. Nothing changes until you switch them on.
-
 = 2.0.0 =
-Major update. Kits move to WooCommerce > Settings > WooToolkit and every 1.x kit you use keeps working as a Classic kit. The 1.x Catalog kit is replaced by the new Catalog mode kit, with your settings carried over. WooCommerce is now required. Please update a staging site first.
+Major update with seven new kits. Every 1.x kit you use keeps working as a Classic kit, and your Catalog settings carry over. WooCommerce is now required. Please update a staging site first.
 
 = 1.0.3 =
 Security release. Please update.
