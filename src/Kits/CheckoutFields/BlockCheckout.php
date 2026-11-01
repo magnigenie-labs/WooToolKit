@@ -94,6 +94,12 @@ final class BlockCheckout {
 		if ( empty( $type['block'] ) || ! Fields::has_value( $field ) ) {
 			return array();
 		}
+		$block_type = (string) $type['block'];
+		$as_text    = ! self::supports_type( $block_type );
+		if ( $as_text ) {
+			// An older WooCommerce: show it as a text field; the value is still checked when the order is placed.
+			$type['block'] = 'text';
+		}
 		$args = array(
 			'id'                         => (string) $field['id'],
 			'label'                      => (string) $field['label'],
@@ -142,6 +148,12 @@ final class BlockCheckout {
 					'title'   => __( 'Numbers only', 'wootoolkit' ),
 				);
 			}
+			if ( $as_text && 'date' === $block_type ) {
+				$attributes = array(
+					'pattern' => '[0-9]{4}-[0-9]{2}-[0-9]{2}',
+					'title'   => __( 'Date as YYYY-MM-DD', 'wootoolkit' ),
+				);
+			}
 			if ( $attributes ) {
 				$args['attributes'] = $attributes;
 			}
@@ -154,5 +166,18 @@ final class BlockCheckout {
 		 * @param array<string, mixed> $field Field.
 		 */
 		return (array) apply_filters( 'wootoolkit_checkout_fields_block_field_args', $args, $field );
+	}
+
+	/**
+	 * Whether this WooCommerce's block checkout accepts a field type. Text, select and checkbox are always
+	 * there; newer types (date, from WooCommerce 11.2) have their own class.
+	 *
+	 * @param string $type Block field type.
+	 */
+	public static function supports_type( string $type ): bool {
+		if ( in_array( $type, array( 'text', 'select', 'checkbox' ), true ) ) {
+			return true;
+		}
+		return class_exists( 'Automattic\\WooCommerce\\Blocks\\Domain\\Services\\CheckoutFieldTypes\\' . ucfirst( $type ) . 'FieldType' );
 	}
 }

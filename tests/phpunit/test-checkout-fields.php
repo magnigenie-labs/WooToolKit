@@ -380,8 +380,10 @@ class Test_Checkout_Fields extends WP_UnitTestCase {
 		$this->assertSame( 15, $data['DE']['locale']['city']['index'], 'Priority is the block checkout\'s index.' );
 
 		$this->assertSame( 'required', CartCheckoutUtils::get_company_field_visibility() );
-		$this->assertTrue( CoreCheckoutFields::get_fields()['company']['required'] );
-		$this->assertFalse( CoreCheckoutFields::get_fields()['company']['hidden'] );
+		if ( class_exists( CoreCheckoutFields::class ) ) { // WooCommerce 11.2+.
+			$this->assertTrue( CoreCheckoutFields::get_fields()['company']['required'] );
+			$this->assertFalse( CoreCheckoutFields::get_fields()['company']['hidden'] );
+		}
 	}
 
 	public function test_extra_fields_are_registered_with_the_block_checkout() {
@@ -654,7 +656,9 @@ class Test_Checkout_Fields extends WP_UnitTestCase {
 			)
 		);
 		$this->assertSame( 'date', Fields::all_custom_fields()[0]['type'] );
-		$this->assertSame( 'date', $this->block_fields()['wootoolkit/delivery']['type'] );
+		// WooCommerce 11.2+ has date fields in the block checkout; older versions get a text field.
+		$expected = WooToolkit\Kits\CheckoutFields\BlockCheckout::supports_type( 'date' ) ? 'date' : 'text';
+		$this->assertSame( $expected, $this->block_fields()['wootoolkit/delivery']['type'] );
 		remove_all_filters( 'wootoolkit_checkout_fields_types' );
 	}
 
