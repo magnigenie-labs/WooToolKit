@@ -508,7 +508,7 @@
 	flex: 1 1 240px;
 }
 
-.wtk-app .wtk-notice a {
+.wtk-app .wtk-notice a:not(.wtk-button) {
 	color: inherit;
 }
 
