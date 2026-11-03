@@ -13,9 +13,15 @@ use WooToolkit\Kit\Registry;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Settings tab, plugin row links and admin notices.
+ * Wires the WooToolkit menu and its pages, the plugin row link, the old-URL redirects and the two
+ * notices WooToolkit shows outside its own pages.
  */
 final class Admin {
+
+	/**
+	 * Option holding the capability needed to manage WooToolkit.
+	 */
+	const CAP_OPTION = 'wootoolkit_manage_cap';
 
 	/**
 	 * Kit registry.
@@ -37,40 +43,83 @@ final class Admin {
 	 * Registers admin hooks.
 	 */
 	public function hooks(): void {
-		add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_settings_page' ) );
 		add_filter( 'plugin_action_links_' . WOOTOOLKIT_BASE, array( $this, 'plugin_action_links' ) );
 		add_action( 'admin_notices', array( $this, 'notices' ) );
+
+		if ( ! class_exists( 'WooCommerce' ) ) {
+			return;
+		}
+
+		$kits     = new KitsPage( $this->registry );
+		$kit      = new KitSettingsPage( $this->registry );
+		$settings = new SettingsPage( $this->registry );
+		$menu     = new Menu( new DashboardPage( $this->registry ), $kits, $kit, $settings, new HelpPage( $this->registry ) );
+
+		$menu->hooks();
+		Screen::hooks();
+		HelpPage::hooks();
+		$kits->hooks();
+		$kit->hooks();
+		$settings->hooks();
+		( new DashboardWidget( $this->registry ) )->hooks();
+		add_action( 'admin_init', array( self::class, 'redirect_legacy' ) );
 	}
 
 	/**
-	 * URL of the WooToolkit settings tab.
-	 *
-	 * @param string $section Section id, '' for the kit list.
+	 * The capability needed to switch kits on or off and change their settings.
+	 * The licence and Import/export always need manage_options.
 	 */
-	public static function settings_url( string $section = '' ): string {
-		$args = array(
-			'page' => 'wc-settings',
-			'tab'  => 'wootoolkit',
-		);
-		if ( '' !== $section ) {
-			$args['section'] = $section;
+	public static function capability(): string {
+		$cap = (string) get_option( self::CAP_OPTION, 'manage_woocommerce' );
+		return in_array( $cap, array( 'manage_woocommerce', 'manage_options' ), true ) ? $cap : 'manage_woocommerce';
+	}
+
+	/**
+	 * URL of the Kits page, or of one kit's settings page.
+	 *
+	 * @param string $kit_id Kit id, '' for the Kits page.
+	 */
+	public static function settings_url( string $kit_id = '' ): string {
+		$args = array( 'page' => 'wootoolkit-kits' );
+		if ( '' !== $kit_id ) {
+			$args['kit'] = $kit_id;
 		}
 		return add_query_arg( $args, admin_url( 'admin.php' ) );
 	}
 
 	/**
-	 * Adds the WooToolkit tab to WooCommerce > Settings.
+	 * Where an old WooCommerce > Settings > WooToolkit URL now lives ('' when the query is not one).
 	 *
-	 * @param array<int, mixed> $pages Settings pages.
-	 * @return array<int, mixed>
+	 * @param array<string, mixed> $query Request query ($_GET).
 	 */
-	public function add_settings_page( $pages ) {
-		$pages[] = new SettingsPage( $this->registry );
-		return $pages;
+	public static function legacy_url( array $query ): string {
+		if ( ! isset( $query['page'], $query['tab'] ) || 'wc-settings' !== $query['page'] || 'wootoolkit' !== $query['tab'] ) {
+			return '';
+		}
+		$section = isset( $query['section'] ) && is_string( $query['section'] ) ? sanitize_key( $query['section'] ) : '';
+		return self::settings_url( $section );
 	}
 
 	/**
-	 * Adds a Settings link to the plugin row.
+	 * Redirects the old settings tab to the new pages (admin_init).
+	 */
+	public static function redirect_legacy(): void {
+		$query = array();
+		foreach ( array( 'page', 'tab', 'section' ) as $key ) {
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only redirect of a page URL.
+			if ( isset( $_GET[ $key ] ) && is_string( $_GET[ $key ] ) ) {
+				$query[ $key ] = sanitize_key( wp_unslash( $_GET[ $key ] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			}
+		}
+		$url = self::legacy_url( $query );
+		if ( '' !== $url && ! wp_doing_ajax() ) {
+			wp_safe_redirect( $url );
+			exit;
+		}
+	}
+
+	/**
+	 * Adds a Settings link (to the Kits page) to the plugin row.
 	 *
 	 * @param array<string|int, string> $links Plugin action links.
 	 * @return array<string|int, string>
@@ -83,7 +132,7 @@ final class Admin {
 	}
 
 	/**
-	 * Missing-WooCommerce and upgraded-from-1.x notices.
+	 * Missing-WooCommerce and upgraded-from-1.x notices (WooToolkit's own pages hide every notice).
 	 */
 	public function notices(): void {
 		if ( ! class_exists( 'WooCommerce' ) ) {
@@ -93,20 +142,15 @@ final class Admin {
 			return;
 		}
 
-		if ( 'yes' !== get_option( Installer::UPGRADE_NOTICE_OPTION ) || ! current_user_can( 'manage_woocommerce' ) ) {
+		if ( 'yes' !== get_option( Installer::UPGRADE_NOTICE_OPTION ) || ! current_user_can( self::capability() ) || Screen::is_wootoolkit_screen() ) {
 			return;
-		}
-
-		$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
-		if ( $screen && 'woocommerce_page_wc-settings' === $screen->id ) {
-			return; // The settings tab clears the notice itself.
 		}
 
 		printf(
 			'<div class="notice notice-info"><p>%1$s <a href="%2$s">%3$s</a></p></div>',
-			esc_html__( 'WooToolkit 2.0: your kits and their settings have moved to WooCommerce > Settings > WooToolkit. Everything you had switched on is still on.', 'wootoolkit' ),
-			esc_url( self::settings_url() ),
-			esc_html__( 'Open WooToolkit settings', 'wootoolkit' )
+			esc_html__( 'WooToolkit 2.0: your kits and their settings have moved to the new WooToolkit menu. Everything you had switched on is still on.', 'wootoolkit' ),
+			esc_url( admin_url( 'admin.php?page=wootoolkit' ) ),
+			esc_html__( 'Open WooToolkit', 'wootoolkit' )
 		);
 	}
 }

@@ -107,4 +107,17 @@ final class Support {
 		}
 		return false;
 	}
+
+	/**
+	 * Writes to WooCommerce's log (source "wootoolkit") while Settings > Advanced > Debug log is on.
+	 *
+	 * @param string $message Message.
+	 * @param string $level   PSR-3 level, e.g. debug, info, warning, error.
+	 */
+	public static function log( string $message, string $level = 'debug' ): void {
+		if ( 'yes' !== get_option( 'wootoolkit_debug_log', 'no' ) || ! function_exists( 'wc_get_logger' ) ) {
+			return;
+		}
+		wc_get_logger()->log( $level, $message, array( 'source' => 'wootoolkit' ) );
+	}
 }

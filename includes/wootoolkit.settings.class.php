@@ -120,11 +120,12 @@ class WooToolkit_Settings_API {
      */
     function admin_menu() {
 
-        // Classic kits keep this screen; it lives under the WooCommerce menu since 2.0.
+        // Classic kits keep this screen. Since 2.0 it is a hidden page (no menu entry), linked from
+        // WooToolkit > Settings > Classic kits and from each Classic kit's card.
         if ( \WooToolkit\Plugin::instance()->registry()->has_active_classic() ) {
 
             add_submenu_page(
-                'woocommerce',
+                '',
                 __( 'WooToolkit Classic kit settings', 'wootoolkit' ),
                 __( 'WooToolkit Classic', 'wootoolkit' ),
                 'manage_options',
@@ -162,6 +163,8 @@ class WooToolkit_Settings_API {
     function wootoolkit_admin_page() {
         
         echo '<div class="wrap">';
+        echo '<h1>' . esc_html__( 'WooToolkit Classic kit settings', 'wootoolkit' ) . '</h1>';
+        echo '<p><a href="' . esc_url( admin_url( 'admin.php?page=wootoolkit-kits' ) ) . '">' . esc_html__( '&larr; Back to WooToolkit kits', 'wootoolkit' ) . '</a></p>';
 
         $this->show_navigation();
         $this->show_forms();
