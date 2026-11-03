@@ -17,7 +17,7 @@ const tall = async ( page ) => page.setViewportSize( { width: 1280, height: 1800
 
 test( '1 kits screen', async ( { page } ) => {
 	await tall( page );
-	await page.goto( '/wp-admin/admin.php?page=wc-settings&tab=wootoolkit' );
+	await page.goto( '/wp-admin/admin.php?page=wootoolkit-kits' );
 	await page.locator( '#wpbody-content' ).screenshot( { path: shot( 1 ) } );
 } );
 
@@ -42,7 +42,7 @@ test( '3 wholesale fields', async ( { page } ) => {
 
 test( '4 catalog settings', async ( { page } ) => {
 	await tall( page );
-	await page.goto( '/wp-admin/admin.php?page=wc-settings&tab=wootoolkit&section=catalog-mode' );
+	await page.goto( '/wp-admin/admin.php?page=wootoolkit-kits&kit=catalog-mode' );
 	await page.locator( '#wpbody-content' ).screenshot( { path: shot( 4 ) } );
 } );
 
