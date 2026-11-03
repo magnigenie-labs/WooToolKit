@@ -341,10 +341,18 @@ final class DashboardPage {
 			<section class="wtk-card wtk-section" aria-labelledby="wtk-quick-title">
 				<h2 class="wtk-h2" id="wtk-quick-title"><?php esc_html_e( 'Kit settings', 'wootoolkit' ); ?></h2>
 				<ul class="wtk-links">
-					<?php foreach ( $active as $id => $kit ) : ?>
+					<?php foreach ( array_slice( $active, 0, 6, true ) as $id => $kit ) : ?>
 						<li><a href="<?php echo esc_url( Admin::settings_url( (string) $id ) ); ?>"><?php echo esc_html( $kit->name() ); ?></a></li>
 					<?php endforeach; ?>
 				</ul>
+				<?php if ( count( $active ) > 6 ) : ?>
+					<a class="wtk-muted wtk-small" href="<?php echo esc_url( add_query_arg( 'view', 'on', Admin::settings_url() ) ); ?>">
+						<?php
+						/* translators: %d: number of kits that are switched on */
+						echo esc_html( sprintf( _n( 'All %d kit that is on', 'All %d kits that are on', count( $active ), 'wootoolkit' ), count( $active ) ) );
+						?>
+					</a>
+				<?php endif; ?>
 			</section>
 		<?php endif; ?>
 		<section class="wtk-card wtk-section wtk-section--dark" aria-labelledby="wtk-custom-title">

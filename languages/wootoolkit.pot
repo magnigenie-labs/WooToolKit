@@ -3,13 +3,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: B2B, Wholesale Prices & Request a Quote for WooCommerce – WooToolkit 2.0.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wootoolkit/\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wootoolkit\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-17T17:03:51+02:00\n"
+"POT-Creation-Date: 2026-11-03T16:13:24+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: wootoolkit\n"
@@ -39,15 +39,24 @@ msgstr ""
 msgid "https://www.magnigenie.com/"
 msgstr ""
 
-#: includes/wootoolkit.settings.class.php:126
+#: includes/wootoolkit.settings.class.php:129
+#: includes/wootoolkit.settings.class.php:166
 msgid "WooToolkit Classic kit settings"
 msgstr ""
 
-#: includes/wootoolkit.settings.class.php:127
+#: includes/wootoolkit.settings.class.php:130
 msgid "WooToolkit Classic"
 msgstr ""
 
-#: includes/wootoolkit.settings.class.php:544
+#: includes/wootoolkit.settings.class.php:167
+msgid "&larr; Back to WooToolkit kits"
+msgstr ""
+
+#: includes/wootoolkit.settings.class.php:389
+msgid "Choose File"
+msgstr ""
+
+#: includes/wootoolkit.settings.class.php:577
 msgid "No kit settings available. Activate a kit first."
 msgstr ""
 
@@ -55,16 +64,46 @@ msgstr ""
 msgid "Accordion"
 msgstr ""
 
-#: kits/wootoolkit-continue-shopping/includes/admin/class-admin-options.php:43
-msgid "Continue Shopping"
-msgstr ""
-
+#: kits/wootoolkit-accordions/includes/admin/accordion-admin-settings.php:59
 #: kits/wootoolkit-continue-shopping/includes/admin/class-admin-options.php:58
 #: kits/wootoolkit-empty-cart/includes/admin/empty-cart-admin.php:59
+#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:59
 #: kits/wootoolkit-product-sorting-options/includes/class-admin-settings.php:60
 #: kits/wootoolkit-products-per-page/includes/admin/products-per-page-admin-settings.php:64
 #: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:51
 msgid "Enable"
+msgstr ""
+
+#: kits/wootoolkit-accordions/includes/admin/accordion-admin-settings.php:60
+msgid "Enable Accordions."
+msgstr ""
+
+#: kits/wootoolkit-accordions/includes/admin/accordion-admin-settings.php:66
+msgid "Accordion background color"
+msgstr ""
+
+#: kits/wootoolkit-accordions/includes/admin/accordion-admin-settings.php:72
+msgid "Accordion active background"
+msgstr ""
+
+#: kits/wootoolkit-accordions/includes/admin/accordion-admin-settings.php:78
+msgid "Accordion title color"
+msgstr ""
+
+#: kits/wootoolkit-accordions/includes/admin/accordion-admin-settings.php:84
+msgid "Accordion active title color"
+msgstr ""
+
+#: kits/wootoolkit-accordions/includes/admin/accordion-admin-settings.php:90
+msgid "Accordion arrow color"
+msgstr ""
+
+#: kits/wootoolkit-accordions/includes/admin/accordion-admin-settings.php:98
+msgid "Accordion active arrow color"
+msgstr ""
+
+#: kits/wootoolkit-continue-shopping/includes/admin/class-admin-options.php:43
+msgid "Continue Shopping"
 msgstr ""
 
 #: kits/wootoolkit-continue-shopping/includes/admin/class-admin-options.php:59
@@ -104,23 +143,23 @@ msgstr ""
 msgid "Continue shopping"
 msgstr ""
 
-#: kits/wootoolkit-custom-product-tabs/wootoolkit-custom-product-tabs.php:112
+#: kits/wootoolkit-custom-product-tabs/wootoolkit-custom-product-tabs.php:113
 msgid "Custom Tab"
 msgstr ""
 
-#: kits/wootoolkit-custom-product-tabs/wootoolkit-custom-product-tabs.php:136
+#: kits/wootoolkit-custom-product-tabs/wootoolkit-custom-product-tabs.php:137
 msgid "Tab Title"
 msgstr ""
 
-#: kits/wootoolkit-custom-product-tabs/wootoolkit-custom-product-tabs.php:136
+#: kits/wootoolkit-custom-product-tabs/wootoolkit-custom-product-tabs.php:137
 msgid "Required for tab to be visible"
 msgstr ""
 
-#: kits/wootoolkit-custom-product-tabs/wootoolkit-custom-product-tabs.php:138
+#: kits/wootoolkit-custom-product-tabs/wootoolkit-custom-product-tabs.php:139
 msgid "Content"
 msgstr ""
 
-#: kits/wootoolkit-custom-product-tabs/wootoolkit-custom-product-tabs.php:138
+#: kits/wootoolkit-custom-product-tabs/wootoolkit-custom-product-tabs.php:139
 msgid "HTML and text to display."
 msgstr ""
 
@@ -144,6 +183,64 @@ msgstr ""
 
 #: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:44
 msgid "Mailchimp"
+msgstr ""
+
+#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:60
+msgid "Enable Mailchimp."
+msgstr ""
+
+#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:66
+msgid "Mailchimp API Key"
+msgstr ""
+
+#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:69
+msgid "Enter your mailchimp api key. To find your API Key <a href=\"http://kb.mailchimp.com/accounts/management/about-api-keys\" target=\"_blank\">click here</a>"
+msgstr ""
+
+#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:72
+msgid "Mailchimp list id"
+msgstr ""
+
+#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:75
+msgid "Enter the mailchimp list id you want to use for subscription. To find your List id <a href=\"http://kb.mailchimp.com/lists/managing-subscribers/find-your-list-id\" target=\"_blank\">click here</a>"
+msgstr ""
+
+#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:78
+msgid "Double Opt-In"
+msgstr ""
+
+#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:82
+msgid "If enabled, customers will receive an email prompting them to confirm their subscription to the list above."
+msgstr ""
+
+#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:85
+msgid "Subscribe Customers"
+msgstr ""
+
+#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:89
+msgid "Automatically"
+msgstr ""
+
+#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:90
+msgid "Ask for permission"
+msgstr ""
+
+#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:95
+msgid "Opt-In Field Label"
+msgstr ""
+
+#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:104
+msgid "Opt-In Checkbox Default"
+msgstr ""
+
+#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:109
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:154
+msgid "Checked"
+msgstr ""
+
+#: kits/wootoolkit-mailchimp/includes/admin/mailchimp-admin-settings.php:110
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:155
+msgid "Unchecked"
 msgstr ""
 
 #: kits/wootoolkit-mailchimp/includes/mailchimp-front-end.php:42
@@ -192,6 +289,26 @@ msgstr ""
 
 #: kits/wootoolkit-product-sorting-options/includes/class-admin-settings.php:83
 msgid "On-sale First"
+msgstr ""
+
+#: kits/wootoolkit-product-sorting-options/wootoolkit-product-sorting-options.php:121
+msgid "Sort by name: A to Z"
+msgstr ""
+
+#: kits/wootoolkit-product-sorting-options/wootoolkit-product-sorting-options.php:125
+msgid "Sort by name: Z to A"
+msgstr ""
+
+#: kits/wootoolkit-product-sorting-options/wootoolkit-product-sorting-options.php:129
+msgid "Sort by availability"
+msgstr ""
+
+#: kits/wootoolkit-product-sorting-options/wootoolkit-product-sorting-options.php:133
+msgid "Show sale items first"
+msgstr ""
+
+#: kits/wootoolkit-product-sorting-options/wootoolkit-product-sorting-options.php:137
+msgid "Show featured items first"
 msgstr ""
 
 #: kits/wootoolkit-products-per-page/includes/admin/products-per-page-admin-settings.php:43
@@ -262,12 +379,15 @@ msgstr ""
 msgid "GET"
 msgstr ""
 
-#: kits/wootoolkit-products-per-page/includes/products-per-page-front-end.php:116
+#. translators: %s: number of products, or "All"
+#: kits/wootoolkit-products-per-page/includes/products-per-page-front-end.php:117
 #, php-format
 msgid "%s products per page"
 msgstr ""
 
-#: kits/wootoolkit-products-per-page/includes/products-per-page-front-end.php:117
+#: kits/wootoolkit-products-per-page/includes/products-per-page-front-end.php:118
+#: src/Admin/KitsPage.php:324
+#: src/Admin/KitsPage.php:331
 msgid "All"
 msgstr ""
 
@@ -397,16 +517,12 @@ msgstr ""
 msgid "Changes the message displayed if customers can login at checkout"
 msgstr ""
 
+#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:150
+msgid "Create Account checkbox default"
+msgstr ""
+
 #: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:151
 msgid "Control the default state for the Create Account checkbox"
-msgstr ""
-
-#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:154
-msgid "Checked"
-msgstr ""
-
-#: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:155
-msgid "Unchecked"
 msgstr ""
 
 #: kits/wootoolkit-woo-customizer/includes/class-admin-customizer-settings.php:161
@@ -449,45 +565,1173 @@ msgstr ""
 msgid "Change the default placeholder image by setting this to a valid image URL"
 msgstr ""
 
-#: src/Admin/Admin.php:80
+#: src/Admin/Admin.php:129
+#: src/Admin/KitsPage.php:498
+#: src/Admin/KitsPage.php:500
+#: src/Admin/Menu.php:91
+#: src/Admin/Screen.php:85
+#: src/Admin/Screen.php:418
+#: src/Admin/SettingsPage.php:539
+#: src/Admin/SettingsPage.php:650
 msgid "Settings"
 msgstr ""
 
-#: src/Admin/Admin.php:91
+#: src/Admin/Admin.php:140
 msgid "WooToolkit needs WooCommerce. Install and activate WooCommerce to use its kits."
 msgstr ""
 
-#: src/Admin/Admin.php:107
-msgid "WooToolkit 2.0: your kits and their settings have moved to WooCommerce > Settings > WooToolkit. Everything you had switched on is still on."
+#: src/Admin/Admin.php:151
+msgid "WooToolkit 2.0: your kits and their settings have moved to the new WooToolkit menu. Everything you had switched on is still on."
 msgstr ""
 
-#: src/Admin/Admin.php:109
-msgid "Open WooToolkit settings"
+#: src/Admin/Admin.php:153
+msgid "Open WooToolkit"
 msgstr ""
 
-#: src/Admin/SettingsPage.php:37
+#. translators: %s: names of the kits it needs
+#: src/Admin/DashboardPage.php:57
+#, php-format
+msgid "needs the %s kit."
+msgstr ""
+
+#. translators: %s: kit name
+#: src/Admin/DashboardPage.php:59
+#: src/Admin/KitSettingsPage.php:329
+#, php-format
+msgid "Switch on %s"
+msgstr ""
+
+#. translators: %s: kit name
+#: src/Admin/DashboardPage.php:59
+msgid "Open Kits"
+msgstr ""
+
+#: src/Admin/DashboardPage.php:97
+#: src/Admin/KitsPage.php:591
+msgid "WooToolkit Pro"
+msgstr ""
+
+#. translators: %d: number of Pro kits
+#: src/Admin/DashboardPage.php:99
+#, php-format
+msgid "%d more kits"
+msgstr ""
+
+#: src/Admin/DashboardPage.php:100
+msgid "B2B, loyalty and conversion kits"
+msgstr ""
+
+#: src/Admin/DashboardPage.php:101
+msgid "See the Pro kits"
+msgstr ""
+
+#: src/Admin/DashboardPage.php:108
+msgid "Updates"
+msgstr ""
+
+#: src/Admin/DashboardPage.php:109
+msgid "Everything up to date"
+msgstr ""
+
+#: src/Admin/DashboardPage.php:110
+msgid "Free kits update with the WooToolkit plugin."
+msgstr ""
+
+#: src/Admin/DashboardPage.php:174
+#: src/Admin/HelpPage.php:130
+#: src/Admin/KitSettingsPage.php:192
+#: src/Admin/KitsPage.php:343
+#: src/Admin/SettingsPage.php:529
+msgid "Sorry, you are not allowed to access this page."
+msgstr ""
+
+#: src/Admin/DashboardPage.php:188
+msgid "Your store's kits"
+msgstr ""
+
+#. translators: 1: kits on, 2: number of kits
+#: src/Admin/DashboardPage.php:194
+#, php-format
+msgid "%1$s of %2$s free kits on."
+msgstr ""
+
+#. translators: 1: kits on, 2: number of kits
+#: src/Admin/DashboardPage.php:196
+#, php-format
+msgid "%1$s of %2$s kits on."
+msgstr ""
+
+#: src/Admin/DashboardPage.php:199
+msgid "Every kit you use works with the Cart and Checkout blocks and HPOS."
+msgstr ""
+
+#: src/Admin/DashboardPage.php:199
+msgid "Some kits you use need the classic checkout or posts order storage."
+msgstr ""
+
+#: src/Admin/DashboardPage.php:203
+msgid "Browse kits"
+msgstr ""
+
+#. translators: 1: kits on, 2: registered kits
+#: src/Admin/DashboardPage.php:208
+#: src/Admin/HelpPage.php:78
+msgid "Kits on"
+msgstr ""
+
+#: src/Admin/DashboardPage.php:210
+msgid "Manage kits"
+msgstr ""
+
+#: src/Admin/DashboardPage.php:213
+msgid "Compatibility"
+msgstr ""
+
+#: src/Admin/DashboardPage.php:214
+msgid "Cart and Checkout blocks"
+msgstr ""
+
+#: src/Admin/DashboardPage.php:214
+msgid "Classic checkout only"
+msgstr ""
+
+#: src/Admin/DashboardPage.php:215
+msgid "HPOS order storage"
+msgstr ""
+
+#: src/Admin/DashboardPage.php:215
+msgid "Posts order storage only"
+msgstr ""
+
+#: src/Admin/DashboardPage.php:216
+msgid "What this means"
+msgstr ""
+
+#: src/Admin/DashboardPage.php:238
+#: src/Admin/DashboardWidget.php:54
+msgid "From your kits"
+msgstr ""
+
+#: src/Admin/DashboardPage.php:256
+msgid "Not running"
+msgstr ""
+
+#: src/Admin/DashboardPage.php:257
+msgid "Set up"
+msgstr ""
+
+#: src/Admin/DashboardPage.php:261
+msgid "Needs your attention"
+msgstr ""
+
+#: src/Admin/DashboardPage.php:263
+msgid "Nothing needs your attention. Every kit that is on is running."
+msgstr ""
+
+#: src/Admin/DashboardPage.php:272
+msgid "Fix it"
+msgstr ""
+
+#: src/Admin/DashboardPage.php:289
+#: src/Admin/DashboardWidget.php:63
+msgid "Nothing to report yet. A kit adds a line here when it has something for you."
+msgstr ""
+
+#: src/Admin/DashboardPage.php:325
+msgid "Get started"
+msgstr ""
+
+#: src/Admin/DashboardPage.php:327
+msgid "Install WooToolkit"
+msgstr ""
+
+#: src/Admin/DashboardPage.php:330
+#: src/Admin/DashboardPage.php:332
+msgid "Switch on your first kit"
+msgstr ""
+
+#: src/Admin/DashboardPage.php:335
+msgid "Set it up, then test your checkout"
+msgstr ""
+
+#: src/Admin/DashboardPage.php:337
+msgid "Shown until you have switched on a kit and saved its settings."
+msgstr ""
+
+#: src/Admin/DashboardPage.php:342
+msgid "Kit settings"
+msgstr ""
+
+#. translators: %d: number of kits that are switched on
+#: src/Admin/DashboardPage.php:352
+#, php-format
+msgid "All %d kit that is on"
+msgid_plural "All %d kits that are on"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Admin/DashboardPage.php:359
+msgid "Need a kit we don't have?"
+msgstr ""
+
+#: src/Admin/DashboardPage.php:360
+msgid "Tell us what your store needs. Custom kits start at $500."
+msgstr ""
+
+#: src/Admin/DashboardPage.php:361
+msgid "Request a kit"
+msgstr ""
+
+#: src/Admin/DashboardPage.php:364
+#: src/Admin/Menu.php:92
+#: src/Admin/Screen.php:86
+msgid "Help"
+msgstr ""
+
+#: src/Admin/DashboardPage.php:366
+#: src/Admin/HelpPage.php:199
+msgid "What's new in 2.0"
+msgstr ""
+
+#: src/Admin/DashboardPage.php:367
+msgid "Guides for every kit"
+msgstr ""
+
+#: src/Admin/DashboardPage.php:368
+msgid "Get support"
+msgstr ""
+
+#: src/Admin/DashboardWidget.php:69
+msgid "Open"
+msgstr ""
+
+#: src/Admin/DashboardWidget.php:75
+msgid "Open the WooToolkit dashboard"
+msgstr ""
+
+#: src/Admin/HelpPage.php:55
+msgid "Questions about the free kits are answered on the WordPress.org support forum."
+msgstr ""
+
+#: src/Admin/HelpPage.php:56
+msgid "Open the support forum"
+msgstr ""
+
+#: src/Admin/HelpPage.php:57
+msgid "Need a feature built for your store? Custom kits start at $500; we reply with questions or a quote."
+msgstr ""
+
+#: src/Admin/HelpPage.php:59
+msgid "Request a custom kit"
+msgstr ""
+
+#: src/Admin/HelpPage.php:73
+#: src/Admin/Menu.php:88
+#: src/Admin/Screen.php:137
 msgid "WooToolkit"
 msgstr ""
 
-#: src/Admin/SettingsPage.php:48
-#: src/Admin/SettingsPage.php:67
+#: src/Admin/HelpPage.php:74
+msgid "WooCommerce"
+msgstr ""
+
+#: src/Admin/HelpPage.php:75
+msgid "WordPress"
+msgstr ""
+
+#: src/Admin/HelpPage.php:76
+msgid "PHP"
+msgstr ""
+
+#. translators: 1: kits on, 2: registered kits
+#. translators: 1: step number, 2: number of steps
+#: src/Admin/HelpPage.php:78
+#: src/Admin/Screen.php:411
+#, php-format
+msgid "%1$s of %2$s"
+msgstr ""
+
+#: src/Admin/HelpPage.php:79
+msgid "Order storage"
+msgstr ""
+
+#: src/Admin/HelpPage.php:79
+msgid "HPOS"
+msgstr ""
+
+#: src/Admin/HelpPage.php:79
+msgid "Posts"
+msgstr ""
+
+#: src/Admin/HelpPage.php:80
+msgid "Checkout"
+msgstr ""
+
+#: src/Admin/HelpPage.php:80
+msgid "Block"
+msgstr ""
+
+#: src/Admin/HelpPage.php:80
+#: src/Admin/KitSettingsPage.php:277
+#: src/Admin/KitsPage.php:88
+#: src/Admin/KitsPage.php:431
+msgid "Classic"
+msgstr ""
+
+#: src/Admin/HelpPage.php:83
+msgid "Kits that are on"
+msgstr ""
+
+#: src/Admin/HelpPage.php:107
+msgid "A kit is on but nothing changed on my store."
+msgstr ""
+
+#: src/Admin/HelpPage.php:108
+msgid "Open the kit's settings: most kits do nothing until you choose who or what they apply to. If the kit says it needs another kit, switch that one on too. Clear any page cache afterwards."
+msgstr ""
+
+#: src/Admin/HelpPage.php:111
+msgid "Do kits work with the block checkout?"
+msgstr ""
+
+#: src/Admin/HelpPage.php:112
+msgid "Yes. Every 2.0 kit works with the Cart and Checkout blocks and the classic shortcodes, and with HPOS order storage. Classic kits from 1.x work with the classic checkout only."
+msgstr ""
+
+#: src/Admin/HelpPage.php:115
+msgid "What are Classic kits?"
+msgstr ""
+
+#: src/Admin/HelpPage.php:116
+msgid "The kits from WooToolkit 1.x. Sites that used them keep them, with bug fixes only. Their settings are on their own screen, linked from each Classic kit's card and from Settings › Classic kits."
+msgstr ""
+
+#: src/Admin/HelpPage.php:119
+msgid "Can I move my settings to another site?"
+msgstr ""
+
+#: src/Admin/HelpPage.php:120
+msgid "Yes: Settings › Import and export downloads a settings file you can import on the other site. You see what changes before anything is saved."
+msgstr ""
+
+#: src/Admin/HelpPage.php:154
+msgid "How can we help?"
+msgstr ""
+
+#: src/Admin/HelpPage.php:156
+msgid "Search the guides"
+msgstr ""
+
+#: src/Admin/HelpPage.php:157
+msgid "Search the guides, e.g. wishlist"
+msgstr ""
+
+#: src/Admin/HelpPage.php:158
+msgid "All guides on wootoolkit.com"
+msgstr ""
+
+#: src/Admin/HelpPage.php:165
+msgid "Getting started"
+msgstr ""
+
+#: src/Admin/HelpPage.php:167
+msgid "Switch on a kit"
+msgstr ""
+
+#: src/Admin/HelpPage.php:167
+msgid "On the Kits page"
+msgstr ""
+
+#: src/Admin/HelpPage.php:168
+msgid "Set it up"
+msgstr ""
+
+#: src/Admin/HelpPage.php:168
+msgid "Its Settings link"
+msgstr ""
+
+#: src/Admin/HelpPage.php:169
+msgid "Test your checkout"
+msgstr ""
+
+#: src/Admin/HelpPage.php:169
+msgid "In a private window"
+msgstr ""
+
+#: src/Admin/HelpPage.php:169
+#: src/Admin/KitsPage.php:606
+#: src/Admin/Screen.php:218
+msgid "(opens in a new tab)"
+msgstr ""
+
+#: src/Admin/HelpPage.php:175
+msgid "Guides for your kits"
+msgstr ""
+
+#: src/Admin/HelpPage.php:176
+msgid "Kits that are on come first"
+msgstr ""
+
+#: src/Admin/HelpPage.php:183
+#: src/Admin/Screen.php:422
+msgid "No guide matches that search."
+msgstr ""
+
+#: src/Admin/HelpPage.php:187
+msgid "Common questions"
+msgstr ""
+
+#: src/Admin/HelpPage.php:201
+msgid "Seven kits built for the block checkout and HPOS: Wholesale prices, Catalog mode, Request a quote, Checkout fields, Wishlist, Variation swatches and PDF invoices."
+msgstr ""
+
+#: src/Admin/HelpPage.php:202
+msgid "WooToolkit has its own menu, with a dashboard and a page for every kit."
+msgstr ""
+
+#: src/Admin/HelpPage.php:203
+msgid "Your 1.x kits keep working as Classic kits."
+msgstr ""
+
+#: src/Admin/HelpPage.php:205
+msgid "Full changelog"
+msgstr ""
+
+#: src/Admin/HelpPage.php:210
+msgid "Already bought WooToolkit Pro?"
+msgstr ""
+
+#: src/Admin/HelpPage.php:211
+msgid "Download WooToolkit Pro from your account on wootoolkit.com and install it under Plugins › Add New › Upload Plugin. Then enter your licence key under WooToolkit › Licence, and install your kits from the Kits page."
+msgstr ""
+
+#: src/Admin/HelpPage.php:212
+msgid "Upload a plugin"
+msgstr ""
+
+#: src/Admin/HelpPage.php:219
+msgid "Contact support"
+msgstr ""
+
+#: src/Admin/HelpPage.php:232
+msgid "System details"
+msgstr ""
+
+#: src/Admin/HelpPage.php:244
+msgid "System details as text"
+msgstr ""
+
+#: src/Admin/HelpPage.php:246
+msgid "Copy for support"
+msgstr ""
+
+#: src/Admin/KitSettingsPage.php:169
+msgid "Your settings could not be saved: the link has expired or you are not allowed to change this kit. Go back, reload the page and try again."
+msgstr ""
+
+#: src/Admin/KitSettingsPage.php:170
+msgid "Settings not saved"
+msgstr ""
+
+#: src/Admin/KitSettingsPage.php:210
+msgid "Breadcrumb"
+msgstr ""
+
+#: src/Admin/KitSettingsPage.php:211
+#: src/Admin/KitsPage.php:362
+#: src/Admin/Menu.php:90
+#: src/Admin/Screen.php:84
 msgid "Kits"
 msgstr ""
 
-#: src/Admin/SettingsPage.php:68
-msgid "Switch on the kits your store needs. Each kit is a separate feature; kits you leave off load no code."
+#: src/Admin/KitSettingsPage.php:219
+msgid "Settings saved. Your store uses them straight away."
 msgstr ""
 
-#: src/Admin/SettingsPage.php:122
-msgid "Classic kit"
+#: src/Admin/KitSettingsPage.php:249
+msgid "This kit is not installed"
 msgstr ""
 
-#: src/Admin/SettingsPage.php:125
-msgid "Classic cart and checkout only (not the blocks)"
+#. translators: %s: kit name
+#: src/Admin/KitSettingsPage.php:254
+#, php-format
+msgid "%s is a Pro kit. Its settings appear here once it is installed and switched on."
 msgstr ""
 
-#: src/Admin/SettingsPage.php:128
-msgid "Not compatible with HPOS order storage"
+#: src/Admin/KitSettingsPage.php:256
+msgid "There is no kit with that name on this site. It may have been removed, or the link is wrong."
+msgstr ""
+
+#: src/Admin/KitSettingsPage.php:260
+msgid "Back to Kits"
+msgstr ""
+
+#: src/Admin/KitSettingsPage.php:275
+#: src/Admin/KitsPage.php:429
+#: src/Admin/Screen.php:111
+msgid "Free"
+msgstr ""
+
+#: src/Admin/KitSettingsPage.php:276
+#: src/Admin/KitSettingsPage.php:431
+#: src/Admin/KitsPage.php:430
+msgid "Pro"
+msgstr ""
+
+#. translators: %s: WooToolkit version
+#: src/Admin/KitSettingsPage.php:290
+#, php-format
+msgid "part of WooToolkit %s"
+msgstr ""
+
+#. translators: %s: kit name
+#: src/Admin/KitSettingsPage.php:300
+#, php-format
+msgid "%s guide"
+msgstr ""
+
+#: src/Admin/KitSettingsPage.php:304
+#: src/Admin/KitsPage.php:325
+#: src/Admin/KitsPage.php:332
+#: src/Admin/KitsPage.php:561
+#: src/Admin/Screen.php:392
+#: src/Admin/SettingsPage.php:648
+msgid "On"
+msgstr ""
+
+#: src/Admin/KitSettingsPage.php:304
+#: src/Admin/KitsPage.php:333
+#: src/Admin/KitsPage.php:565
+#: src/Admin/Screen.php:393
+#: src/Admin/SettingsPage.php:648
+msgid "Off"
+msgstr ""
+
+#. translators: %s: kit name
+#: src/Admin/KitSettingsPage.php:322
+#: src/Admin/KitsPage.php:292
+#: src/Admin/Screen.php:399
+#, php-format
+msgid "%s is off."
+msgstr ""
+
+#: src/Admin/KitSettingsPage.php:325
+msgid "Shoppers do not see it and its code does not load. Its settings are kept, so switching it back on brings them back."
+msgstr ""
+
+#: src/Admin/KitSettingsPage.php:345
+msgid "Classic kits keep their own settings screen."
+msgstr ""
+
+#: src/Admin/KitSettingsPage.php:346
+msgid "This kit is from WooToolkit 1.x. It keeps working, with bug fixes only, and only with the classic cart and checkout."
+msgstr ""
+
+#: src/Admin/KitSettingsPage.php:348
+#: src/Admin/Screen.php:417
+msgid "Open its settings"
+msgstr ""
+
+#: src/Admin/KitSettingsPage.php:350
+msgid "It has no settings of its own."
+msgstr ""
+
+#. translators: %s: names of the kits it needs
+#: src/Admin/KitSettingsPage.php:375
+#: src/Admin/KitsPage.php:469
+#: src/Admin/Screen.php:401
+#, php-format
+msgid "Not running: it needs %s."
+msgstr ""
+
+#: src/Admin/KitSettingsPage.php:379
+#: src/Admin/KitsPage.php:472
+msgid "Switch it on"
+msgstr ""
+
+#: src/Admin/KitSettingsPage.php:412
+msgid "This kit has no settings."
+msgstr ""
+
+#: src/Admin/KitSettingsPage.php:413
+msgid "It works as soon as it is on."
+msgstr ""
+
+#. translators: 1: tab kit name, 2: main kit name
+#: src/Admin/KitSettingsPage.php:444
+#, php-format
+msgid "From the %1$s kit. Shown here because it extends %2$s."
+msgstr ""
+
+#: src/Admin/KitSettingsPage.php:453
+#: src/Admin/SettingsPage.php:617
+msgid "Save changes"
+msgstr ""
+
+#: src/Admin/KitSettingsPage.php:454
+msgid "All tabs save together."
+msgstr ""
+
+#: src/Admin/KitSettingsPage.php:454
+msgid "You have unsaved changes."
+msgstr ""
+
+#: src/Admin/KitsPage.php:85
+msgid "B2B"
+msgstr ""
+
+#: src/Admin/KitsPage.php:86
+msgid "Loyalty & gift cards"
+msgstr ""
+
+#: src/Admin/KitsPage.php:87
+msgid "Catalog & conversion"
+msgstr ""
+
+#: src/Admin/KitsPage.php:258
+msgid "That kit is not installed."
+msgstr ""
+
+#. translators: %s: kit name
+#: src/Admin/KitsPage.php:292
+#: src/Admin/Screen.php:397
+#, php-format
+msgid "%s is on."
+msgstr ""
+
+#: src/Admin/KitsPage.php:301
+msgid "This page has expired. Reload it and try again."
+msgstr ""
+
+#: src/Admin/KitsPage.php:304
+msgid "You are not allowed to change kits."
+msgstr ""
+
+#: src/Admin/KitsPage.php:326
+msgid "Free kits"
+msgstr ""
+
+#: src/Admin/KitsPage.php:327
+msgid "Pro kits"
+msgstr ""
+
+#: src/Admin/KitsPage.php:334
+msgid "Not installed"
+msgstr ""
+
+#: src/Admin/KitsPage.php:366
+msgid "Switch on the free kits you need. Pro kits add B2B, loyalty and conversion features."
+msgstr ""
+
+#: src/Admin/KitsPage.php:368
+msgid "Switch on only what your store needs. A kit that is off loads no code. Changes save straight away."
+msgstr ""
+
+#: src/Admin/KitsPage.php:376
+msgid "Search kits"
+msgstr ""
+
+#: src/Admin/KitsPage.php:377
+msgid "Search kits by name or what they do"
+msgstr ""
+
+#: src/Admin/KitsPage.php:378
+msgid "Show"
+msgstr ""
+
+#: src/Admin/KitsPage.php:384
+msgid "Collection"
+msgstr ""
+
+#: src/Admin/KitsPage.php:385
+msgid "All collections"
+msgstr ""
+
+#. translators: 1: number of kits shown, 2: number of kits on
+#: src/Admin/KitsPage.php:395
+#: src/Admin/Screen.php:404
+#, php-format
+msgid "%1$s kits shown · %2$s on"
+msgstr ""
+
+#: src/Admin/KitsPage.php:406
+msgid "No kits match. Try another search or filter."
+msgstr ""
+
+#. translators: %s: names of the kits it needs
+#: src/Admin/KitsPage.php:482
+#, php-format
+msgid "Works with %s."
+msgstr ""
+
+#: src/Admin/KitsPage.php:493
+#: src/Admin/Screen.php:416
+msgid "Try again"
+msgstr ""
+
+#: src/Admin/KitsPage.php:504
+msgid "Guide"
+msgstr ""
+
+#: src/Admin/KitsPage.php:529
+msgid "Activate"
+msgstr ""
+
+#: src/Admin/KitsPage.php:529
+msgid "Install"
+msgstr ""
+
+#: src/Admin/KitsPage.php:534
+msgid "Activate licence to install"
+msgstr ""
+
+#: src/Admin/KitsPage.php:544
+#: src/Admin/KitsPage.php:549
+msgid "Get this kit"
+msgstr ""
+
+#: src/Admin/KitsPage.php:563
+#: src/Admin/Screen.php:394
+msgid "On, waiting"
+msgstr ""
+
+#: src/Admin/KitsPage.php:567
+msgid "Installed, not active"
+msgstr ""
+
+#: src/Admin/KitsPage.php:569
+msgid "In your licence"
+msgstr ""
+
+#. translators: %s: yearly price, e.g. $49
+#: src/Admin/KitsPage.php:573
+#, php-format
+msgid "%s / year, or in the membership"
+msgstr ""
+
+#. translators: %s: yearly price, e.g. $49
+#: src/Admin/KitsPage.php:573
+msgid "In the membership"
+msgstr ""
+
+#: src/Admin/KitsPage.php:575
+msgid "Not in your licence"
+msgstr ""
+
+#: src/Admin/KitsPage.php:575
+msgid "Needs a licence"
+msgstr ""
+
+#: src/Admin/KitsPage.php:590
+msgid "Pro kit"
+msgstr ""
+
+#. translators: %d: number of Pro kits
+#: src/Admin/KitsPage.php:595
+#, php-format
+msgid "%d Pro kits for B2B, loyalty and conversion, installed from this page once your licence is active."
+msgstr ""
+
+#: src/Admin/KitsPage.php:599
+msgid "Close"
+msgstr ""
+
+#: src/Admin/KitsPage.php:603
+msgid "Just this kit"
+msgstr ""
+
+#: src/Admin/KitsPage.php:604
+#: src/Admin/KitsPage.php:615
+msgid "/ year"
+msgstr ""
+
+#: src/Admin/KitsPage.php:605
+msgid "1 site · updates and support"
+msgstr ""
+
+#: src/Admin/KitsPage.php:606
+msgid "Buy this kit"
+msgstr ""
+
+#. translators: %d: number of Pro kits
+#: src/Admin/KitsPage.php:612
+#, php-format
+msgid "All %d Pro kits"
+msgstr ""
+
+#: src/Admin/KitsPage.php:616
+msgid "1 site · $199 for 5 · $299 for 50"
+msgstr ""
+
+#: src/Admin/KitsPage.php:617
+msgid "See membership"
+msgstr ""
+
+#: src/Admin/KitsPage.php:621
+msgid "How it works"
+msgstr ""
+
+#: src/Admin/KitsPage.php:623
+msgid "Buy on wootoolkit.com. You get a licence key by email."
+msgstr ""
+
+#: src/Admin/KitsPage.php:624
+msgid "Download WooToolkit Pro from your account and install it like any plugin."
+msgstr ""
+
+#: src/Admin/KitsPage.php:625
+msgid "Enter your key under WooToolkit › Licence. Your kits then install from this page in one click."
+msgstr ""
+
+#: src/Admin/KitsPage.php:629
+msgid "I already have a licence"
+msgstr ""
+
+#: src/Admin/KitsPage.php:630
+msgid "↗ opens wootoolkit.com in a new tab"
+msgstr ""
+
+#: src/Admin/Menu.php:89
+msgid "WooToolkit dashboard"
+msgstr ""
+
+#: src/Admin/Menu.php:89
+#: src/Admin/Screen.php:83
+msgid "Dashboard"
+msgstr ""
+
+#: src/Admin/Menu.php:90
+msgid "WooToolkit kits"
+msgstr ""
+
+#: src/Admin/Menu.php:91
+msgid "WooToolkit settings"
+msgstr ""
+
+#: src/Admin/Menu.php:92
+msgid "WooToolkit help"
+msgstr ""
+
+#: src/Admin/Menu.php:96
+msgid "Get WooToolkit Pro"
+msgstr ""
+
+#: src/Admin/Menu.php:96
+#: src/Admin/Screen.php:148
+msgid "Get Pro"
+msgstr ""
+
+#: src/Admin/Screen.php:140
+msgid "WooToolkit pages"
+msgstr ""
+
+#: src/Admin/Screen.php:249
+msgid "Activate licence"
+msgstr ""
+
+#: src/Admin/Screen.php:251
+msgid "Your WooToolkit Pro licence has expired. Your Pro kits keep working; renew to install more kits and get updates."
+msgstr ""
+
+#: src/Admin/Screen.php:252
+msgid "WooToolkit Pro is installed, but no licence is active. Your Pro kits keep working; activate your licence to install more kits and get updates."
+msgstr ""
+
+#: src/Admin/Screen.php:395
+msgid "Saving…"
+msgstr ""
+
+#: src/Admin/Screen.php:402
+msgid "That did not save. Check your connection and try again."
+msgstr ""
+
+#: src/Admin/Screen.php:406
+msgid "Downloading from wootoolkit.com…"
+msgstr ""
+
+#: src/Admin/Screen.php:407
+msgid "Installing the plugin…"
+msgstr ""
+
+#: src/Admin/Screen.php:408
+msgid "Switching it on…"
+msgstr ""
+
+#: src/Admin/Screen.php:412
+msgid "Installing"
+msgstr ""
+
+#. translators: %s: kit name
+#: src/Admin/Screen.php:414
+#, php-format
+msgid "%s is installed and switched on."
+msgstr ""
+
+#: src/Admin/Screen.php:415
+msgid "The kit could not be installed. Nothing was changed."
+msgstr ""
+
+#: src/Admin/Screen.php:419
+msgid "Dismiss"
+msgstr ""
+
+#: src/Admin/Screen.php:420
+msgid "Copied"
+msgstr ""
+
+#: src/Admin/Screen.php:421
+msgid "Press Ctrl+C (or Cmd+C) to copy the selected text."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:80
+#: src/Admin/SettingsPage.php:104
+msgid "General"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:81
+msgid "Who can manage"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:82
+#: src/Admin/SettingsPage.php:635
+msgid "Classic kits"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:83
+#: src/Admin/SettingsPage.php:158
+msgid "Privacy and data"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:84
+#: src/Admin/SettingsPage.php:685
+msgid "Import and export"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:85
+#: src/Admin/SettingsPage.php:177
+msgid "Advanced"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:109
+msgid "WordPress dashboard widget"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:110
+msgid "A small \"From your kits\" box on Dashboard › Home, for example quotes waiting for a price."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:116
+msgid "Tips on kit pages"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:117
+msgid "Short hints next to settings. Turn off once you know your way around."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:123
+msgid "\"Needs your attention\" alerts"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:124
+msgid "Shown on the WooToolkit dashboard only, never across wp-admin."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:136
+msgid "Who can manage WooToolkit"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:137
+msgid "The licence and Import/export always need an administrator."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:142
+msgid "Switch kits on or off and change their settings"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:144
+msgid "Administrators only"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:145
+msgid "Administrators and shop managers"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:163
+msgid "When WooToolkit is deleted"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:164
+msgid "Delete all WooToolkit data when the plugin is deleted"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:165
+msgid "Off by default, so reinstalling keeps your settings, wishlists and invoice numbers. Orders, including quotes, are never deleted."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:182
+msgid "Debug log"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:183
+msgid "Kits write details to WooCommerce › Status › Logs (source \"wootoolkit\"). Turn on when support asks."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:213
+msgid "The free plugin: nothing."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:319
+msgid "That is not a WooToolkit settings file."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:425
+msgid "Sorry, you are not allowed to change these settings."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:445
+msgid "Sorry, you are not allowed to export settings."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:468
+msgid "Sorry, you are not allowed to import settings."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:513
+msgid "Sorry, you are not allowed to reset settings."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:540
+msgid "Settings for WooToolkit itself. Each kit's own settings are on its page under Kits."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:544
+msgid "Settings sections"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:583
+msgid "Settings saved."
+msgstr ""
+
+#. translators: %s: number of settings
+#: src/Admin/SettingsPage.php:585
+#, php-format
+msgid "Settings imported: %s setting was updated."
+msgid_plural "Settings imported: %s settings were updated."
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Admin/SettingsPage.php:586
+msgid "Nothing was imported: the file has no settings this site can use."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:587
+msgid "Nothing was imported: that is not a WooToolkit settings file."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:588
+msgid "Choose a settings file first. You will see what changes before anything is saved."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:589
+msgid "Import cancelled. Nothing was changed."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:590
+msgid "All kit settings are back to their defaults."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:637
+msgid "The kits from WooToolkit 1.x keep working, with bug fixes only, and only with the classic cart and checkout."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:638
+msgid "Switch them on or off on the Kits page."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:665
+msgid "What WooToolkit sends outside your site"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:670
+msgid "Wishlists and quotes are included in Tools › Export Personal Data and Erase Personal Data."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:686
+msgid "Copy your kit choices and settings to another store, for example from staging to live. Orders, customers, invoice numbers and the licence are not included."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:690
+msgid "Check what will change"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:695
+msgid "Setting"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:696
+msgid "Now"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:697
+msgid "After import"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:708
+msgid "(not set)"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:709
+msgid "(no change)"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:718
+msgid "Import these settings"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:719
+#: src/Admin/SettingsPage.php:772
+msgid "Cancel"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:726
+msgid "Download settings file"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:732
+msgid "Import a settings file"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:734
+msgid "Import"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:736
+msgid "Importing shows you what will change before anything is saved."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:762
+msgid "Reset all kit settings"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:763
+msgid "Every kit goes back to its defaults. Kits stay on or off as they are."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:765
+#: src/Admin/SettingsPage.php:773
+msgid "Reset settings"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:769
+msgid "Reset all kit settings?"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:770
+msgid "Every kit's settings go back to their defaults. This can't be undone, so download a settings file first if you might want them back."
+msgstr ""
+
+#: src/Kit/Support.php:28
+msgid "Guests (not logged in)"
 msgstr ""
 
 #: src/Kits/CatalogMode/CatalogModeKit.php:31
@@ -521,6 +1765,7 @@ msgid "Wholesale prices"
 msgstr ""
 
 #: src/Kits/CatalogMode/CatalogModeKit.php:103
+#: src/Kits/Wishlist/Maintenance.php:165
 msgid "Products"
 msgstr ""
 
@@ -562,6 +1807,7 @@ msgstr ""
 
 #: src/Kits/CatalogMode/CatalogModeKit.php:150
 #: src/Kits/RequestAQuote/RequestAQuoteKit.php:85
+#: src/Kits/Wishlist/WishlistKit.php:90
 msgid "Button text"
 msgstr ""
 
@@ -619,6 +1865,478 @@ msgstr ""
 msgid "Contact us"
 msgstr ""
 
+#: src/Kits/CheckoutFields/BlockCheckout.php:148
+msgid "Numbers only"
+msgstr ""
+
+#: src/Kits/CheckoutFields/BlockCheckout.php:154
+msgid "Date as YYYY-MM-DD"
+msgstr ""
+
+#: src/Kits/CheckoutFields/CheckoutFieldsKit.php:34
+#: src/Kits/CheckoutFields/CheckoutFieldsKit.php:75
+msgid "Checkout fields"
+msgstr ""
+
+#: src/Kits/CheckoutFields/CheckoutFieldsKit.php:41
+msgid "Rename, reorder, hide or require the checkout fields, and add your own (text, dropdown, checkbox, email, phone, number) in the Checkout block and the classic checkout. Answers are saved on the order and shown in wp-admin, emails and My Account."
+msgstr ""
+
+#: src/Kits/CheckoutFields/CheckoutFieldsKit.php:76
+msgid "Edit the built-in fields and add your own. Leave a label or placeholder empty to keep WooCommerce's. Extra fields work in the Checkout block and the classic checkout, are saved on the order (the same way for both), and are shown on the order screen, in order emails and on the customer's order pages."
+msgstr ""
+
+#: src/Kits/CheckoutFields/CheckoutFieldsKit.php:83
+msgid "Extra fields here appear in the Checkout block's Contact information section and in the classic checkout's billing form. The email field can only be changed in the classic checkout: the Checkout block always shows it, with its own label."
+msgstr ""
+
+#: src/Kits/CheckoutFields/CheckoutFieldsKit.php:90
+msgid "Edits apply to both the billing and the shipping address, in every country (a country's own rules, such as no postcode, still apply to what you leave unchanged). Extra fields here are asked in both addresses. The Checkout block uses label, required, hidden and order, but not placeholders (it shows labels inside the inputs), and the country field cannot be hidden or made optional. Company, apartment and phone: required and hidden replace the visibility you set in the Checkout block's settings while this kit is on."
+msgstr ""
+
+#: src/Kits/CheckoutFields/CheckoutFieldsKit.php:97
+msgid "Extra fields here appear in the Checkout block's \"Additional order information\" section and after the order notes in the classic checkout. The order notes field can only be changed in the classic checkout; in the Checkout block, switch it on or off in the block's settings."
+msgstr ""
+
+#: src/Kits/CheckoutFields/CheckoutFieldsKit.php:106
+msgid "What the Checkout block cannot do"
+msgstr ""
+
+#: src/Kits/CheckoutFields/CheckoutFieldsKit.php:107
+msgid "WooCommerce's Checkout block (WooCommerce 11.2) has text, dropdown, checkbox and date fields only: a text area is a one-line input there, and email, phone and number fields are text inputs that are checked when the order is placed. In the Contact and Order sections, extra fields always come after the built-in fields; address fields, built-in and extra, follow the Order numbers. Placeholders, the email field and the order notes field are classic checkout only."
+msgstr ""
+
+#: src/Kits/CheckoutFields/ClassicCheckout.php:99
+msgid "Choose an option"
+msgstr ""
+
+#: src/Kits/CheckoutFields/Display.php:206
+#: src/Kits/CheckoutFields/Display.php:212
+#: src/Kits/CheckoutFields/Display.php:258
+msgid "Additional information"
+msgstr ""
+
+#: src/Kits/CheckoutFields/Display.php:255
+#: src/Kits/CheckoutFields/Display.php:286
+msgid "billing"
+msgstr ""
+
+#: src/Kits/CheckoutFields/Display.php:256
+#: src/Kits/CheckoutFields/Display.php:287
+msgid "shipping"
+msgstr ""
+
+#. translators: 1: field label, 2: "billing" or "shipping"
+#: src/Kits/CheckoutFields/Display.php:263
+#: src/Kits/CheckoutFields/Display.php:293
+#, php-format
+msgid "%1$s (%2$s)"
+msgstr ""
+
+#: src/Kits/CheckoutFields/Fields.php:140
+msgid "Contact"
+msgstr ""
+
+#: src/Kits/CheckoutFields/Fields.php:141
+msgid "Address (billing and shipping)"
+msgstr ""
+
+#: src/Kits/CheckoutFields/Fields.php:142
+#: src/Kits/CheckoutFields/SettingsField.php:268
+#: src/Kits/CheckoutFields/SettingsField.php:347
+#: src/Kits/CheckoutFields/SettingsField.php:399
+msgid "Order"
+msgstr ""
+
+#: src/Kits/CheckoutFields/Fields.php:154
+msgid "Text"
+msgstr ""
+
+#: src/Kits/CheckoutFields/Fields.php:158
+msgid "Text area (one line in the block checkout)"
+msgstr ""
+
+#: src/Kits/CheckoutFields/Fields.php:162
+msgid "Dropdown"
+msgstr ""
+
+#: src/Kits/CheckoutFields/Fields.php:167
+msgid "Checkbox"
+msgstr ""
+
+#: src/Kits/CheckoutFields/Fields.php:171
+#: templates/wishlist/wishlist.php:110
+msgid "Email"
+msgstr ""
+
+#: src/Kits/CheckoutFields/Fields.php:176
+#: src/Kits/RequestAQuote/Submission.php:27
+msgid "Phone"
+msgstr ""
+
+#: src/Kits/CheckoutFields/Fields.php:181
+msgid "Number"
+msgstr ""
+
+#. translators: %s: field label
+#: src/Kits/CheckoutFields/Fields.php:551
+#, php-format
+msgid "%s is not a valid email address."
+msgstr ""
+
+#. translators: %s: field label
+#: src/Kits/CheckoutFields/Fields.php:554
+#, php-format
+msgid "%s is not a valid phone number."
+msgstr ""
+
+#. translators: %s: field label
+#: src/Kits/CheckoutFields/Fields.php:557
+#, php-format
+msgid "%s must be a number."
+msgstr ""
+
+#. translators: %s: field label
+#: src/Kits/CheckoutFields/Fields.php:560
+#, php-format
+msgid "Please choose a valid %s."
+msgstr ""
+
+#: src/Kits/CheckoutFields/Fields.php:584
+msgid "No"
+msgstr ""
+
+#: src/Kits/CheckoutFields/Fields.php:584
+msgid "Yes"
+msgstr ""
+
+#: src/Kits/CheckoutFields/SettingsField.php:262
+msgid "Field"
+msgstr ""
+
+#: src/Kits/CheckoutFields/SettingsField.php:263
+#: src/Kits/CheckoutFields/SettingsField.php:324
+#: src/Kits/CheckoutFields/SettingsField.php:382
+msgid "Label"
+msgstr ""
+
+#: src/Kits/CheckoutFields/SettingsField.php:264
+#: src/Kits/CheckoutFields/SettingsField.php:329
+#: src/Kits/CheckoutFields/SettingsField.php:386
+msgid "Placeholder"
+msgstr ""
+
+#: src/Kits/CheckoutFields/SettingsField.php:265
+#: src/Kits/CheckoutFields/SettingsField.php:390
+msgid "Type"
+msgstr ""
+
+#: src/Kits/CheckoutFields/SettingsField.php:266
+#: src/Kits/CheckoutFields/SettingsField.php:339
+#: src/Kits/CheckoutFields/SettingsField.php:397
+msgid "Required"
+msgstr ""
+
+#: src/Kits/CheckoutFields/SettingsField.php:267
+#: src/Kits/CheckoutFields/SettingsField.php:339
+#: src/Kits/CheckoutFields/SettingsField.php:398
+#: src/Kits/VariationSwatches/VariationSwatchesKit.php:123
+msgid "Hidden"
+msgstr ""
+
+#: src/Kits/CheckoutFields/SettingsField.php:269
+#: src/Kits/VariationSwatches/AttributeFields.php:167
+msgid "Remove"
+msgstr ""
+
+#: src/Kits/CheckoutFields/SettingsField.php:295
+msgid "Add field"
+msgstr ""
+
+#: src/Kits/CheckoutFields/SettingsField.php:296
+msgid "Reset this section to WooCommerce's defaults? Your edits and extra fields in it are removed (values already saved on orders stay)."
+msgstr ""
+
+#: src/Kits/CheckoutFields/SettingsField.php:296
+msgid "Reset to defaults"
+msgstr ""
+
+#: src/Kits/CheckoutFields/SettingsField.php:335
+msgid "Built-in"
+msgstr ""
+
+#: src/Kits/CheckoutFields/SettingsField.php:377
+msgid "Key"
+msgstr ""
+
+#: src/Kits/CheckoutFields/SettingsField.php:378
+msgid "Key (made from the label)"
+msgstr ""
+
+#: src/Kits/CheckoutFields/SettingsField.php:383
+msgid "Label (required)"
+msgstr ""
+
+#: src/Kits/CheckoutFields/SettingsField.php:400
+msgid "Remove field"
+msgstr ""
+
+#: src/Kits/CheckoutFields/SettingsField.php:406
+msgid "Choices, one per line (\"value | Label\", or just the label)"
+msgstr ""
+
+#. translators: 1: page number, 2: number of pages
+#: src/Kits/PdfInvoices/Data.php:52
+#, php-format
+msgid "Page %1$d of %2$d"
+msgstr ""
+
+#: src/Kits/PdfInvoices/Data.php:61
+msgid "Order number"
+msgstr ""
+
+#: src/Kits/PdfInvoices/Data.php:64
+msgid "Order date"
+msgstr ""
+
+#: src/Kits/PdfInvoices/Data.php:67
+msgid "Payment method"
+msgstr ""
+
+#: src/Kits/PdfInvoices/Data.php:70
+msgid "Shipping method"
+msgstr ""
+
+#: src/Kits/PdfInvoices/Data.php:78
+msgid "Customer note"
+msgstr ""
+
+#: src/Kits/PdfInvoices/Data.php:137
+#: templates/quote/quote.php:40
+#: templates/quote/quote.php:62
+#: templates/wishlist/wishlist.php:49
+#: templates/wishlist/wishlist.php:64
+msgid "Product"
+msgstr ""
+
+#: src/Kits/PdfInvoices/Data.php:138
+msgid "SKU"
+msgstr ""
+
+#: src/Kits/PdfInvoices/Data.php:139
+msgid "Qty"
+msgstr ""
+
+#: src/Kits/PdfInvoices/Data.php:141
+#: templates/wishlist/wishlist.php:50
+#: templates/wishlist/wishlist.php:71
+msgid "Price"
+msgstr ""
+
+#: src/Kits/PdfInvoices/Data.php:143
+msgid "Tax"
+msgstr ""
+
+#: src/Kits/PdfInvoices/Data.php:145
+msgid "Total"
+msgstr ""
+
+#: src/Kits/PdfInvoices/Data.php:173
+msgid "Billing address"
+msgstr ""
+
+#: src/Kits/PdfInvoices/Data.php:179
+msgid "Shipping address"
+msgstr ""
+
+#: src/Kits/PdfInvoices/Documents.php:31
+#: src/Kits/PdfInvoices/Documents.php:32
+msgid "Invoice"
+msgstr ""
+
+#: src/Kits/PdfInvoices/Documents.php:35
+msgid "Invoice number"
+msgstr ""
+
+#: src/Kits/PdfInvoices/Documents.php:36
+msgid "Invoice date"
+msgstr ""
+
+#: src/Kits/PdfInvoices/Documents.php:39
+msgid "Download invoice"
+msgstr ""
+
+#: src/Kits/PdfInvoices/Documents.php:43
+#: src/Kits/PdfInvoices/Documents.php:44
+msgid "Packing slip"
+msgstr ""
+
+#: src/Kits/PdfInvoices/Downloads.php:104
+msgid "This link has expired. Go back and try again."
+msgstr ""
+
+#: src/Kits/PdfInvoices/Downloads.php:107
+#: src/Kits/PdfInvoices/Downloads.php:138
+msgid "You are not allowed to view this document."
+msgstr ""
+
+#: src/Kits/PdfInvoices/Downloads.php:111
+msgid "Unknown document type."
+msgstr ""
+
+#: src/Kits/PdfInvoices/Downloads.php:126
+msgid "No orders found for this document."
+msgstr ""
+
+#: src/Kits/PdfInvoices/Downloads.php:240
+#: src/Kits/PdfInvoices/Downloads.php:246
+msgid "Document"
+msgstr ""
+
+#: src/Kits/PdfInvoices/Downloads.php:246
+msgid "The document could not be created. Please try again."
+msgstr ""
+
+#: src/Kits/PdfInvoices/OrderAdmin.php:75
+msgid "PDF documents"
+msgstr ""
+
+#. translators: 1: invoice number, 2: invoice date
+#: src/Kits/PdfInvoices/OrderAdmin.php:94
+#, php-format
+msgid "Invoice %1$s, %2$s"
+msgstr ""
+
+#: src/Kits/PdfInvoices/OrderAdmin.php:110
+msgid "The invoice gets the next invoice number when it is first opened or sent."
+msgstr ""
+
+#: src/Kits/PdfInvoices/OrderAdmin.php:149
+msgid "has no logo or store address yet."
+msgstr ""
+
+#: src/Kits/PdfInvoices/OrderAdmin.php:150
+msgid "Add them"
+msgstr ""
+
+#: src/Kits/PdfInvoices/OrderAdmin.php:153
+msgid "has no logo yet."
+msgstr ""
+
+#: src/Kits/PdfInvoices/OrderAdmin.php:154
+msgid "Add a logo"
+msgstr ""
+
+#: src/Kits/PdfInvoices/OrderAdmin.php:157
+msgid "has no store address yet."
+msgstr ""
+
+#: src/Kits/PdfInvoices/OrderAdmin.php:158
+msgid "Add your address"
+msgstr ""
+
+#: src/Kits/PdfInvoices/OrderAdmin.php:162
+msgid "PDF invoices"
+msgstr ""
+
+#: src/Kits/PdfInvoices/OrderAdmin.php:196
+msgid "Choose logo"
+msgstr ""
+
+#: src/Kits/PdfInvoices/OrderAdmin.php:197
+#: src/Kits/VariationSwatches/AttributeFields.php:306
+msgid "Use this image"
+msgstr ""
+
+#: src/Kits/PdfInvoices/PdfInvoicesKit.php:31
+#: src/Kits/PdfInvoices/Settings.php:134
+msgid "PDF invoices & packing slips"
+msgstr ""
+
+#: src/Kits/PdfInvoices/PdfInvoicesKit.php:38
+msgid "A PDF invoice with a sequential invoice number and a packing slip for every order. Open them from the order screen or the orders list, attach the invoice to order emails, and let customers download it from My Account."
+msgstr ""
+
+#: src/Kits/PdfInvoices/Settings.php:114
+msgid "admin"
+msgstr ""
+
+#: src/Kits/PdfInvoices/Settings.php:119
+msgid "Completed order"
+msgstr ""
+
+#: src/Kits/PdfInvoices/Settings.php:135
+msgid "Open an invoice or packing slip from the order screen or the Actions column of the orders list. Invoices get the next invoice number the first time one is created for an order. The built-in fonts cover Western European languages; other characters are transliterated (for example Ł becomes L). The PDF invoices Pro kit adds full Unicode and right-to-left text."
+msgstr ""
+
+#: src/Kits/PdfInvoices/Settings.php:140
+msgid "Attach invoice to"
+msgstr ""
+
+#: src/Kits/PdfInvoices/Settings.php:148
+msgid "Invoice number prefix"
+msgstr ""
+
+#: src/Kits/PdfInvoices/Settings.php:149
+msgid "For example INV-. Numbers themselves are sequential and never reused."
+msgstr ""
+
+#: src/Kits/PdfInvoices/Settings.php:156
+msgid "Start invoice numbers at"
+msgstr ""
+
+#: src/Kits/PdfInvoices/Settings.php:157
+msgid "Used when it is higher than the next number. Numbers never go back."
+msgstr ""
+
+#: src/Kits/PdfInvoices/Settings.php:167
+msgid "Logo"
+msgstr ""
+
+#: src/Kits/PdfInvoices/Settings.php:168
+msgid "A JPEG or PNG from the media library: its attachment id or URL. Leave empty to show the store name."
+msgstr ""
+
+#: src/Kits/PdfInvoices/Settings.php:170
+msgid "Attachment id or image URL"
+msgstr ""
+
+#: src/Kits/PdfInvoices/Settings.php:176
+msgid "Extra store details"
+msgstr ""
+
+#: src/Kits/PdfInvoices/Settings.php:177
+msgid "Shown under the store address (WooCommerce > Settings > General), e.g. VAT or company number."
+msgstr ""
+
+#: src/Kits/PdfInvoices/Settings.php:184
+msgid "Footer text"
+msgstr ""
+
+#: src/Kits/PdfInvoices/Settings.php:185
+msgid "Shown at the bottom of every page, e.g. payment terms or a thank-you note."
+msgstr ""
+
+#: src/Kits/PdfInvoices/Settings.php:192
+msgid "Paper size"
+msgstr ""
+
+#: src/Kits/PdfInvoices/Settings.php:194
+msgid "A4"
+msgstr ""
+
+#: src/Kits/PdfInvoices/Settings.php:195
+msgid "US Letter"
+msgstr ""
+
+#: src/Kits/PdfInvoices/Settings.php:202
+msgid "Customers"
+msgstr ""
+
+#: src/Kits/PdfInvoices/Settings.php:203
+msgid "Customers can download the invoice of a paid order from My Account and the order received page"
+msgstr ""
+
 #: src/Kits/RequestAQuote/Emails/CustomerQuoteEmail.php:22
 msgid "Quote sent"
 msgstr ""
@@ -661,50 +2379,52 @@ msgstr ""
 msgid "Enter recipients (comma separated) for this email. Defaults to %s."
 msgstr ""
 
-#: src/Kits/RequestAQuote/Frontend.php:52
+#: src/Kits/RequestAQuote/Frontend.php:53
 #: src/Kits/RequestAQuote/RequestAQuoteKit.php:86
 msgid "Add to quote"
 msgstr ""
 
-#: src/Kits/RequestAQuote/Frontend.php:67
+#: src/Kits/RequestAQuote/Frontend.php:91
 msgid "Quote"
 msgstr ""
 
-#: src/Kits/RequestAQuote/Frontend.php:115
+#: src/Kits/RequestAQuote/Frontend.php:139
+#: src/Kits/Wishlist/Frontend.php:592
+#: src/Kits/Wishlist/Frontend.php:617
 msgid "Your session has expired. Please try again."
 msgstr ""
 
-#: src/Kits/RequestAQuote/Frontend.php:124
+#: src/Kits/RequestAQuote/Frontend.php:148
 msgid "Quote list updated."
 msgstr ""
 
-#: src/Kits/RequestAQuote/Frontend.php:127
+#: src/Kits/RequestAQuote/Frontend.php:151
 msgid "Item removed from your quote."
 msgstr ""
 
 #. translators: %s: product name
-#: src/Kits/RequestAQuote/Frontend.php:158
+#: src/Kits/RequestAQuote/Frontend.php:182
 #, php-format
 msgid "&ldquo;%s&rdquo; has been added to your quote."
 msgstr ""
 
-#: src/Kits/RequestAQuote/Frontend.php:160
+#: src/Kits/RequestAQuote/Frontend.php:184
 msgid "View quote"
 msgstr ""
 
-#: src/Kits/RequestAQuote/Frontend.php:174
+#: src/Kits/RequestAQuote/Frontend.php:198
 msgid "Your quote request could not be sent."
 msgstr ""
 
-#: src/Kits/RequestAQuote/Frontend.php:200
+#: src/Kits/RequestAQuote/Frontend.php:224
 msgid "The quote list and request form appear here."
 msgstr ""
 
-#: src/Kits/RequestAQuote/Frontend.php:265
+#: src/Kits/RequestAQuote/Frontend.php:290
 msgid "Add to quote (Request a quote kit)"
 msgstr ""
 
-#: src/Kits/RequestAQuote/Frontend.php:288
+#: src/Kits/RequestAQuote/Frontend.php:314
 msgid "Select options"
 msgstr ""
 
@@ -722,7 +2442,8 @@ msgstr ""
 
 #: src/Kits/RequestAQuote/RequestAQuoteKit.php:31
 #: src/Kits/RequestAQuote/RequestAQuoteKit.php:70
-#: templates/quote/quote.php:82
+#: src/Kits/RequestAQuote/Statuses.php:60
+#: templates/quote/quote.php:83
 msgid "Request a quote"
 msgstr ""
 
@@ -750,25 +2471,37 @@ msgstr ""
 msgid "Also show the button next to Add to cart on product pages"
 msgstr ""
 
-#: src/Kits/RequestAQuote/Statuses.php:49
+#. translators: %s: number of quotes
+#: src/Kits/RequestAQuote/Statuses.php:62
+#, php-format
+msgid "%s quote waiting for a price"
+msgid_plural "%s quotes waiting for a price"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Kits/RequestAQuote/Statuses.php:63
+msgid "Open quotes"
+msgstr ""
+
+#: src/Kits/RequestAQuote/Statuses.php:76
 msgctxt "Order status"
 msgid "Quote requested"
 msgstr ""
 
-#: src/Kits/RequestAQuote/Statuses.php:50
+#: src/Kits/RequestAQuote/Statuses.php:77
 msgctxt "Order status"
 msgid "Quote sent"
 msgstr ""
 
-#: src/Kits/RequestAQuote/Statuses.php:138
+#: src/Kits/RequestAQuote/Statuses.php:165
 msgid "Send quote to customer again"
 msgstr ""
 
-#: src/Kits/RequestAQuote/Statuses.php:138
+#: src/Kits/RequestAQuote/Statuses.php:165
 msgid "Send quote to customer"
 msgstr ""
 
-#: src/Kits/RequestAQuote/Statuses.php:153
+#: src/Kits/RequestAQuote/Statuses.php:180
 msgid "Quote sent to the customer."
 msgstr ""
 
@@ -784,10 +2517,6 @@ msgstr ""
 msgid "Email address"
 msgstr ""
 
-#: src/Kits/RequestAQuote/Submission.php:27
-msgid "Phone"
-msgstr ""
-
 #: src/Kits/RequestAQuote/Submission.php:28
 msgid "Company"
 msgstr ""
@@ -797,7 +2526,7 @@ msgid "Message"
 msgstr ""
 
 #: src/Kits/RequestAQuote/Submission.php:42
-#: templates/quote/quote.php:30
+#: templates/quote/quote.php:31
 msgid "Your quote list is empty."
 msgstr ""
 
@@ -817,6 +2546,170 @@ msgstr ""
 
 #: src/Kits/RequestAQuote/Submission.php:88
 msgid "Quote requested by the customer."
+msgstr ""
+
+#. translators: %s: the store-wide default, e.g. "Dropdown (WooCommerce default)"
+#: src/Kits/VariationSwatches/AttributeFields.php:46
+#: src/Kits/VariationSwatches/ProductField.php:35
+#, php-format
+msgid "Store default (%s)"
+msgstr ""
+
+#: src/Kits/VariationSwatches/AttributeFields.php:68
+msgid "How this attribute is chosen on product pages. For colour and image swatches, set each term's colour or image under \"Configure terms\"."
+msgstr ""
+
+#: src/Kits/VariationSwatches/AttributeFields.php:75
+#: src/Kits/VariationSwatches/AttributeFields.php:86
+msgid "Swatch type"
+msgstr ""
+
+#: src/Kits/VariationSwatches/AttributeFields.php:165
+msgid "Choose image"
+msgstr ""
+
+#: src/Kits/VariationSwatches/AttributeFields.php:181
+#: src/Kits/VariationSwatches/AttributeFields.php:197
+msgid "Swatch colour"
+msgstr ""
+
+#: src/Kits/VariationSwatches/AttributeFields.php:182
+#: src/Kits/VariationSwatches/AttributeFields.php:200
+msgid "Swatch image"
+msgstr ""
+
+#: src/Kits/VariationSwatches/AttributeFields.php:183
+#: src/Kits/VariationSwatches/AttributeFields.php:201
+msgid "Colour swatches use the colour (or the image when there is no colour); image swatches use the image."
+msgstr ""
+
+#: src/Kits/VariationSwatches/AttributeFields.php:254
+#: src/Kits/VariationSwatches/AttributeFields.php:258
+msgid "Swatch"
+msgstr ""
+
+#: src/Kits/VariationSwatches/AttributeFields.php:305
+msgid "Choose a swatch image"
+msgstr ""
+
+#: src/Kits/VariationSwatches/ProductField.php:37
+#: src/Kits/VariationSwatches/Swatches.php:69
+msgid "Buttons (text)"
+msgstr ""
+
+#: src/Kits/VariationSwatches/ProductField.php:49
+msgid "Custom attributes shown as"
+msgstr ""
+
+#: src/Kits/VariationSwatches/ProductField.php:52
+msgid "How this product's custom attributes are chosen on the product page. Global attributes use the swatch type set under Products > Attributes."
+msgstr ""
+
+#. translators: %s: option name, e.g. "Red"
+#: src/Kits/VariationSwatches/Storefront.php:108
+#: src/Kits/VariationSwatches/Swatches.php:476
+#, php-format
+msgid "%s (out of stock)"
+msgstr ""
+
+#. translators: %s: option name, e.g. "Red"
+#: src/Kits/VariationSwatches/Storefront.php:110
+#: src/Kits/VariationSwatches/Swatches.php:480
+#, php-format
+msgid "%s (not available)"
+msgstr ""
+
+#: src/Kits/VariationSwatches/Swatches.php:66
+#: src/Kits/VariationSwatches/Swatches.php:72
+msgid "Dropdown (WooCommerce default)"
+msgstr ""
+
+#: src/Kits/VariationSwatches/Swatches.php:67
+msgid "Colour"
+msgstr ""
+
+#: src/Kits/VariationSwatches/Swatches.php:68
+#: templates/wishlist/wishlist.php:48
+msgid "Image"
+msgstr ""
+
+#: src/Kits/VariationSwatches/VariationSwatchesKit.php:30
+#: src/Kits/VariationSwatches/VariationSwatchesKit.php:69
+msgid "Variation swatches"
+msgstr ""
+
+#: src/Kits/VariationSwatches/VariationSwatchesKit.php:37
+msgid "Show colour, image and button swatches instead of variation dropdowns on product pages, with unavailable and out-of-stock options marked."
+msgstr ""
+
+#. translators: %s: link to Products > Attributes
+#: src/Kits/VariationSwatches/VariationSwatchesKit.php:72
+#, php-format
+msgid "Choose each attribute's swatch type (colour, image or buttons) under %s > Edit, then give its terms a colour or image under \"Configure terms\". Custom attributes typed on a product can be shown as buttons from the product's Attributes tab."
+msgstr ""
+
+#: src/Kits/VariationSwatches/VariationSwatchesKit.php:73
+msgid "Products > Attributes"
+msgstr ""
+
+#: src/Kits/VariationSwatches/VariationSwatchesKit.php:79
+msgid "Attributes without a swatch type"
+msgstr ""
+
+#: src/Kits/VariationSwatches/VariationSwatchesKit.php:82
+msgid "Keep the dropdown"
+msgstr ""
+
+#: src/Kits/VariationSwatches/VariationSwatchesKit.php:83
+msgid "Show buttons with the option names"
+msgstr ""
+
+#: src/Kits/VariationSwatches/VariationSwatchesKit.php:90
+msgid "Swatch size (px)"
+msgstr ""
+
+#: src/Kits/VariationSwatches/VariationSwatchesKit.php:101
+msgid "Shape"
+msgstr ""
+
+#: src/Kits/VariationSwatches/VariationSwatchesKit.php:103
+msgid "Round"
+msgstr ""
+
+#: src/Kits/VariationSwatches/VariationSwatchesKit.php:104
+msgid "Square (rounded corners)"
+msgstr ""
+
+#: src/Kits/VariationSwatches/VariationSwatchesKit.php:111
+msgid "Tooltips"
+msgstr ""
+
+#: src/Kits/VariationSwatches/VariationSwatchesKit.php:112
+msgid "Show the option name above colour and image swatches on hover and keyboard focus"
+msgstr ""
+
+#: src/Kits/VariationSwatches/VariationSwatchesKit.php:118
+msgid "Out-of-stock options"
+msgstr ""
+
+#: src/Kits/VariationSwatches/VariationSwatchesKit.php:119
+msgid "Options that exist but are out of stock. Options that do not exist with the other choices are always greyed out; choosing one clears the other choices."
+msgstr ""
+
+#: src/Kits/VariationSwatches/VariationSwatchesKit.php:121
+msgid "Crossed out"
+msgstr ""
+
+#: src/Kits/VariationSwatches/VariationSwatchesKit.php:122
+msgid "Faded"
+msgstr ""
+
+#: src/Kits/VariationSwatches/VariationSwatchesKit.php:130
+msgid "Keep the dropdown above"
+msgstr ""
+
+#: src/Kits/VariationSwatches/VariationSwatchesKit.php:131
+msgid "Attributes with more options than this keep the dropdown. 0 = no limit."
 msgstr ""
 
 #: src/Kits/WholesalePrices/Customer.php:31
@@ -877,6 +2770,211 @@ msgstr ""
 msgid "Show the retail price crossed out next to the wholesale price"
 msgstr ""
 
+#: src/Kits/Wishlist/Account.php:75
+#: src/Kits/Wishlist/Frontend.php:235
+#: src/Kits/Wishlist/Frontend.php:415
+#: src/Kits/Wishlist/Store.php:156
+#: src/Kits/Wishlist/WishlistKit.php:34
+#: src/Kits/Wishlist/WishlistKit.php:54
+#: assets/js/wishlist-blocks.js:10
+#: assets/js/wishlist-blocks.js:38
+msgid "Wishlist"
+msgstr ""
+
+#: src/Kits/Wishlist/Frontend.php:187
+msgid "Added to your wishlist."
+msgstr ""
+
+#: src/Kits/Wishlist/Frontend.php:188
+msgid "Removed from your wishlist."
+msgstr ""
+
+#: src/Kits/Wishlist/Frontend.php:189
+msgid "Your wishlist could not be updated. Please try again."
+msgstr ""
+
+#: src/Kits/Wishlist/Frontend.php:190
+msgid "Link copied."
+msgstr ""
+
+#: src/Kits/Wishlist/Frontend.php:439
+msgid "The shopper's wishlist appears here."
+msgstr ""
+
+#: src/Kits/Wishlist/Frontend.php:548
+msgid "In stock"
+msgstr ""
+
+#: src/Kits/Wishlist/Frontend.php:548
+msgid "Out of stock"
+msgstr ""
+
+#: src/Kits/Wishlist/Frontend.php:551
+#: src/Kits/Wishlist/WishlistKit.php:123
+#: templates/wishlist/wishlist.php:52
+msgid "Add to cart"
+msgstr ""
+
+#. translators: %s: product name
+#: src/Kits/Wishlist/Frontend.php:605
+#, php-format
+msgid "&ldquo;%s&rdquo; has been added to your wishlist."
+msgstr ""
+
+#: src/Kits/Wishlist/Frontend.php:607
+msgid "View wishlist"
+msgstr ""
+
+#: src/Kits/Wishlist/Frontend.php:624
+msgid "Product removed from your wishlist."
+msgstr ""
+
+#: src/Kits/Wishlist/Guest.php:66
+msgid "Too many wishlists were started from your network. Please try again later or log in."
+msgstr ""
+
+#: src/Kits/Wishlist/Maintenance.php:118
+#: src/Kits/Wishlist/Maintenance.php:133
+#: src/Kits/Wishlist/Maintenance.php:157
+#: src/Kits/Wishlist/Store.php:52
+msgid "Wishlists"
+msgstr ""
+
+#: src/Kits/Wishlist/Maintenance.php:161
+msgid "Name"
+msgstr ""
+
+#: src/Kits/Wishlist/Rest.php:91
+msgid "Please log in to use the wishlist."
+msgstr ""
+
+#: src/Kits/Wishlist/Rest.php:195
+#: src/Kits/Wishlist/Store.php:317
+msgid "This wishlist does not exist."
+msgstr ""
+
+#: src/Kits/Wishlist/Settings.php:36
+msgid "After the Add to cart button"
+msgstr ""
+
+#: src/Kits/Wishlist/Settings.php:37
+msgid "Before the Add to cart button"
+msgstr ""
+
+#: src/Kits/Wishlist/Settings.php:38
+msgid "Do not show on product pages"
+msgstr ""
+
+#: src/Kits/Wishlist/Settings.php:49
+msgid "Heart icon and text"
+msgstr ""
+
+#: src/Kits/Wishlist/Settings.php:50
+msgid "Heart icon only"
+msgstr ""
+
+#: src/Kits/Wishlist/Settings.php:51
+msgid "Text only"
+msgstr ""
+
+#: src/Kits/Wishlist/Settings.php:83
+#: src/Kits/Wishlist/WishlistKit.php:91
+msgid "Add to wishlist"
+msgstr ""
+
+#: src/Kits/Wishlist/Settings.php:91
+#: src/Kits/Wishlist/WishlistKit.php:98
+msgid "In your wishlist"
+msgstr ""
+
+#: src/Kits/Wishlist/Store.php:131
+msgid "Your wishlist could not be saved. Please try again."
+msgstr ""
+
+#: src/Kits/Wishlist/Store.php:142
+msgid "You cannot create more wishlists."
+msgstr ""
+
+#: src/Kits/Wishlist/Store.php:286
+msgid "This product cannot be added to a wishlist."
+msgstr ""
+
+#: src/Kits/Wishlist/Store.php:331
+msgid "Your wishlist is full. Remove a product to add another."
+msgstr ""
+
+#: src/Kits/Wishlist/WishlistKit.php:41
+msgid "Shoppers save products to a wishlist with a heart on product pages and in the shop, as guests or logged in, and share it with a read-only link."
+msgstr ""
+
+#: src/Kits/Wishlist/WishlistKit.php:55
+msgid "Add the counter to your header with the \"Wishlist counter\" block or the [wootoolkit_wishlist_count] shortcode. Put a heart anywhere with [wootoolkit_wishlist_button id=\"123\"]."
+msgstr ""
+
+#: src/Kits/Wishlist/WishlistKit.php:60
+msgid "Wishlist page"
+msgstr ""
+
+#: src/Kits/Wishlist/WishlistKit.php:61
+msgid "The page with the Wishlist block or the [wootoolkit_wishlist] shortcode. Exclude it from page caching if your cache plugin does not do that automatically."
+msgstr ""
+
+#: src/Kits/Wishlist/WishlistKit.php:69
+msgid "Button on product pages"
+msgstr ""
+
+#: src/Kits/Wishlist/WishlistKit.php:76
+msgid "Shop and category pages"
+msgstr ""
+
+#: src/Kits/Wishlist/WishlistKit.php:77
+msgid "Show the button in product lists and product blocks"
+msgstr ""
+
+#: src/Kits/Wishlist/WishlistKit.php:83
+msgid "Button style"
+msgstr ""
+
+#: src/Kits/Wishlist/WishlistKit.php:97
+msgid "Button text when added"
+msgstr ""
+
+#: src/Kits/Wishlist/WishlistKit.php:104
+msgid "Guests"
+msgstr ""
+
+#: src/Kits/Wishlist/WishlistKit.php:105
+msgid "Let visitors who are not logged in keep a wishlist (merged into their account when they log in)"
+msgstr ""
+
+#: src/Kits/Wishlist/WishlistKit.php:111
+msgid "Keep guest wishlists for"
+msgstr ""
+
+#: src/Kits/Wishlist/WishlistKit.php:112
+msgid "days after their last change"
+msgstr ""
+
+#: src/Kits/Wishlist/WishlistKit.php:124
+msgid "Remove a product from the wishlist when it is added to the cart from the wishlist page"
+msgstr ""
+
+#: src/Kits/Wishlist/WishlistKit.php:130
+msgid "Sharing"
+msgstr ""
+
+#: src/Kits/Wishlist/WishlistKit.php:131
+msgid "Shoppers can share their wishlist with a private, read-only link"
+msgstr ""
+
+#: src/Kits/Wishlist/WishlistKit.php:137
+msgid "My Account"
+msgstr ""
+
+#: src/Kits/Wishlist/WishlistKit.php:138
+msgid "Add a Wishlist page to My Account"
+msgstr ""
+
 #. translators: %s: customer first name
 #: templates/emails/plain/wootoolkit-customer-quote.php:23
 #: templates/emails/wootoolkit-customer-quote.php:21
@@ -916,50 +3014,98 @@ msgid "Open the quote"
 msgstr ""
 
 #. translators: %s: quote number
-#: templates/quote/quote.php:26
+#: templates/quote/quote.php:27
 #, php-format
 msgid "Thank you. We have received your quote request #%s and will email you our quote."
 msgstr ""
 
-#: templates/quote/quote.php:32
+#: templates/quote/quote.php:33
+#: templates/wishlist/wishlist.php:39
 msgid "Return to shop"
 msgstr ""
 
-#: templates/quote/quote.php:39
-#: templates/quote/quote.php:61
-msgid "Product"
-msgstr ""
-
-#: templates/quote/quote.php:40
-#: templates/quote/quote.php:64
+#: templates/quote/quote.php:41
 #: templates/quote/quote.php:65
+#: templates/quote/quote.php:66
 msgid "Quantity"
 msgstr ""
 
-#: templates/quote/quote.php:41
+#: templates/quote/quote.php:42
+#: templates/wishlist/wishlist.php:54
 msgid "Remove item"
 msgstr ""
 
 #. translators: %s: product name
-#: templates/quote/quote.php:70
+#: templates/quote/quote.php:71
 #, php-format
 msgid "Remove %s from your quote"
 msgstr ""
 
-#: templates/quote/quote.php:78
+#: templates/quote/quote.php:79
 msgid "Update quote"
 msgstr ""
 
-#: templates/quote/quote.php:88
+#: templates/quote/quote.php:89
 msgid "required"
 msgstr ""
 
-#: templates/quote/quote.php:99
+#: templates/quote/quote.php:100
 msgid "Leave this field empty"
 msgstr ""
 
-#: templates/quote/quote.php:104
+#: templates/quote/quote.php:105
 msgid "Send quote request"
+msgstr ""
+
+#: templates/wishlist/wishlist.php:35
+msgid "This wishlist is not available. The link may have expired, or sharing was turned off."
+msgstr ""
+
+#: templates/wishlist/wishlist.php:37
+msgid "Your wishlist is empty. Tap the heart on any product to save it here."
+msgstr ""
+
+#: templates/wishlist/wishlist.php:51
+#: templates/wishlist/wishlist.php:78
+msgid "Stock"
+msgstr ""
+
+#. translators: %s: date
+#: templates/wishlist/wishlist.php:68
+#, php-format
+msgid "Added %s"
+msgstr ""
+
+#. translators: %s: price when the product was added
+#: templates/wishlist/wishlist.php:75
+#, php-format
+msgid "Was %s when added"
+msgstr ""
+
+#. translators: %s: product name
+#: templates/wishlist/wishlist.php:87
+#, php-format
+msgid "Remove %s from your wishlist"
+msgstr ""
+
+#: templates/wishlist/wishlist.php:106
+msgid "Share your wishlist (anyone with the link can see it, but not change it)"
+msgstr ""
+
+#: templates/wishlist/wishlist.php:109
+msgid "Copy link"
+msgstr ""
+
+#: templates/wishlist/wishlist.php:110
+msgid "My wishlist"
+msgstr ""
+
+#: templates/wishlist/wishlist.php:117
+msgid "Your wishlist is saved in this browser."
+msgstr ""
+
+#: templates/wishlist/wishlist.php:118
+msgid "Log in to keep it in your account."
 msgstr ""
 
 #: assets/js/quote-block.js:10
@@ -972,4 +3118,20 @@ msgstr ""
 
 #: assets/js/quote-block.js:19
 msgid "Quote list and request form. Shoppers see the products they added to their quote here, with the form to send the request."
+msgstr ""
+
+#: assets/js/wishlist-blocks.js:11
+msgid "The shopper's wishlist: image, name, price, stock, add to cart and remove, with a share link."
+msgstr ""
+
+#: assets/js/wishlist-blocks.js:19
+msgid "Wishlist. Shoppers see the products they saved here."
+msgstr ""
+
+#: assets/js/wishlist-blocks.js:29
+msgid "Wishlist counter"
+msgstr ""
+
+#: assets/js/wishlist-blocks.js:30
+msgid "A heart with the number of products on the shopper's wishlist, linking to the wishlist page. For headers."
 msgstr ""
