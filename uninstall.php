@@ -24,11 +24,10 @@ $wootoolkit_uninstall_site = static function () {
 	do {
 		$wootoolkit_ids = get_posts(
 			array(
-				'post_type'        => 'wtk_wishlist',
-				'post_status'      => array( 'private', 'publish', 'draft', 'pending', 'future', 'trash' ),
-				'numberposts'      => 100,
-				'fields'           => 'ids',
-				'suppress_filters' => true,
+				'post_type'   => 'wtk_wishlist',
+				'post_status' => array( 'private', 'publish', 'draft', 'pending', 'future', 'trash' ),
+				'numberposts' => 100,
+				'fields'      => 'ids',
 			)
 		);
 		foreach ( $wootoolkit_ids as $wootoolkit_id ) {
