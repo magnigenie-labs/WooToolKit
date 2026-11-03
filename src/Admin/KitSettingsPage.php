@@ -416,7 +416,7 @@ final class KitSettingsPage {
 			return;
 		}
 		?>
-		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" class="wtk-kit-form" data-wtk-form>
+		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" class="wtk-kit-form woocommerce" data-wtk-form>
 			<input type="hidden" name="action" value="<?php echo esc_attr( self::SAVE ); ?>">
 			<input type="hidden" name="kit" value="<?php echo esc_attr( $id ); ?>">
 			<input type="hidden" name="tab" value="<?php echo esc_attr( $current ); ?>" data-wtk-tab-field>

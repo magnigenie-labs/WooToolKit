@@ -115,14 +115,15 @@ Quote requests are stored as WooCommerce orders, with the name, email, phone, co
 
 == Screenshots ==
 
-1. Switch on the kits you need under WooToolkit > Kits.
+1. The Kits page: switch on the kits your store needs (WooToolkit > Kits).
 2. Wholesale prices: a wholesale customer sees the wholesale price with the retail price crossed out.
 3. Wholesale prices: wholesale price on the product, per category and store-wide.
-4. Catalog mode settings: who, which products, prices, purchases and the replacement button.
+4. Catalog mode settings on its own page: who, which products, prices, purchases and the replacement button.
 5. Catalog mode on a product page, with "Add to quote" instead of Add to cart.
 6. The quote page: the shopper's quote list and request form.
 7. A quote in the order screen, with "Send quote to customer".
 8. The customer's quote email with the link to pay.
+9. The WooToolkit dashboard: kits that are on, compatibility and anything that needs your attention.
 
 == Changelog ==
 

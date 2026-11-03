@@ -606,7 +606,7 @@ final class SettingsPage {
 		}
 		KitSettingsPage::load_wc_settings();
 		?>
-		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" class="wtk-settings-form" data-wtk-form>
+		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" class="wtk-settings-form woocommerce" data-wtk-form>
 			<input type="hidden" name="action" value="<?php echo esc_attr( self::SAVE ); ?>">
 			<input type="hidden" name="section" value="<?php echo esc_attr( $section ); ?>">
 			<?php wp_nonce_field( 'wootoolkit_settings_' . $section ); ?>
