@@ -15,7 +15,7 @@ This file is for developers. The WordPress.org listing lives in `readme.txt`.
 - `src/`: 2.0 code, namespace `WooToolkit\`, loaded by a small PSR-4 autoloader in `wootoolkit.php`. Composer is used for development only.
   - `Plugin`: wires hooks.
   - `Kit\Kit`: the kit interface. `Kit\Registry` tracks registered and active kits, and `Kit\ClassicKit` adapts the 1.x kits.
-  - `Admin\SettingsPage`: the WooCommerce > Settings > WooToolkit tab.
+  - `Admin\*`: the WooToolkit admin menu (Menu, Screen, DashboardPage, KitsPage, KitSettingsPage, SettingsPage, HelpPage, DashboardWidget, ProKits).
   - `Install\Installer`: install, plus the 1.x to 2.0 migration.
 - `kits/`: the 1.x "Classic" kits, loaded unchanged through `ClassicKit`. Bug fixes only.
 - `includes/wootoolkit.settings.class.php`: the settings screen the Classic kits still use (WooCommerce > WooToolkit Classic).

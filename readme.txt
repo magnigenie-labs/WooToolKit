@@ -81,7 +81,7 @@ Open a topic in the [support forum](https://wordpress.org/support/plugin/wootool
 
 1. Install and activate WooCommerce.
 2. Install WooToolkit from Plugins > Add New, or upload the plugin folder to `/wp-content/plugins/`, and activate it.
-3. Go to WooCommerce > Settings > WooToolkit and switch on the kits you need. Each kit adds its own settings section on that screen.
+3. Open WooToolkit > Kits in the admin menu and switch on the kits you need. Each kit has its own settings page, linked from its card.
 
 == Frequently Asked Questions ==
 
@@ -107,15 +107,15 @@ Yes. Catalog products are unpurchasable in WooCommerce itself, so `?add-to-cart=
 
 = I used WooToolkit 1.x. What happens when I update? =
 
-Every kit you had switched on stays on as a Classic kit, with its settings. The 1.x Catalog kit is replaced by the new Catalog mode kit and your settings are carried over. It is switched on only if catalog mode was on in 1.x. Kits are now managed under WooCommerce > Settings > WooToolkit, and Classic kit settings are under WooCommerce > WooToolkit Classic.
+Every kit you had switched on stays on as a Classic kit, with its settings. The 1.x Catalog kit is replaced by the new Catalog mode kit and your settings are carried over. It is switched on only if catalog mode was on in 1.x. Kits are now managed in the WooToolkit menu (WooToolkit > Kits), and each Classic kit's settings are linked from its card and from WooToolkit > Settings > Classic kits.
 
 = Does WooToolkit store personal data? =
 
-Quote requests are stored as WooCommerce orders, with the name, email, phone, company and message the shopper enters. They are covered by WooCommerce's personal data export and erasure tools. Wishlists are stored with the customer's account; a guest's wishlist is linked to a random cookie, not to their name or email, and is deleted after 30 days without changes (a setting). Wishlists are included in the personal data export and erasure tools, and deleted with the user. WooToolkit does not send data to external services, except the Classic Mailchimp kit, which sends the emails of customers who opt in at checkout to your Mailchimp list.
+Quote requests are stored as WooCommerce orders, with the name, email, phone, company and message the shopper enters. They are covered by WooCommerce's personal data export and erasure tools. Wishlists are stored with the customer's account; a guest's wishlist is linked to a random cookie, not to their name or email, and is deleted after 30 days without changes (a setting). Wishlists are included in the personal data export and erasure tools, and deleted with the user. WooToolkit does not send data to external services, except the Classic Mailchimp kit, which sends the emails of customers who opt in at checkout to your Mailchimp list. Nothing is deleted when you delete the plugin unless you switch on WooToolkit > Settings > Privacy and data > "Delete all WooToolkit data".
 
 == Screenshots ==
 
-1. Switch on the kits you need under WooCommerce > Settings > WooToolkit.
+1. Switch on the kits you need under WooToolkit > Kits.
 2. Wholesale prices: a wholesale customer sees the wholesale price with the retail price crossed out.
 3. Wholesale prices: wholesale price on the product, per category and store-wide.
 4. Catalog mode settings: who, which products, prices, purchases and the replacement button.
@@ -127,7 +127,7 @@ Quote requests are stored as WooCommerce orders, with the name, email, phone, co
 == Changelog ==
 
 = 2.0.0 =
-* New: Kits are managed under WooCommerce > Settings > WooToolkit, which replaces the old Installed Kits screen.
+* New: WooToolkit has its own admin menu: a Dashboard, a Kits page with instant on/off switches, a settings page for every kit, Settings (who can manage, import/export, reset, data on uninstall) and Help. It replaces the old Installed Kits screen.
 * New: Kit framework and registry. WooToolkit declares HPOS and Cart & Checkout block compatibility based on the kits you actually have switched on.
 * New: Wholesale prices kit. A Wholesale customer role with per-product, per-variation, per-category or store-wide wholesale prices, in classic templates, the blocks, the Store API, the cart and checkout.
 * New: Catalog mode kit, replacing the 1.x Catalog kit. Hide prices and stop purchases for everyone, guests, or everyone except wholesale customers, on all products, chosen categories or chosen products. Purchases are refused by WooCommerce itself, so add-to-cart links and the Store API are blocked too. 1.x Catalog settings are carried over.
@@ -136,7 +136,7 @@ Quote requests are stored as WooCommerce orders, with the name, email, phone, co
 * New: Wishlist kit. A heart on product pages and loops for guests and customers, a wishlist page and block, a My Account page, share links, a header counter and REST endpoints (wootoolkit/v1/wishlist). Guest lists are merged on login and cleaned up after 30 days.
 * New: Variation swatches kit. Colour, image and label swatches for product options on the product page, with greyed-out unavailable combinations and out-of-stock styles.
 * New: PDF invoices & packing slips kit. PDF invoices attached to order emails, sequential invoice numbers, packing slips, and downloads for you and your customers.
-* Changed: The 1.x kits become "Classic kits" (bug fixes only). Their settings moved to WooCommerce > WooToolkit Classic.
+* Changed: The 1.x kits become "Classic kits" (bug fixes only). Their settings screen is linked from their cards and from WooToolkit > Settings > Classic kits.
 * Changed: Fresh installs start with no kits switched on. Upgrades from 1.x keep every kit that was on.
 * Changed: WooCommerce is now a required plugin. Without it WooToolkit shows a notice instead of deactivating itself.
 
