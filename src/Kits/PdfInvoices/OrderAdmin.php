@@ -133,6 +133,42 @@ final class OrderAdmin {
 	}
 
 	/**
+	 * Dashboard "Needs your attention": invoices without a logo or store address.
+	 *
+	 * @param array<int, array<string, string>> $items Items.
+	 * @return array<int, array<string, string>>
+	 */
+	public static function attention( $items ): array {
+		$items   = is_array( $items ) ? $items : array();
+		$logo    = '' !== trim( (string) get_option( Settings::OPT_LOGO, '' ) );
+		$address = '' !== trim( (string) get_option( 'woocommerce_store_address', '' ) );
+		if ( $logo && $address ) {
+			return $items;
+		}
+		if ( ! $logo && ! $address ) {
+			$text   = __( 'has no logo or store address yet.', 'wootoolkit' );
+			$action = __( 'Add them', 'wootoolkit' );
+			$url    = \WooToolkit\Admin\Admin::settings_url( 'pdf-invoices' );
+		} elseif ( ! $logo ) {
+			$text   = __( 'has no logo yet.', 'wootoolkit' );
+			$action = __( 'Add a logo', 'wootoolkit' );
+			$url    = \WooToolkit\Admin\Admin::settings_url( 'pdf-invoices' );
+		} else {
+			$text   = __( 'has no store address yet.', 'wootoolkit' );
+			$action = __( 'Add your address', 'wootoolkit' );
+			$url    = admin_url( 'admin.php?page=wc-settings&tab=general' );
+		}
+		$items[] = array(
+			'kit'          => __( 'PDF invoices', 'wootoolkit' ),
+			'text'         => $text,
+			'action_label' => $action,
+			'url'          => $url,
+			'level'        => 'amber',
+		);
+		return $items;
+	}
+
+	/**
 	 * Icons for the list buttons; the media picker on the kit's settings section.
 	 *
 	 * @param string $hook Admin page hook.
@@ -145,9 +181,12 @@ final class OrderAdmin {
 		wp_enqueue_style( 'wootoolkit-pdf-invoices-admin' );
 		wp_add_inline_style( 'wootoolkit-pdf-invoices-admin', $css );
 
-		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- only decides whether to load a script.
-		$section = isset( $_GET['section'] ) ? sanitize_key( wp_unslash( $_GET['section'] ) ) : '';
-		if ( 'woocommerce_page_wc-settings' === $hook && 'pdf-invoices' === $section && current_user_can( 'manage_woocommerce' ) ) {
+		unset( $hook );
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended -- only decides whether to load a script.
+		$page = isset( $_GET['page'] ) && is_string( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : '';
+		$kit  = isset( $_GET['kit'] ) && is_string( $_GET['kit'] ) ? sanitize_key( wp_unslash( $_GET['kit'] ) ) : '';
+		// phpcs:enable WordPress.Security.NonceVerification.Recommended
+		if ( 'wootoolkit-kits' === $page && 'pdf-invoices' === $kit && current_user_can( \WooToolkit\Admin\Admin::capability() ) ) {
 			wp_enqueue_media();
 			wp_enqueue_script( 'wootoolkit-pdf-invoices-settings', plugins_url( 'assets/js/pdf-invoices-settings.js', WOOTOOLKIT_FILE ), array( 'jquery' ), WOOTOOLKIT_VERSION, true );
 			wp_localize_script(

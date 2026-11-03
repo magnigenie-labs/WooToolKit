@@ -37,6 +37,33 @@ final class Statuses {
 		add_filter( 'woocommerce_analytics_excluded_statuses', array( self::class, 'excluded_from_analytics' ) );
 		add_filter( 'woocommerce_order_actions', array( self::class, 'order_actions' ), 10, 2 );
 		add_action( 'woocommerce_order_action_' . self::ACTION, array( self::class, 'send' ) );
+		add_filter( 'wootoolkit_dashboard_activity', array( self::class, 'activity' ) );
+	}
+
+	/**
+	 * Dashboard "From your kits": quotes waiting for a price, linked to the filtered orders list.
+	 *
+	 * @param array<int, array<string, string>> $items Items.
+	 * @return array<int, array<string, string>>
+	 */
+	public static function activity( $items ): array {
+		$items = is_array( $items ) ? $items : array();
+		$count = function_exists( 'wc_orders_count' ) ? (int) wc_orders_count( self::REQUESTED ) : 0;
+		if ( $count <= 0 ) {
+			return $items;
+		}
+		$hpos    = class_exists( \Automattic\WooCommerce\Utilities\OrderUtil::class ) && \Automattic\WooCommerce\Utilities\OrderUtil::custom_orders_table_usage_is_enabled();
+		$url     = $hpos
+			? admin_url( 'admin.php?page=wc-orders&status=wc-' . self::REQUESTED )
+			: admin_url( 'edit.php?post_type=shop_order&post_status=wc-' . self::REQUESTED );
+		$items[] = array(
+			'kit'        => __( 'Request a quote', 'wootoolkit' ),
+			/* translators: %s: number of quotes */
+			'text'       => sprintf( _n( '%s quote waiting for a price', '%s quotes waiting for a price', $count, 'wootoolkit' ), number_format_i18n( $count ) ),
+			'link_label' => __( 'Open quotes', 'wootoolkit' ),
+			'url'        => $url,
+		);
+		return $items;
 	}
 
 	/**

@@ -66,6 +66,7 @@ final class PdfInvoicesKit extends AbstractKit {
 		Attachments::hooks();
 		Downloads::hooks();
 		Account::hooks();
+		add_filter( 'wootoolkit_dashboard_attention', array( OrderAdmin::class, 'attention' ) );
 		if ( is_admin() ) {
 			OrderAdmin::hooks();
 		}
