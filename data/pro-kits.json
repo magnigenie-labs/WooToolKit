@@ -1,0 +1,322 @@
+[
+ {
+  "kit_id": "back-in-stock",
+  "name": "Back in stock alerts",
+  "description": "Shoppers leave their email on out-of-stock products and are emailed when the product is back.",
+  "collection": "catalog",
+  "price": "$29",
+  "needs": [],
+  "store_id": 0
+ },
+ {
+  "kit_id": "bulk-price-editor",
+  "name": "Bulk price editor",
+  "description": "Raise, lower, round or put on sale the prices of many products at once, with a preview before you apply and a one-click undo.",
+  "collection": "catalog",
+  "price": "$29",
+  "needs": [],
+  "store_id": 0
+ },
+ {
+  "kit_id": "buy-again",
+  "name": "Buy again",
+  "description": "Lets customers reorder in one click from their past orders and from a Buy again page listing everything they have bought before.",
+  "collection": "catalog",
+  "price": "$29",
+  "needs": [],
+  "store_id": 0
+ },
+ {
+  "kit_id": "cart-discount-rules",
+  "name": "Cart discount rules",
+  "description": "Automatic discounts: bulk quantity discounts, buy X get Y and spend tiers, with dates and role conditions.",
+  "collection": "catalog",
+  "price": "$49",
+  "needs": [],
+  "store_id": 0
+ },
+ {
+  "kit_id": "checkout-fields-pro",
+  "name": "Checkout fields Pro",
+  "description": "Conditional checkout fields, priced fields that add a fee, date, radio, multi-checkbox and heading fields, fields per customer role, and checkout field values in the orders list and a CSV export.",
+  "collection": "catalog",
+  "price": "$49",
+  "needs": [
+   "checkout-fields"
+  ],
+  "store_id": 0
+ },
+ {
+  "kit_id": "conditional-shipping",
+  "name": "Conditional shipping",
+  "description": "Show or hide shipping methods by cart contents, subtotal, weight, customer role and destination postcode.",
+  "collection": "catalog",
+  "price": "$49",
+  "needs": [],
+  "store_id": 0
+ },
+ {
+  "kit_id": "customer-pricing",
+  "name": "Customer pricing",
+  "description": "Gives individual customers their own prices: fixed prices or percentage discounts per product, and an account-wide discount.",
+  "collection": "b2b",
+  "price": "$49",
+  "needs": [],
+  "store_id": 0
+ },
+ {
+  "kit_id": "delivery-date",
+  "name": "Delivery date",
+  "description": "Let customers choose a delivery or pickup date, and optionally a time slot, at checkout, based on your lead time, cutoff time and open days.",
+  "collection": "catalog",
+  "price": "$49",
+  "needs": [],
+  "store_id": 0
+ },
+ {
+  "kit_id": "free-shipping-bar",
+  "name": "Free shipping bar",
+  "description": "Shows how much more the customer needs to spend to get free shipping, on the cart, checkout and mini cart.",
+  "collection": "catalog",
+  "price": "$29",
+  "needs": [],
+  "store_id": 0
+ },
+ {
+  "kit_id": "gift-cards",
+  "name": "Gift cards",
+  "description": "Sell gift cards that are emailed to the recipient and redeemed with the normal coupon field.",
+  "collection": "loyalty",
+  "price": "$49",
+  "needs": [],
+  "store_id": 0
+ },
+ {
+  "kit_id": "order-approval",
+  "name": "Order approval",
+  "description": "Customers in chosen roles, or orders over a set amount, submit orders for approval before they pay.",
+  "collection": "b2b",
+  "price": "$49",
+  "needs": [],
+  "store_id": 0
+ },
+ {
+  "kit_id": "order-rules",
+  "name": "Order rules",
+  "description": "Minimum, maximum and pack-size quantities per product, plus minimum and maximum order values and quantities for the cart.",
+  "collection": "b2b",
+  "price": "$49",
+  "needs": [],
+  "store_id": 0
+ },
+ {
+  "kit_id": "pay-by-invoice",
+  "name": "Pay by invoice",
+  "description": "Lets approved business customers order now and pay later by invoice, with net payment terms and optional credit limits.",
+  "collection": "b2b",
+  "price": "$49",
+  "needs": [],
+  "store_id": 0
+ },
+ {
+  "kit_id": "pdf-invoices-pro",
+  "name": "PDF invoices Pro",
+  "description": "PDF invoices in Greek, Cyrillic, Arabic, Hebrew and every Latin-script language, three templates, credit notes, proforma invoices, bulk downloads and invoice number formats.",
+  "collection": "b2b",
+  "price": "$49",
+  "needs": [
+   "pdf-invoices"
+  ],
+  "store_id": 0
+ },
+ {
+  "kit_id": "points-rewards",
+  "name": "Points and rewards",
+  "description": "Customers earn points on every order and spend them as a discount at checkout.",
+  "collection": "loyalty",
+  "price": "$49",
+  "needs": [],
+  "store_id": 0
+ },
+ {
+  "kit_id": "pre-orders",
+  "name": "Pre-orders",
+  "description": "Take orders for products before they are released, with a release date, pre-order price and an email to customers when the product ships.",
+  "collection": "catalog",
+  "price": "$49",
+  "needs": [],
+  "store_id": 0
+ },
+ {
+  "kit_id": "private-store",
+  "name": "Private store",
+  "description": "Make the whole store, the shop pages or chosen categories visible to logged-in customers only.",
+  "collection": "b2b",
+  "price": "$29",
+  "needs": [],
+  "store_id": 0
+ },
+ {
+  "kit_id": "product-addons",
+  "name": "Product add-ons",
+  "description": "Add extra paid or free options to products, such as gift wrap, engraving text or a choice of colour, per product or for whole categories.",
+  "collection": "catalog",
+  "price": "$49",
+  "needs": [],
+  "store_id": 0
+ },
+ {
+  "kit_id": "product-enquiry",
+  "name": "Product enquiry",
+  "description": "Adds an Ask a question form to product pages that emails the store and keeps every enquiry in wp-admin.",
+  "collection": "catalog",
+  "price": "$29",
+  "needs": [],
+  "store_id": 0
+ },
+ {
+  "kit_id": "product-file-upload",
+  "name": "Product file upload",
+  "description": "Lets customers upload files with a product, such as artwork for printing, stored privately and linked from the order.",
+  "collection": "catalog",
+  "price": "$49",
+  "needs": [],
+  "store_id": 0
+ },
+ {
+  "kit_id": "purchase-limits",
+  "name": "Purchase limits",
+  "description": "Limit how many of a product each customer can buy, per order, per period or once only.",
+  "collection": "b2b",
+  "price": "$29",
+  "needs": [],
+  "store_id": 0
+ },
+ {
+  "kit_id": "purchase-order-number",
+  "name": "Purchase order number",
+  "description": "Collect a purchase order (PO) number at checkout and show it on the order, in emails, in My Account and in the orders list.",
+  "collection": "b2b",
+  "price": "$29",
+  "needs": [],
+  "store_id": 0
+ },
+ {
+  "kit_id": "quick-order",
+  "name": "Quick order form",
+  "description": "A bulk order form listing products and variations with quantities, so customers add many items to the cart at once.",
+  "collection": "b2b",
+  "price": "$49",
+  "needs": [],
+  "store_id": 0
+ },
+ {
+  "kit_id": "quote-pro",
+  "name": "Quote Pro",
+  "description": "Adds expiry dates, reminder emails, automatic cancellation and a My Account Quotes page where customers accept or decline quotes.",
+  "collection": "b2b",
+  "price": "$49",
+  "needs": [
+   "request-a-quote"
+  ],
+  "store_id": 0
+ },
+ {
+  "kit_id": "role-visibility",
+  "name": "Role visibility",
+  "description": "Hide products and categories from chosen roles and guests, everywhere products are listed or sold.",
+  "collection": "b2b",
+  "price": "$49",
+  "needs": [],
+  "store_id": 0
+ },
+ {
+  "kit_id": "role-checkout",
+  "name": "Role-based checkout",
+  "description": "Choose which payment and shipping methods each customer role can use at checkout.",
+  "collection": "b2b",
+  "price": "$49",
+  "needs": [],
+  "store_id": 0
+ },
+ {
+  "kit_id": "sample-orders",
+  "name": "Sample orders",
+  "description": "Lets customers order a sample of chosen products at a fixed sample price or free, with per-order limits.",
+  "collection": "catalog",
+  "price": "$29",
+  "needs": [],
+  "store_id": 0
+ },
+ {
+  "kit_id": "store-credit",
+  "name": "Store credit",
+  "description": "Gives customers a store credit balance that admins can top up, refunds can be paid into, and customers can spend at checkout.",
+  "collection": "loyalty",
+  "price": "$49",
+  "needs": [],
+  "store_id": 0
+ },
+ {
+  "kit_id": "tax-exempt-vat",
+  "name": "Tax exempt & VAT numbers",
+  "description": "Exempt chosen roles from tax and collect EU VAT numbers at checkout, with reverse charge for valid EU businesses.",
+  "collection": "b2b",
+  "price": "$49",
+  "needs": [],
+  "store_id": 0
+ },
+ {
+  "kit_id": "tiered-pricing",
+  "name": "Tiered pricing",
+  "description": "Quantity break prices per product, variation, category and role, applied in the cart and shown as a price table.",
+  "collection": "b2b",
+  "price": "$49",
+  "needs": [],
+  "store_id": 0
+ },
+ {
+  "kit_id": "variation-swatches-pro",
+  "name": "Variation swatches Pro",
+  "description": "Swatches on shop pages and product blocks that switch the image and add the chosen variation to the cart, plus per-product swatch overrides, image tooltips and a radio-list style.",
+  "collection": "catalog",
+  "price": "$29",
+  "needs": [
+   "variation-swatches"
+  ],
+  "store_id": 0
+ },
+ {
+  "kit_id": "wholesale-registration",
+  "name": "Wholesale registration",
+  "description": "A wholesale application form with admin approval that turns approved applicants into wholesale customers.",
+  "collection": "b2b",
+  "price": "$49",
+  "needs": [
+   "wholesale-prices"
+  ],
+  "store_id": 0
+ },
+ {
+  "kit_id": "wholesale-tiers",
+  "name": "Wholesale tiers",
+  "description": "Multiple wholesale levels, each with its own role, store-wide discount and category discounts.",
+  "collection": "b2b",
+  "price": "$49",
+  "needs": [
+   "wholesale-prices"
+  ],
+  "store_id": 0
+ },
+ {
+  "kit_id": "wishlist-pro",
+  "name": "Wishlist Pro",
+  "description": "Multiple named wishlists, add all to cart, price-drop and back-in-stock emails, a most-wishlisted report and social proof for the Wishlist kit.",
+  "collection": "catalog",
+  "price": "$49",
+  "needs": [
+   "wishlist"
+  ],
+  "store_id": 0
+ }
+]
