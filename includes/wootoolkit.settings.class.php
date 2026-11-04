@@ -124,7 +124,7 @@ class WooToolkit_Settings_API {
         // WooToolkit > Settings > Classic kits and from each Classic kit's card.
         if ( \WooToolkit\Plugin::instance()->registry()->has_active_classic() ) {
 
-            add_submenu_page(
+            $hook = add_submenu_page(
                 '',
                 __( 'WooToolkit Classic kit settings', 'wootoolkit' ),
                 __( 'WooToolkit Classic', 'wootoolkit' ),
@@ -132,6 +132,16 @@ class WooToolkit_Settings_API {
                 'woo-toolkit-settings',
                 array( $this, 'wootoolkit_admin_page' )
             );
+            if ( $hook ) {
+                // A page with no menu parent has no title for WordPress to look up, so give it one
+                // (avoids a strip_tags( null ) deprecation in wp-admin/admin-header.php on PHP 8.1+).
+                add_action(
+                    'load-' . $hook,
+                    static function () {
+                        $GLOBALS['title'] = __( 'WooToolkit Classic kit settings', 'wootoolkit' ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+                    }
+                );
+            }
         }
     }
 
